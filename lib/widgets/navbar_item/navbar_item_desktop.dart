@@ -8,10 +8,6 @@ class NavBarItemTabletDesktop {
     return SingleChildScrollView(
       child: Row(
         children: [
-          // NavBarItem('Review', reviewRoute),
-          // SizedBox(
-          //   width: 60,
-          // ),
           NavBarItem('Material', materialRoute),
           SizedBox(
             width: 60,

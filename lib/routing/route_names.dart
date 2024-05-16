@@ -1,7 +1,4 @@
 const String HomeRoute = 'home';
-// const String AboutRoute = 'about';
-// const String EpisodesRoute = 'episodes';
-//
 const String channelRoute = 'channelRoute';
 const String materialRoute = 'materialRoute';
 const String reportRoute = 'reportRoute';

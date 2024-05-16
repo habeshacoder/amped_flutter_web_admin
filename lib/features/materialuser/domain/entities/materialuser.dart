@@ -1,5 +1,5 @@
-import '../../features/material/domain/entities/material.dart';
-import '../../features/user/domain/entities/user.dart';
+import '../../../material/domain/entities/material.dart';
+import '../../../user/domain/entities/user.dart';
 
 class MaterialUser {
   final int id;

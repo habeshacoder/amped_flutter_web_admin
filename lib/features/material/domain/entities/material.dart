@@ -1,6 +1,5 @@
 import 'package:amped_media_admin/core/utils/enums.dart';
-
-import '../../../../core/common/materialuser.dart';
+import '../../../materialuser/domain/entities/materialuser.dart';
 import '../../../report/domain/entities/reports.dart';
 import '../../../review_rate/domain/entities/rate.dart';
 import '../../../sellerprofile/domain/entities/sellerprofile.dart';

@@ -1,4 +1,4 @@
-import '../../../../core/common/materialuser.dart';
+import '../../../materialuser/domain/entities/materialuser.dart';
 import '../../../profile/domain/entities/profile.dart';
 import '../../../report/domain/entities/reports.dart';
 import '../../../review_rate/domain/entities/rate.dart';
