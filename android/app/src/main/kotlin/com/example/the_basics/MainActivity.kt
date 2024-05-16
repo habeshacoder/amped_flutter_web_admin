@@ -1,4 +1,4 @@
-package com.example.the_basics
+package com.example.amped_media_admin
 
 import android.os.Bundle
 import io.flutter.app.FlutterActivity

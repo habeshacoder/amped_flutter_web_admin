@@ -1,4 +1,4 @@
-# the_basics
+# amped_media_admin
 
 A new Flutter project.
 

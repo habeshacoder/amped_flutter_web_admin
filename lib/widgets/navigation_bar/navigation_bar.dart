@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:amped_media_admin/widgets/navigation_bar/navigation_bar_tablet_desktop.dart';
+import 'package:amped_media_admin/widgets/navigation_bar/navigation_bar_mobile.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:the_basics/widgets/navigation_bar/navbar_item.dart';
-import 'package:the_basics/widgets/navigation_bar/navbar_logo.dart';
-import 'package:the_basics/widgets/navigation_bar/navigationbardesktop.dart';
-import 'package:the_basics/widgets/navigation_bar/navigationbarmobile.dart';
+import 'package:amped_media_admin/extensions/hover_extensions.dart';
 
 class NavigationBar extends StatelessWidget {
   const NavigationBar() : super();
@@ -11,8 +10,9 @@ class NavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
-      mobile: NavigationbarMobile(),
-      tablet: NavigationBarDesktop(),
-    );
+      mobile: NavigationBarMobile(),
+      desktop: NavigationBarTabletDesktop(),
+      tablet: NavigationBarMobile(),
+    ).showCursorOnHover;
   }
 }
