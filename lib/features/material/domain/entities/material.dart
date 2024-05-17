@@ -76,7 +76,6 @@ class MaterialImage {
   final int materialId;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final Material material;
 
   MaterialImage({
     required this.id,
@@ -86,7 +85,6 @@ class MaterialImage {
     required this.materialId,
     required this.createdAt,
     required this.updatedAt,
-    required this.material,
   });
 }
 
@@ -96,7 +94,6 @@ class PreviewMaterial {
   final int materialId;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final Material material;
 
   PreviewMaterial({
     required this.id,
@@ -104,6 +101,5 @@ class PreviewMaterial {
     required this.materialId,
     required this.createdAt,
     required this.updatedAt,
-    required this.material,
   });
 }

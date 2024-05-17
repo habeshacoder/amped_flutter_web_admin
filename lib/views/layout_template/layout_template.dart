@@ -1,19 +1,16 @@
+import 'package:amped_media_admin/init_dependencies.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:amped_media_admin/core/common/centered_view.dart';
 import 'package:amped_media_admin/core/common/widgets/navigation_bar/navigation_bar.dart'
     as customNavbar;
 import 'package:amped_media_admin/core/common/widgets/navigation_drawer/navigation_drawer.dart'
     as customDrawer;
 
 import '../../config/router.dart';
-import '../../features/home/home/home_view.dart';
+import '../../core/common/centered_view.dart';
 
 class LayoutTemplate extends StatelessWidget {
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
-  LayoutTemplate() : super();
+  const LayoutTemplate() : super();
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +22,13 @@ class LayoutTemplate extends StatelessWidget {
           child: Column(
             children: <Widget>[
               customNavbar.NavigationBar(),
+              Expanded(
+                child: Navigator(
+                  key: serviceLocator<NavigationService>().navigatorKey,
+                  onGenerateRoute: generateRoute,
+                  initialRoute: RouteNames.home,
+                ),
+              )
             ],
           ),
         ),

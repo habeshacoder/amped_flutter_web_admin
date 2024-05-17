@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import '../../../../core/utils/enums.dart';
 import '../../../favorite/domain/entities/favorite.dart';
 import '../../../material_in_subscriptionplan/domain/entities/material_in_subscriptionplan.dart';
@@ -75,7 +78,6 @@ class ChannelMaterialImage {
   final int channelMaterialId;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final ChannelMaterial channelMaterial;
 
   ChannelMaterialImage({
     required this.id,
@@ -85,7 +87,6 @@ class ChannelMaterialImage {
     required this.channelMaterialId,
     required this.createdAt,
     required this.updatedAt,
-    required this.channelMaterial,
   });
 }
 
@@ -95,7 +96,6 @@ class ChannelPreviewMaterial {
   final int channelMaterialId;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final ChannelMaterial channelMaterial;
 
   ChannelPreviewMaterial({
     required this.id,
@@ -103,6 +103,5 @@ class ChannelPreviewMaterial {
     required this.channelMaterialId,
     required this.createdAt,
     required this.updatedAt,
-    required this.channelMaterial,
   });
 }

@@ -1,4 +1,3 @@
-import 'package:amped_media_admin/config/router.dart';
 import 'package:amped_media_admin/init_dependencies.dart';
 import 'package:amped_media_admin/provider/auth.dart';
 import 'package:amped_media_admin/provider/channelprovider.dart';
@@ -44,15 +43,14 @@ class MyApp extends StatelessWidget {
           create: (context) => ReportProvider(),
         ),
       ],
-      child: MaterialApp.router(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'AMPED Media Admin',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Open Sans'),
         ),
-        routerConfig: router,
-        // home: LayoutTemplate(),
+        home: LayoutTemplate(),
       ),
     );
   }

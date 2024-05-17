@@ -46,7 +46,6 @@ class ChannelImage {
   final int channelId;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final Channel channel;
 
   ChannelImage({
     required this.id,
@@ -56,7 +55,6 @@ class ChannelImage {
     required this.channelId,
     required this.createdAt,
     required this.updatedAt,
-    required this.channel,
   });
 }
 
@@ -66,7 +64,6 @@ class PreviewChannel {
   final int channelId;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final Channel channel;
 
   PreviewChannel({
     required this.id,
@@ -74,6 +71,5 @@ class PreviewChannel {
     required this.channelId,
     required this.createdAt,
     required this.updatedAt,
-    required this.channel,
   });
 }
