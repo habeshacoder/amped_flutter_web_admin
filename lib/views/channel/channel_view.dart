@@ -1,4 +1,4 @@
-import 'package:amped_media_admin/backendurl.dart';
+import 'package:amped_media_admin/core/constants/backendurl.dart';
 import 'package:amped_media_admin/provider/channelprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

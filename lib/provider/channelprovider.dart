@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:amped_media_admin/backendurl.dart';
+import 'package:amped_media_admin/core/constants/backendurl.dart';
 import 'package:amped_media_admin/viewmodels/channelmodel.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';

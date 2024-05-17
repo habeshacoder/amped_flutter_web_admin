@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:amped_media_admin/routing/route_names.dart';
-import 'package:amped_media_admin/widgets/navbar_item/navbar_item.dart';
-import 'package:amped_media_admin/widgets/navigation_drawer/navigation_drawer_header.dart';
+import 'package:amped_media_admin/core/common/widgets/navigation_bar/navbar_item.dart';
+import 'package:amped_media_admin/core/common/widgets/navigation_drawer/navigation_drawer_header.dart';
 import 'package:amped_media_admin/extensions/hover_extensions.dart';
+
+import '../../../../config/router.dart';
 
 class NavigationDrawer extends StatelessWidget {
   const NavigationDrawer() : super();
@@ -38,7 +39,7 @@ class NavigationDrawer extends StatelessWidget {
                   ),
                   NavBarItem(
                     'Material',
-                    materialRoute,
+                    RouteNames.material,
                     isFromMobile: true,
                   ),
                   SizedBox(
@@ -46,7 +47,7 @@ class NavigationDrawer extends StatelessWidget {
                   ),
                   NavBarItem(
                     'Channel',
-                    channelRoute,
+                    RouteNames.channel,
                     isFromMobile: true,
                   ),
                   SizedBox(
@@ -54,7 +55,7 @@ class NavigationDrawer extends StatelessWidget {
                   ),
                   NavBarItem(
                     'Report',
-                    reportRoute,
+                    RouteNames.report,
                     isFromMobile: true,
                   ),
                   SizedBox(
@@ -62,7 +63,7 @@ class NavigationDrawer extends StatelessWidget {
                   ),
                   NavBarItem(
                     'Users',
-                    UserRoute,
+                    RouteNames.user,
                     isFromMobile: true,
                   ),
                   SizedBox(
@@ -70,7 +71,7 @@ class NavigationDrawer extends StatelessWidget {
                   ),
                   NavBarItem(
                     'Profile',
-                    profileRoute,
+                    RouteNames.profile,
                     isFromMobile: true,
                   ),
                   SizedBox(
@@ -78,7 +79,7 @@ class NavigationDrawer extends StatelessWidget {
                   ),
                   NavBarItem(
                     'SellerProfile',
-                    sellerProfile,
+                    RouteNames.sellerProfile,
                     isFromMobile: true,
                   ),
                   SizedBox(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:amped_media_admin/widgets/navigation_bar/navbar_logo.dart';
+import 'package:amped_media_admin/core/common/widgets/navigation_bar/navbar_logo.dart';
 
 class NavigationBarMobile extends StatelessWidget {
   const NavigationBarMobile() : super();

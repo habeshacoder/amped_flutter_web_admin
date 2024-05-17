@@ -5,4 +5,9 @@ Future<void> initDependencies() async {
   _initChannel();
 }
 
+// void setupLocator() {
+//   locator.registerLazySingleton(() => NavigationService());
+//   // locator.registerLazySingleton(() => Api());
+// }
+
 void _initChannel() {}

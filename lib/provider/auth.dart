@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:amped_media_admin/backendurl.dart';
+import 'package:amped_media_admin/core/constants/backendurl.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

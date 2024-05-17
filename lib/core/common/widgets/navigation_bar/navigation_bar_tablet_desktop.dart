@@ -1,6 +1,7 @@
+import 'package:amped_media_admin/config/router.dart';
 import 'package:flutter/material.dart';
 import 'package:amped_media_admin/routing/route_names.dart';
-import 'package:amped_media_admin/widgets/navbar_item/navbar_item.dart';
+import 'package:amped_media_admin/core/common/widgets/navigation_bar/navbar_item.dart';
 
 import 'navbar_logo.dart';
 
@@ -18,14 +19,14 @@ class _NavigationBarTabletDesktopState
 
   final navbarItem = [
     NavBarLogo(),
-    NavBarItem('Home', HomeRoute),
+    NavBarItem('Home', RouteNames.home),
     // NavBarItem('Review', reviewRoute),
-    NavBarItem('Material', materialRoute),
-    NavBarItem('Channel', channelRoute),
-    NavBarItem('Report', reportRoute),
-    NavBarItem('Users', UserRoute),
-    NavBarItem('Profile', profileRoute),
-    NavBarItem('SellerProfile', sellerProfile),
+    NavBarItem('Material', RouteNames.material),
+    NavBarItem('Channel', RouteNames.channel),
+    NavBarItem('Report', RouteNames.report),
+    NavBarItem('Users', RouteNames.user),
+    NavBarItem('Profile', RouteNames.profile),
+    NavBarItem('SellerProfile', RouteNames.sellerProfile),
   ];
 
   @override
@@ -41,9 +42,6 @@ class _NavigationBarTabletDesktopState
               activeIndex =
                   index; // Update active index when a button is tapped
             });
-            print(
-              '/////////////////////////////////////$activeIndex',
-            );
           },
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 20),

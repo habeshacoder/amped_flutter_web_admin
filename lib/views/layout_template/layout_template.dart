@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:amped_media_admin/locator.dart';
-import 'package:amped_media_admin/routing/route_names.dart';
-import 'package:amped_media_admin/routing/router.dart';
-import 'package:amped_media_admin/services/navigation_service.dart';
-import 'package:amped_media_admin/widgets/centered_view/centered_view.dart';
-import 'package:amped_media_admin/widgets/navigation_bar/navigation_bar.dart';
-import 'package:amped_media_admin/widgets/navigation_bar/navigation_bar.dart'
+import 'package:amped_media_admin/core/common/centered_view.dart';
+import 'package:amped_media_admin/core/common/widgets/navigation_bar/navigation_bar.dart'
     as customNavbar;
-import 'package:amped_media_admin/widgets/navigation_drawer/navigation_drawer.dart'
+import 'package:amped_media_admin/core/common/widgets/navigation_drawer/navigation_drawer.dart'
     as customDrawer;
 
+import '../../config/router.dart';
+import '../../features/home/home/home_view.dart';
+
 class LayoutTemplate extends StatelessWidget {
-  const LayoutTemplate() : super();
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  LayoutTemplate() : super();
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +25,6 @@ class LayoutTemplate extends StatelessWidget {
           child: Column(
             children: <Widget>[
               customNavbar.NavigationBar(),
-              Expanded(
-                child: Navigator(
-                  key: locator<NavigationService>().navigatorKey,
-                  onGenerateRoute: generateRoute,
-                  initialRoute: welcomepaageRoute,
-                ),
-              )
             ],
           ),
         ),
