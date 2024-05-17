@@ -1,6 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:amped_media_admin/features/materialuser/data/models/material_user.dart';
+import 'package:amped_media_admin/features/profile/data/models/profile_model.dart';
+import 'package:amped_media_admin/features/report/data/modles/report_model.dart';
+import 'package:amped_media_admin/features/review_rate/data/models/rate_model.dart';
+import 'package:amped_media_admin/features/sellerprofile/data/models/sellerprofile_model.dart';
+import 'package:amped_media_admin/features/subscribeduser/data/models/subsribedusers_model.dart';
 import 'package:amped_media_admin/features/user/domain/entities/user.dart';
 
 import '../../../materialuser/domain/entities/materialuser.dart';
@@ -45,34 +51,34 @@ class UserModel extends User {
       isActive: map['isActive'] as bool,
       refreshToken:
           map['refreshToken'] != null ? map['refreshToken'] as String : null,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
+      createdAt: DateTime.parse(map['createdAt']),
+      updatedAt: DateTime.parse(map['updatedAt']),
       materialUsers: List<MaterialUser>.from(
         (map['materialUsers'] as List<int>).map<MaterialUser>(
-          (x) => MaterialUser.fromMap(x as Map<String, dynamic>),
+          (x) => MaterialUserModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
       profiles: map['profiles'] != null
-          ? Profile.fromMap(map['profiles'] as Map<String, dynamic>)
+          ? ProfileModel.fromMap(map['profiles'] as Map<String, dynamic>)
           : null,
       rates: List<Rate>.from(
         (map['rates'] as List<int>).map<Rate>(
-          (x) => Rate.fromMap(x as Map<String, dynamic>),
+          (x) => RateModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
       reports: List<Report>.from(
         (map['reports'] as List<int>).map<Report>(
-          (x) => Report.fromMap(x as Map<String, dynamic>),
+          (x) => ReportModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
       sellerProfiles: List<SellerProfile>.from(
         (map['sellerProfiles'] as List<int>).map<SellerProfile>(
-          (x) => SellerProfile.fromMap(x as Map<String, dynamic>),
+          (x) => SellerProfileModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
       subscribedUsers: List<SubscribedUser>.from(
         (map['subscribedUsers'] as List<int>).map<SubscribedUser>(
-          (x) => SubscribedUser.fromMap(x as Map<String, dynamic>),
+          (x) => SubscribedUserModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
     );

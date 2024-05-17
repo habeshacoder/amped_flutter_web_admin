@@ -1,7 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:amped_media_admin/features/channel/data/models/channelmodel.dart';
+import 'package:amped_media_admin/features/channelmaterial/data/models/channel_material_model.dart';
+import 'package:amped_media_admin/features/material/data/models/material_model.dart';
 import 'package:amped_media_admin/features/report/domain/entities/reports.dart';
+import 'package:amped_media_admin/features/user/data/models/user_model.dart';
 
 import '../../../channel/domain/entities/channel.dart';
 import '../../../channelmaterial/domain/entities/channelmaterial.dart';
@@ -30,7 +34,7 @@ class ReportModel extends Report {
   factory ReportModel.fromMap(Map<String, dynamic> map) {
     return ReportModel(
       id: map['id'] as int,
-      reportType: ReportType.fromMap(map['reportType'] as Map<String, dynamic>),
+      reportType: map['reportType'],
       reportDesc: map['reportDesc'] as String,
       userId: map['userId'] as String,
       materialId: map['materialId'] != null ? map['materialId'] as int : null,
@@ -38,19 +42,19 @@ class ReportModel extends Report {
       channelMaterialId: map['channelMaterialId'] != null
           ? map['channelMaterialId'] as int
           : null,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
+      createdAt: DateTime.parse(map['createdAt']),
+      updatedAt: DateTime.parse(map['updatedAt']),
       channel: map['channel'] != null
-          ? Channel.fromMap(map['channel'] as Map<String, dynamic>)
+          ? ChannelModel.fromMap(map['channel'] as Map<String, dynamic>)
           : null,
       channelMaterial: map['channelMaterial'] != null
-          ? ChannelMaterial.fromMap(
+          ? ChannelMaterialModel.fromMap(
               map['channelMaterial'] as Map<String, dynamic>)
           : null,
       material: map['material'] != null
-          ? Material.fromMap(map['material'] as Map<String, dynamic>)
+          ? MaterialModel.fromMap(map['material'] as Map<String, dynamic>)
           : null,
-      user: User.fromMap(map['user'] as Map<String, dynamic>),
+      user: UserModel.fromMap(map['user'] as Map<String, dynamic>),
     );
   }
 

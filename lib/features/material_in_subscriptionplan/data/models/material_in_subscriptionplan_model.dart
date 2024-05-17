@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'package:amped_media_admin/features/channelmaterial/data/models/channel_material_model.dart';
-import 'package:amped_media_admin/features/subscriptionplan/domain/entities/subscriptionplan.dart';
+import 'package:amped_media_admin/features/subscriptionplan/data/models/subscriptionplan_model.dart';
 import '../../domain/entities/material_in_subscriptionplan.dart';
 
 class MaterialInSubscriptionPlanModel extends MaterialInSubscriptionPlan {
@@ -20,11 +20,11 @@ class MaterialInSubscriptionPlanModel extends MaterialInSubscriptionPlan {
       id: map['id'] as int,
       subscriptionPlanId: map['subscriptionPlanId'] as int,
       channelMaterialId: map['channelMaterialId'] as int,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
+      createdAt: DateTime.parse(map['createdAt']),
+      updatedAt: DateTime.parse(map['updatedAt']),
       channelMaterial: ChannelMaterialModel.fromMap(
           map['channelMaterial'] as Map<String, dynamic>),
-      subscriptionPlan: SubscriptionPlan.fromMap(
+      subscriptionPlan: SubscriptionPlanModel.fromMap(
           map['subscriptionPlan'] as Map<String, dynamic>),
     );
   }

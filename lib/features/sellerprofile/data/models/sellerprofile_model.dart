@@ -2,7 +2,11 @@
 import 'dart:convert';
 
 import 'package:amped_media_admin/core/utils/enums.dart';
+import 'package:amped_media_admin/features/channel/data/models/channelmodel.dart';
+import 'package:amped_media_admin/features/channelmaterial/data/models/channel_material_model.dart';
+import 'package:amped_media_admin/features/material/data/models/material_model.dart';
 import 'package:amped_media_admin/features/sellerprofile/domain/entities/sellerprofile.dart';
+import 'package:amped_media_admin/features/user/data/models/user_model.dart';
 
 import '../../../channel/domain/entities/channel.dart';
 import '../../../channelmaterial/domain/entities/channelmaterial.dart';
@@ -33,7 +37,7 @@ class SellerProfileModel extends SellerProfile {
       id: map['id'] as int,
       userId: map['userId'] as String,
       name: map['name'] as String,
-      sex: Sex.fromMap(map['sex'] as Map<String, dynamic>),
+      sex: map['sex'],
       dateOfBirth:
           map['dateOfBirth'] != null ? map['dateOfBirth'] as String : null,
       description:
@@ -41,24 +45,24 @@ class SellerProfileModel extends SellerProfile {
       image: map['image'] != null ? map['image'] as String : null,
       coverImage:
           map['coverImage'] != null ? map['coverImage'] as String : null,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
+      createdAt: DateTime.parse(map['createdAt']),
+      updatedAt: DateTime.parse(map['updatedAt']),
       channelMaterials: List<ChannelMaterial>.from(
         (map['channelMaterials'] as List<int>).map<ChannelMaterial>(
-          (x) => ChannelMaterial.fromMap(x as Map<String, dynamic>),
+          (x) => ChannelMaterialModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
       channels: List<Channel>.from(
         (map['channels'] as List<int>).map<Channel>(
-          (x) => Channel.fromMap(x as Map<String, dynamic>),
+          (x) => ChannelModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
       materials: List<Material>.from(
         (map['materials'] as List<int>).map<Material>(
-          (x) => Material.fromMap(x as Map<String, dynamic>),
+          (x) => MaterialModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
-      user: User.fromMap(map['user'] as Map<String, dynamic>),
+      user: UserModel.fromMap(map['user'] as Map<String, dynamic>),
     );
   }
 

@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'package:amped_media_admin/features/subscribeduser/domain/entities/subscribeduser.dart';
-import '../../../subscriptionplan/domain/entities/subscriptionplan.dart';
-import '../../../user/domain/entities/user.dart';
+import 'package:amped_media_admin/features/subscriptionplan/data/models/subscriptionplan_model.dart';
+import 'package:amped_media_admin/features/user/data/models/user_model.dart';
 
 class SubscribedUserModel extends SubscribedUser {
   SubscribedUserModel({
@@ -21,13 +21,13 @@ class SubscribedUserModel extends SubscribedUser {
       userId: map['userId'] as String,
       subscriptionId:
           map['subscriptionId'] != null ? map['subscriptionId'] as int : null,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
+      createdAt: DateTime.parse(map['createdAt']),
+      updatedAt: DateTime.parse(map['updatedAt']),
       subscriptionPlan: map['subscriptionPlan'] != null
-          ? SubscriptionPlan.fromMap(
+          ? SubscriptionPlanModel.fromMap(
               map['subscriptionPlan'] as Map<String, dynamic>)
           : null,
-      user: User.fromMap(map['user'] as Map<String, dynamic>),
+      user: UserModel.fromMap(map['user'] as Map<String, dynamic>),
     );
   }
 

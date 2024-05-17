@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+import 'package:amped_media_admin/features/material/data/models/material_model.dart';
 import 'package:amped_media_admin/features/materialuser/domain/entities/materialuser.dart';
+import 'package:amped_media_admin/features/user/data/models/user_model.dart';
 import '../../../material/domain/entities/material.dart';
 import '../../../user/domain/entities/user.dart';
 
@@ -22,10 +24,10 @@ class MaterialUserModel extends MaterialUser {
       userId: map['userId'] as String,
       materialId: map['materialId'] as int,
       isPaid: map['isPaid'] as bool,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
-      updatedAt: DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int),
-      material: Material.fromMap(map['material'] as Map<String, dynamic>),
-      user: User.fromMap(map['user'] as Map<String, dynamic>),
+      createdAt: DateTime.parse(map['createdAt']),
+      updatedAt: DateTime.parse(map['updatedAt']),
+      material: MaterialModel.fromMap(map['material'] as Map<String, dynamic>),
+      user: UserModel.fromMap(map['user'] as Map<String, dynamic>),
     );
   }
 
