@@ -1,5 +1,4 @@
 import 'package:amped_media_admin/core/constants/backendurl.dart';
-import 'package:amped_media_admin/provider/channelprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,8 +15,8 @@ class _ChannelViewState extends State<ChannelView> {
   @override
   void didChangeDependencies() {
     print('get top books info display didchangedepcey ...........');
-    channelList = Provider.of<ChannelCreationProvider>(context, listen: false)
-        .seeAllChannel();
+    // channelList = Provider.of<ChannelCreationProvider>(context, listen: false)
+    //     .seeAllChannel();
     super.didChangeDependencies();
   }
 
@@ -62,7 +61,7 @@ class _ChannelViewState extends State<ChannelView> {
           height: 10,
         ),
         Expanded(
-          child: Consumer<ChannelCreationProvider>(
+          child: Consumer(
               builder: (context, channel, child) => FutureBuilder(
                     future: channelList,
                     builder: (context, snapshot) {
@@ -88,7 +87,7 @@ class _ChannelViewState extends State<ChannelView> {
                                       fit: BoxFit.cover,
                                       image: NetworkImage(
                                           headers: {},
-                                          '${BackEndUrl.url}/channel/channel_profile/${snapshot.data![index]["id"]}')),
+                                          '${Urls.BackEndUrl}/channel/channel_profile/${snapshot.data![index]["id"]}')),
                                 ),
                                 Text(
                                   '${snapshot.data![index]["name"]}',

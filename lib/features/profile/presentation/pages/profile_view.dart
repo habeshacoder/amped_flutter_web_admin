@@ -1,28 +1,21 @@
-import 'package:amped_media_admin/provider/reportprovider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:amped_media_admin/core/constants/backendurl.dart';
-import 'package:amped_media_admin/provider/auth.dart';
-import 'package:amped_media_admin/provider/channelprovider.dart';
-import 'package:amped_media_admin/provider/materialprovider.dart';
-import 'package:amped_media_admin/viewmodels/channelmodel.dart';
-import 'package:amped_media_admin/viewmodels/materialmodel.dart';
 
-class ReportView extends StatefulWidget {
-  const ReportView({super.key});
+class ProfileView extends StatefulWidget {
+  const ProfileView({super.key});
 
   @override
-  State<ReportView> createState() => _ReportViewState();
+  State<ProfileView> createState() => _ProfileViewState();
 }
 
-class _ReportViewState extends State<ReportView> {
+class _ProfileViewState extends State<ProfileView> {
   late Future<List<dynamic>> channelList;
   String? token;
   @override
   void didChangeDependencies() {
-    channelList =
-        Provider.of<ReportProvider>(context, listen: false).getReports();
+    // channelList =
+    //     Provider.of<ProfileProvider>(context, listen: false).getProfiles();
     super.didChangeDependencies();
   }
 
@@ -30,12 +23,8 @@ class _ReportViewState extends State<ReportView> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text('Reports'),
-        SizedBox(
-          height: 10,
-        ),
+        Text('Profiles'),
         Container(
           padding: EdgeInsets.only(left: 5),
           margin: EdgeInsets.symmetric(vertical: 2),
@@ -49,23 +38,23 @@ class _ReportViewState extends State<ReportView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'report_type',
+                'first_name',
                 softWrap: true,
               ),
               Text(
-                'report description',
+                'last_name',
                 softWrap: true,
               ),
               Text(
-                'Seller name',
+                'sex',
                 softWrap: true,
               ),
               Text(
-                'title',
+                'username',
                 softWrap: true,
               ),
               Text(
-                'reporter username',
+                'created_at',
                 softWrap: true,
               ),
               Text(
@@ -79,7 +68,7 @@ class _ReportViewState extends State<ReportView> {
           height: 10,
         ),
         Expanded(
-          child: Consumer<materialCreationProvider>(
+          child: Consumer(
               builder: (context, channel, child) => FutureBuilder(
                     future: channelList,
                     builder: (context, snapshot) {
@@ -102,35 +91,24 @@ class _ReportViewState extends State<ReportView> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                // Container(
-                                //   height: 40,
-                                //   child: Image(
-                                //       fit: BoxFit.cover,
-                                //       image: NetworkImage(
-                                //           headers: {},
-                                //           '${BackEndUrl.url}/channel/channel_profile/${snapshot.data![index]['id']}')),
-                                // ),
                                 Text(
-                                  '${snapshot.data![index]["report_type"]}',
+                                  '${snapshot.data![index]["first_name"]}',
                                   softWrap: true,
                                 ),
                                 Text(
-                                  '${snapshot.data![index]["report_desc"]}',
+                                  '${snapshot.data![index]["last_name"]}',
                                   softWrap: true,
                                 ),
-                                if (snapshot.data![index]["Material"] != null)
-                                  Text(
-                                    '${snapshot.data![index]["Material"]["SellerProfile"]["name"]}',
-                                    softWrap: true,
-                                  ),
-
-                                if (snapshot.data![index]["Material"] != null)
-                                  Text(
-                                    '${snapshot.data![index]["Material"]["title"]}',
-                                    softWrap: true,
-                                  ),
                                 Text(
-                                  '${snapshot.data![index]["user"]["username"]}',
+                                  '${snapshot.data![index]["sex"]}',
+                                  softWrap: true,
+                                ),
+                                Text(
+                                  '${snapshot.data![index]["User"]["username"]}',
+                                  softWrap: true,
+                                ),
+                                Text(
+                                  '${DateFormat('dd-MM-yyyy').format(DateTime.parse(snapshot.data![index]["created_at"]))}',
                                   softWrap: true,
                                 ),
                                 // IconButton(
@@ -143,6 +121,7 @@ class _ReportViewState extends State<ReportView> {
                                 //     print('Delete button pressed');
                                 //   },
                                 // ),
+
                                 Text(
                                   '',
                                   softWrap: true,

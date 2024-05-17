@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:amped_media_admin/provider/sellerprofileprovider.dart';
 
-class SellerProfileView extends StatefulWidget {
-  const SellerProfileView({super.key});
+class UserView extends StatefulWidget {
+  const UserView({super.key});
 
   @override
-  State<SellerProfileView> createState() => _SellerProfileViewState();
+  State<UserView> createState() => _UserViewState();
 }
 
-class _SellerProfileViewState extends State<SellerProfileView> {
+class _UserViewState extends State<UserView> {
   late Future<List<dynamic>> channelList;
   String? token;
   @override
   void didChangeDependencies() {
-    channelList = Provider.of<SellerProfileProvider>(context, listen: false)
-        .getSellerProfiles();
+    // channelList = Provider.of<UserProvider(context, listen: false).getUsers();
     super.didChangeDependencies();
   }
 
@@ -24,8 +21,9 @@ class _SellerProfileViewState extends State<SellerProfileView> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text('Seller Profile'),
+        Text('Users'),
         Container(
           padding: EdgeInsets.only(left: 5),
           margin: EdgeInsets.symmetric(vertical: 2),
@@ -39,19 +37,19 @@ class _SellerProfileViewState extends State<SellerProfileView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'name',
-                softWrap: true,
-              ),
-              Text(
-                'sex',
-                softWrap: true,
-              ),
-              Text(
                 'username',
                 softWrap: true,
               ),
               Text(
-                'created_at',
+                'email',
+                softWrap: true,
+              ),
+              Text(
+                'phone',
+                softWrap: true,
+              ),
+              Text(
+                'seller_profile no',
                 softWrap: true,
               ),
               Text(
@@ -65,7 +63,7 @@ class _SellerProfileViewState extends State<SellerProfileView> {
           height: 10,
         ),
         Expanded(
-          child: Consumer<SellerProfileProvider>(
+          child: Consumer(
               builder: (context, channel, child) => FutureBuilder(
                     future: channelList,
                     builder: (context, snapshot) {
@@ -89,31 +87,21 @@ class _SellerProfileViewState extends State<SellerProfileView> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  '${snapshot.data![index]["name"]}',
+                                  '${snapshot.data![index]["username"]}',
                                   softWrap: true,
                                 ),
                                 Text(
-                                  '${snapshot.data![index]["sex"]}',
+                                  '${snapshot.data![index]["email"]}',
                                   softWrap: true,
                                 ),
                                 Text(
-                                  '${snapshot.data![index]["User"]["username"]}',
+                                  '${snapshot.data![index]["phone"]}',
                                   softWrap: true,
                                 ),
                                 Text(
-                                  '${DateFormat('dd-MM-yyyy').format(DateTime.parse(snapshot.data![index]["created_at"]))}',
+                                  '${snapshot.data![index]["seller_profile"].length}',
                                   softWrap: true,
                                 ),
-                                // IconButton(
-                                //   icon: Icon(
-                                //     Icons.delete,
-                                //   ),
-                                //   color: Colors.red,
-                                //   onPressed: () {
-                                //     // Add your delete logic here
-                                //     print('Delete button pressed');
-                                //   },
-                                // ),
                                 Text(
                                   '',
                                   softWrap: true,

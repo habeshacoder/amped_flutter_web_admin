@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:amped_media_admin/provider/profileprovider.dart';
 
-class ProfileView extends StatefulWidget {
-  const ProfileView({super.key});
+class SellerProfileView extends StatefulWidget {
+  const SellerProfileView({super.key});
 
   @override
-  State<ProfileView> createState() => _ProfileViewState();
+  State<SellerProfileView> createState() => _SellerProfileViewState();
 }
 
-class _ProfileViewState extends State<ProfileView> {
+class _SellerProfileViewState extends State<SellerProfileView> {
   late Future<List<dynamic>> channelList;
   String? token;
   @override
   void didChangeDependencies() {
-    channelList =
-        Provider.of<ProfileProvider>(context, listen: false).getProfiles();
+    // channelList = Provider.of<SellerProfileProvider>(context, listen: false)
+    //     .getSellerProfiles();
     super.didChangeDependencies();
   }
 
@@ -25,7 +24,7 @@ class _ProfileViewState extends State<ProfileView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Profiles'),
+        Text('Seller Profile'),
         Container(
           padding: EdgeInsets.only(left: 5),
           margin: EdgeInsets.symmetric(vertical: 2),
@@ -39,11 +38,7 @@ class _ProfileViewState extends State<ProfileView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'first_name',
-                softWrap: true,
-              ),
-              Text(
-                'last_name',
+                'name',
                 softWrap: true,
               ),
               Text(
@@ -69,7 +64,7 @@ class _ProfileViewState extends State<ProfileView> {
           height: 10,
         ),
         Expanded(
-          child: Consumer<ProfileProvider>(
+          child: Consumer(
               builder: (context, channel, child) => FutureBuilder(
                     future: channelList,
                     builder: (context, snapshot) {
@@ -93,11 +88,7 @@ class _ProfileViewState extends State<ProfileView> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  '${snapshot.data![index]["first_name"]}',
-                                  softWrap: true,
-                                ),
-                                Text(
-                                  '${snapshot.data![index]["last_name"]}',
+                                  '${snapshot.data![index]["name"]}',
                                   softWrap: true,
                                 ),
                                 Text(
@@ -122,7 +113,6 @@ class _ProfileViewState extends State<ProfileView> {
                                 //     print('Delete button pressed');
                                 //   },
                                 // ),
-
                                 Text(
                                   '',
                                   softWrap: true,

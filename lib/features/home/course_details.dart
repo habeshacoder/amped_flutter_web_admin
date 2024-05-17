@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:amped_media_admin/styles/text_styles.dart';
+import 'package:amped_media_admin/core/common/widgets/text_styles.dart';
 
 class CourseDetails extends StatelessWidget {
   const CourseDetails() : super();

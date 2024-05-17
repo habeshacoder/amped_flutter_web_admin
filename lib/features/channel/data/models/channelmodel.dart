@@ -76,8 +76,8 @@ class ChannelModel extends Channel {
     );
   }
 
-  factory ChannelModel.fromJson(String source) =>
-      ChannelModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ChannelModel.fromJson(Map<String, dynamic> source) =>
+      ChannelModel.fromMap(source);
 }
 
 class ChannelImageModel extends ChannelImage {
@@ -103,8 +103,8 @@ class ChannelImageModel extends ChannelImage {
     );
   }
 
-  factory ChannelImageModel.fromJson(String source) =>
-      ChannelImageModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ChannelImageModel.fromJson(Map<String, dynamic> source) =>
+      ChannelImageModel.fromMap(source);
 }
 
 class PreviewChannelModel extends PreviewChannel {
@@ -126,6 +126,6 @@ class PreviewChannelModel extends PreviewChannel {
     );
   }
 
-  factory PreviewChannelModel.fromJson(String source) =>
-      PreviewChannelModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory PreviewChannelModel.fromJson(Map<String, dynamic> source) =>
+      PreviewChannelModel.fromMap(source);
 }

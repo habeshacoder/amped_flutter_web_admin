@@ -1,6 +1,5 @@
 import 'package:amped_media_admin/config/router.dart';
 import 'package:flutter/material.dart';
-import 'package:amped_media_admin/routing/route_names.dart';
 import 'package:amped_media_admin/core/common/widgets/navigation_bar/navbar_item.dart';
 
 import 'navbar_logo.dart';

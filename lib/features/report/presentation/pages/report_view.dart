@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:amped_media_admin/provider/userprovider.dart';
 
-class UserView extends StatefulWidget {
-  const UserView({super.key});
+class ReportView extends StatefulWidget {
+  const ReportView({super.key});
 
   @override
-  State<UserView> createState() => _UserViewState();
+  State<ReportView> createState() => _ReportViewState();
 }
 
-class _UserViewState extends State<UserView> {
+class _ReportViewState extends State<ReportView> {
   late Future<List<dynamic>> channelList;
   String? token;
   @override
   void didChangeDependencies() {
-    channelList = Provider.of<UserProvider>(context, listen: false).getUsers();
+    // channelList =
+    //     Provider.of<ReportProvider>(context, listen: false).getReports();
     super.didChangeDependencies();
   }
 
@@ -24,7 +24,10 @@ class _UserViewState extends State<UserView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text('Users'),
+        Text('Reports'),
+        SizedBox(
+          height: 10,
+        ),
         Container(
           padding: EdgeInsets.only(left: 5),
           margin: EdgeInsets.symmetric(vertical: 2),
@@ -38,19 +41,23 @@ class _UserViewState extends State<UserView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'username',
+                'report_type',
                 softWrap: true,
               ),
               Text(
-                'email',
+                'report description',
                 softWrap: true,
               ),
               Text(
-                'phone',
+                'Seller name',
                 softWrap: true,
               ),
               Text(
-                'seller_profile no',
+                'title',
+                softWrap: true,
+              ),
+              Text(
+                'reporter username',
                 softWrap: true,
               ),
               Text(
@@ -64,7 +71,7 @@ class _UserViewState extends State<UserView> {
           height: 10,
         ),
         Expanded(
-          child: Consumer<UserProvider>(
+          child: Consumer(
               builder: (context, channel, child) => FutureBuilder(
                     future: channelList,
                     builder: (context, snapshot) {
@@ -87,20 +94,35 @@ class _UserViewState extends State<UserView> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                // Container(
+                                //   height: 40,
+                                //   child: Image(
+                                //       fit: BoxFit.cover,
+                                //       image: NetworkImage(
+                                //           headers: {},
+                                //           '${BackEndUrl.url}/channel/channel_profile/${snapshot.data![index]['id']}')),
+                                // ),
                                 Text(
-                                  '${snapshot.data![index]["username"]}',
+                                  '${snapshot.data![index]["report_type"]}',
                                   softWrap: true,
                                 ),
                                 Text(
-                                  '${snapshot.data![index]["email"]}',
+                                  '${snapshot.data![index]["report_desc"]}',
                                   softWrap: true,
                                 ),
+                                if (snapshot.data![index]["Material"] != null)
+                                  Text(
+                                    '${snapshot.data![index]["Material"]["SellerProfile"]["name"]}',
+                                    softWrap: true,
+                                  ),
+
+                                if (snapshot.data![index]["Material"] != null)
+                                  Text(
+                                    '${snapshot.data![index]["Material"]["title"]}',
+                                    softWrap: true,
+                                  ),
                                 Text(
-                                  '${snapshot.data![index]["phone"]}',
-                                  softWrap: true,
-                                ),
-                                Text(
-                                  '${snapshot.data![index]["seller_profile"].length}',
+                                  '${snapshot.data![index]["user"]["username"]}',
                                   softWrap: true,
                                 ),
                                 // IconButton(

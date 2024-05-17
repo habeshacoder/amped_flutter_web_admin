@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:amped_media_admin/core/common/widgets/navigation_bar/navbar_item.dart';
 import 'package:amped_media_admin/core/common/widgets/navigation_drawer/navigation_drawer_header.dart';
-import 'package:amped_media_admin/extensions/hover_extensions.dart';
+import 'package:amped_media_admin/core/common/hover_extensions.dart';
 
 import '../../../../config/router.dart';
 

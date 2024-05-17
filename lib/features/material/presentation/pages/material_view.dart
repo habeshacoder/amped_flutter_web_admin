@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:amped_media_admin/core/constants/backendurl.dart';
-import 'package:amped_media_admin/provider/auth.dart';
-import 'package:amped_media_admin/provider/channelprovider.dart';
-import 'package:amped_media_admin/provider/materialprovider.dart';
-import 'package:amped_media_admin/viewmodels/channelmodel.dart';
-import 'package:amped_media_admin/viewmodels/materialmodel.dart';
 
 class MaterialView extends StatefulWidget {
   const MaterialView({super.key});
@@ -19,8 +13,8 @@ class _MaterialViewState extends State<MaterialView> {
   String? token;
   @override
   void didChangeDependencies() {
-    channelList = Provider.of<materialCreationProvider>(context, listen: false)
-        .getMaterials();
+    // channelList = Provider.of<materialCreationProvider(context, listen: false)
+    //     .getMaterials();
     super.didChangeDependencies();
   }
 
@@ -108,7 +102,7 @@ class _MaterialViewState extends State<MaterialView> {
           height: 10,
         ),
         Expanded(
-          child: Consumer<materialCreationProvider>(
+          child: Consumer(
               builder: (context, channel, child) => FutureBuilder(
                     future: channelList,
                     builder: (context, snapshot) {
