@@ -22,11 +22,13 @@ class ChannelRemoteDataSourceImpl implements ChannelRemoteDataSource {
     try {
       final response = await http.get(Uri.parse(Urls.getAllChannelsUrl),
           headers: <String, String>{'Content-Type': 'application/json'});
-      print(response.body);
-      print(response.statusCode);
-      return (jsonDecode(response.body))
-          .map((channel) => ChannelModel.fromJson(channel))
-          .toList();
+      final extracted = json.decode(response.body);
+
+      List<ChannelModel> channels = [];
+      extracted.forEach((mat) {
+        channels.add(ChannelModel.fromJson(mat));
+      });
+      return channels;
     } catch (error) {
       print('error: $error');
       throw ServerException(error.toString());

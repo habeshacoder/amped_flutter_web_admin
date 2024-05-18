@@ -62,6 +62,7 @@ class _ChannelViewState extends State<ChannelView> {
         Expanded(
           child: BlocConsumer<ChannelBloc, ChannelState>(
               listener: (context, state) {
+            print('state////////////////$state');
             if (state is ChannelFailureState) {
               print(state.error);
               showSnackBar(context, state.error);
@@ -71,7 +72,9 @@ class _ChannelViewState extends State<ChannelView> {
               return Loader();
             }
 
-            if (state is ChannelsDisplaySuccessState)
+            if (state is ChannelsDisplaySuccessState) {
+              print(
+                  'statein builder////////////////////////${state.channels[0].sellerProfile}');
               return ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: state.channels.length,
@@ -87,22 +90,23 @@ class _ChannelViewState extends State<ChannelView> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 40,
-                        child: Image(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(
-                                headers: {},
-                                '${Urls.BackEndUrl}/channel/channel_profile/${state.channels![index].id}')),
-                      ),
+                      if (state.channels![index].id != null)
+                        Container(
+                          height: 40,
+                          child: Image(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                  headers: {},
+                                  '${Urls.BackEndUrl}/channel/channel_profile/${state.channels![index].id}')),
+                        ),
                       Text(
-                        '${state.channels![index].name}',
+                        '${state.channels[index].name ?? 'N/A'}',
                         softWrap: true,
                       ),
-                      Text(
-                        '${state.channels![index].sellerProfile!.name}',
-                        softWrap: true,
-                      ),
+                      // Text(
+                      //   '${state.channels[index].sellerProfile!.name ?? 'N/A'}',
+                      //   softWrap: true,
+                      // ),
                       Text(
                         '',
                         softWrap: true,
@@ -111,6 +115,7 @@ class _ChannelViewState extends State<ChannelView> {
                   ),
                 ),
               );
+            }
 
             return DisplayError(
               error: 'please try later',

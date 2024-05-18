@@ -36,8 +36,9 @@ class ChannelModel extends Channel {
       description: map['description'],
       draft: map['draft'],
       sellerProfileId: map['sellerProfileId'],
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
+      channelPreview: [],
       channelImage: map['channelImage'] != null
           ? List<ChannelImageModel>.from(
               (map['channelImage']).map<ChannelImageModel>(
@@ -45,21 +46,10 @@ class ChannelModel extends Channel {
               ),
             )
           : [],
-      channelPreview: map['channelPreview'] != null
-          ? List<PreviewChannelModel>.from(
-              (map['channelPreview']).map<PreviewChannelModel>(
-                (x) => PreviewChannelModel.fromMap(x),
-              ),
-            )
-          : [],
-      sellerProfile: SellerProfileModel.fromMap(map['sellerProfile']),
-      favorite: map['favorite'] != [] || map['favorite'] != null
-          ? List<Favorite>.from(
-              (map['favorite']).map<Favorite>(
-                (x) => FavoriteModel.fromMap(x),
-              ),
-            )
-          : [],
+      sellerProfile: map['SellerProfile'] != null
+          ? SellerProfileModel.fromMap(map['sellerProfile'])
+          : null,
+      favorite: null,
       rate: map['rate'] != null || map['rate'] != []
           ? List<Rate>.from(
               (map['rate']).map<Rate>(
@@ -75,9 +65,9 @@ class ChannelModel extends Channel {
             )
           : [],
       subscriptionPlan:
-          map['subscriptionPlan'] != null || map['subscriptionPlan'] != []
+          map['subscription_plan'] != null || map['subscription_plan'] != []
               ? List<SubscriptionPlan>.from(
-                  (map['subscriptionPlan']).map<SubscriptionPlan>(
+                  (map['subscription_plan']).map<SubscriptionPlan>(
                     (x) => SubscriptionPlanModel.fromMap(x),
                   ),
                 )
@@ -107,8 +97,8 @@ class ChannelImageModel extends ChannelImage {
       primary: map['primary'],
       cover: map['cover'],
       channelId: map['channelId'],
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
     );
   }
 
@@ -127,11 +117,11 @@ class PreviewChannelModel extends PreviewChannel {
 
   factory PreviewChannelModel.fromMap(Map<String, dynamic> map) {
     return PreviewChannelModel(
-      id: map['id'] ?? 0,
-      preview: map['preview'] ?? '',
-      channelId: map['channelId'] ?? 0,
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      id: map['id'],
+      preview: map['preview'],
+      channelId: map['channelId'],
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
     );
   }
 

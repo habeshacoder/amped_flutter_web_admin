@@ -24,7 +24,6 @@ class ChannelBloc extends Bloc<ChannelEvent, ChannelState> {
     Emitter<ChannelState> emit,
   ) async {
     final res = await _getAllChannels.call(NoParams());
-
     res.fold(
       (failure) => emit(ChannelFailureState(failure.message)),
       (success) => emit(ChannelsDisplaySuccessState(success)),

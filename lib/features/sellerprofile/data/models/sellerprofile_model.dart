@@ -37,8 +37,8 @@ class SellerProfileModel extends SellerProfile {
       description: map['description'],
       image: map['image'],
       coverImage: map['coverImage'],
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
       channelMaterials:
           map['channelMaterials'] != null || map['channelMaterials'] != []
               ? List<ChannelMaterial>.from(
