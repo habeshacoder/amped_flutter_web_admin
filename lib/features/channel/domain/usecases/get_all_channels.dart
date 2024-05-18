@@ -7,7 +7,7 @@ import '../repositories/channel_repositor.dart';
 
 class GetAllChannels implements UseCase<List<Channel>, NoParams> {
   final ChannelRepository channelRepository;
-  GetAllChannels(this.channelRepository);
+  GetAllChannels({required this.channelRepository});
 
   @override
   Future<Either<Failure, List<Channel>>> call(NoParams params) async {

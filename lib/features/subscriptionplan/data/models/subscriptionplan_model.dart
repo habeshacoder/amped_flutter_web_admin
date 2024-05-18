@@ -26,31 +26,31 @@ class SubscriptionPlanModel extends SubscriptionPlan {
 
   factory SubscriptionPlanModel.fromMap(Map<String, dynamic> map) {
     return SubscriptionPlanModel(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      description:
-          map['description'] != null ? map['description'] as String : null,
-      price: map['price'] as double,
-      channelId: map['channelId'] as int,
+      id: map['id'],
+      name: map['name'],
+      description: map['description'],
+      price: map['price'],
+      channelId: map['channelId'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
-      materialInSubscriptionPlan: List<MaterialInSubscriptionPlan>.from(
-        (map['materialInSubscriptionPlan'] as List<int>)
-            .map<MaterialInSubscriptionPlan>(
-          (x) => MaterialInSubscriptionPlanModel.fromMap(
-              x as Map<String, dynamic>),
-        ),
-      ),
+      materialInSubscriptionPlan: map['materialInSubscriptionPlan'] != []
+          ? List<MaterialInSubscriptionPlan>.from(
+              (map['materialInSubscriptionPlan'])
+                  .map<MaterialInSubscriptionPlan>(
+                (x) => MaterialInSubscriptionPlanModel.fromMap(x),
+              ),
+            )
+          : [],
       subscribedUsers: List<SubscribedUser>.from(
-        (map['subscribedUsers'] as List<int>).map<SubscribedUser>(
-          (x) => SubscribedUserModel.fromMap(x as Map<String, dynamic>),
+        (map['subscribedUsers']).map<SubscribedUser>(
+          (x) => SubscribedUserModel.fromMap(x),
         ),
       ),
-      channel: ChannelModel.fromMap(map['channel'] as Map<String, dynamic>),
+      channel:
+          map['channel'] != null ? ChannelModel.fromMap(map['channel']) : null,
     );
   }
 
-  factory SubscriptionPlanModel.fromJson(String source) =>
-      SubscriptionPlanModel.fromMap(
-          json.decode(source) as Map<String, dynamic>);
+  factory SubscriptionPlanModel.fromJson(Map<String, dynamic> source) =>
+      SubscriptionPlanModel.fromMap(source);
 }

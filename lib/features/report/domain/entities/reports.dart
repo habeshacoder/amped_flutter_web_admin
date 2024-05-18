@@ -6,19 +6,19 @@ import '../../../user/domain/entities/user.dart';
 enum ReportType { Unspecified, Spam, Inappropriate, Other }
 
 class Report {
-  final int id;
-  final ReportType reportType;
-  final String reportDesc;
-  final String userId;
+  final int? id;
+  final ReportType? reportType;
+  final String? reportDesc;
+  final String? userId;
   final int? materialId;
   final int? channelId;
   final int? channelMaterialId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final Channel? channel;
   final ChannelMaterial? channelMaterial;
   final Material? material;
-  final User user;
+  final User? user;
 
   Report({
     required this.id,

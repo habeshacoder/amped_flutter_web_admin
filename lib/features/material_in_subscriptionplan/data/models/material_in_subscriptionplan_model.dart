@@ -17,19 +17,21 @@ class MaterialInSubscriptionPlanModel extends MaterialInSubscriptionPlan {
 
   factory MaterialInSubscriptionPlanModel.fromMap(Map<String, dynamic> map) {
     return MaterialInSubscriptionPlanModel(
-      id: map['id'] as int,
-      subscriptionPlanId: map['subscriptionPlanId'] as int,
-      channelMaterialId: map['channelMaterialId'] as int,
+      id: map['id'],
+      subscriptionPlanId: map['subscriptionPlanId'],
+      channelMaterialId: map['channelMaterialId'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
-      channelMaterial: ChannelMaterialModel.fromMap(
-          map['channelMaterial'] as Map<String, dynamic>),
-      subscriptionPlan: SubscriptionPlanModel.fromMap(
-          map['subscriptionPlan'] as Map<String, dynamic>),
+      channelMaterial: map['channelMaterial'] != null
+          ? ChannelMaterialModel.fromMap(map['channelMaterial'])
+          : null,
+      subscriptionPlan: map['subscriptionPlan'] != null
+          ? SubscriptionPlanModel.fromMap(map['subscriptionPlan'])
+          : null,
     );
   }
 
-  factory MaterialInSubscriptionPlanModel.fromJson(String source) =>
-      MaterialInSubscriptionPlanModel.fromMap(
-          json.decode(source) as Map<String, dynamic>);
+  factory MaterialInSubscriptionPlanModel.fromJson(
+          Map<String, dynamic> source) =>
+      MaterialInSubscriptionPlanModel.fromMap(source);
 }

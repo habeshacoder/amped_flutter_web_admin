@@ -1,6 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
-
 import '../../../../core/utils/enums.dart';
 import '../../../favorite/domain/entities/favorite.dart';
 import '../../../material_in_subscriptionplan/domain/entities/material_in_subscriptionplan.dart';
@@ -9,12 +7,12 @@ import '../../../review_rate/domain/entities/rate.dart';
 import '../../../sellerprofile/domain/entities/sellerprofile.dart';
 
 class ChannelMaterial {
-  final int id;
-  final int sellerProfileId;
-  final Parent parent;
-  final Type type;
-  final Genere genere;
-  final Catagory catagory;
+  final int? id;
+  final int? sellerProfileId;
+  final Parent? parent;
+  final Type? type;
+  final Genere? genere;
+  final Catagory? catagory;
   final String? author;
   final String? reader;
   final String? translator;
@@ -25,18 +23,18 @@ class ChannelMaterial {
   final String? publisher;
   final int? episode;
   final int? continuesFrom;
-  final String material;
-  final String title;
+  final String? material;
+  final String? title;
   final String? description;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final List<ChannelMaterialImage> channelMaterialImages;
-  final List<ChannelPreviewMaterial> channelMaterialPreviews;
-  final SellerProfile sellerProfile;
-  final List<Favorite> favorites;
-  final List<MaterialInSubscriptionPlan> materialInSubscriptionPlans;
-  final List<Rate> rates;
-  final List<Report> reports;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final List<ChannelMaterialImage>? channelMaterialImages;
+  final List<ChannelPreviewMaterial>? channelMaterialPreviews;
+  final SellerProfile? sellerProfile;
+  final List<Favorite>? favorites;
+  final List<MaterialInSubscriptionPlan>? materialInSubscriptionPlans;
+  final List<Rate>? rates;
+  final List<Report>? reports;
 
   ChannelMaterial({
     required this.id,
@@ -71,13 +69,13 @@ class ChannelMaterial {
 }
 
 class ChannelMaterialImage {
-  final int id;
-  final String image;
-  final bool primary;
-  final bool cover;
-  final int channelMaterialId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final int? id;
+  final String? image;
+  final bool? primary;
+  final bool? cover;
+  final int? channelMaterialId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   ChannelMaterialImage({
     required this.id,
@@ -91,11 +89,11 @@ class ChannelMaterialImage {
 }
 
 class ChannelPreviewMaterial {
-  final int id;
-  final String preview;
-  final int channelMaterialId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final int? id;
+  final String? preview;
+  final int? channelMaterialId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   ChannelPreviewMaterial({
     required this.id,

@@ -3,8 +3,6 @@ import 'dart:convert';
 
 import 'package:amped_media_admin/features/profile/domain/entities/profile.dart';
 import 'package:amped_media_admin/features/user/data/models/user_model.dart';
-import '../../../../core/utils/enums.dart';
-import '../../../user/domain/entities/user.dart';
 
 class ProfileModel extends Profile {
   ProfileModel({
@@ -23,22 +21,20 @@ class ProfileModel extends Profile {
 
   factory ProfileModel.fromMap(Map<String, dynamic> map) {
     return ProfileModel(
-      id: map['id'] as int,
-      userId: map['userId'] as String,
-      firstName: map['firstName'] as String,
-      lastName: map['lastName'] as String,
+      id: map['id'],
+      userId: map['userId'],
+      firstName: map['firstName'],
+      lastName: map['lastName'],
       sex: map['sex'],
-      dateOfBirth: map['dateOfBirth'] as String,
-      profileImage:
-          map['profileImage'] != null ? map['profileImage'] as String : null,
-      coverImage:
-          map['coverImage'] != null ? map['coverImage'] as String : null,
+      dateOfBirth: map['dateOfBirth'],
+      profileImage: map['profileImage'],
+      coverImage: map['coverImage'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
-      user: UserModel.fromMap(map['user'] as Map<String, dynamic>),
+      user: UserModel.fromMap(map['user']),
     );
   }
 
-  factory ProfileModel.fromJson(String source) =>
-      ProfileModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ProfileModel.fromJson(Map<String, dynamic> source) =>
+      ProfileModel.fromMap(source);
 }

@@ -5,12 +5,12 @@ import '../../../review_rate/domain/entities/rate.dart';
 import '../../../sellerprofile/domain/entities/sellerprofile.dart';
 
 class Material {
-  final int id;
-  final int sellerProfileId;
-  final Parent parent;
-  final Type type;
-  final Genere genere;
-  final Catagory catagory;
+  final int? id;
+  final int? sellerProfileId;
+  final Parent? parent;
+  final Type? type;
+  final Genere? genere;
+  final Catagory? catagory;
   final String? author;
   final String? reader;
   final String? translator;
@@ -21,12 +21,12 @@ class Material {
   final String? publisher;
   final int? episode;
   final int? continuesFrom;
-  final String material;
-  final String title;
+  final String? material;
+  final String? title;
   final String? description;
   final double? price;
   final DateTime? createdAt;
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
   // final List<Favorite>? favorites;
   final List<MaterialImage>? materialImages;
   final List<PreviewMaterial>? materialPreviews;
@@ -89,11 +89,11 @@ class MaterialImage {
 }
 
 class PreviewMaterial {
-  final int id;
-  final String preview;
-  final int materialId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final int? id;
+  final String? preview;
+  final int? materialId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   PreviewMaterial({
     required this.id,

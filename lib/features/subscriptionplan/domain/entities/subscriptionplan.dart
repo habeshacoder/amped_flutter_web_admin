@@ -3,16 +3,16 @@ import '../../../material_in_subscriptionplan/domain/entities/material_in_subscr
 import '../../../subscribeduser/domain/entities/subscribeduser.dart';
 
 class SubscriptionPlan {
-  final int id;
-  final String name;
+  final int? id;
+  final String? name;
   final String? description;
-  final double price;
-  final int channelId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final List<MaterialInSubscriptionPlan> materialInSubscriptionPlan;
-  final List<SubscribedUser> subscribedUsers;
-  final Channel channel;
+  final double? price;
+  final int? channelId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final List<MaterialInSubscriptionPlan>? materialInSubscriptionPlan;
+  final List<SubscribedUser>? subscribedUsers;
+  final Channel? channel;
 
   SubscriptionPlan({
     required this.id,

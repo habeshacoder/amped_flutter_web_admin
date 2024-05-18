@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:amped_media_admin/core/error/exceptions.dart';
 
-import '../../../../core/constants/backendurl.dart';
+import '../../../../core/constants/urls.dart';
 import '../models/channelmodel.dart';
 import 'package:http/http.dart' as http;
 
 abstract interface class ChannelRemoteDataSource {
-  Future<ChannelModel> getAllChannels();
+  Future<List<ChannelModel>> getAllChannels();
   Future<String> deleteChannel({required int channelId});
 }
 
@@ -18,14 +18,17 @@ class ChannelRemoteDataSourceImpl implements ChannelRemoteDataSource {
   }
 
   @override
-  Future<ChannelModel> getAllChannels() async {
+  Future<List<ChannelModel>> getAllChannels() async {
     try {
-      final channels = await http.get(Uri.parse(Urls.getAllChannelsUrl),
+      final response = await http.get(Uri.parse(Urls.getAllChannelsUrl),
           headers: <String, String>{'Content-Type': 'application/json'});
-      return (jsonDecode(channels.body))
+      print(response.body);
+      print(response.statusCode);
+      return (jsonDecode(response.body))
           .map((channel) => ChannelModel.fromJson(channel))
           .toList();
     } catch (error) {
+      print('error: $error');
       throw ServerException(error.toString());
     }
   }

@@ -4,17 +4,17 @@ import '../../../material/domain/entities/material.dart';
 import '../../../user/domain/entities/user.dart';
 
 class Favorite {
-  final int id;
-  final String userId;
+  final int? id;
+  final String? userId;
   final int? materialId;
   final int? channelId;
   final int? channelMaterialId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final Channel? channel;
   final ChannelMaterial? channelMaterial;
   final Material? material;
-  final User user;
+  final User? user;
 
   Favorite({
     required this.id,

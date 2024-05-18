@@ -41,74 +41,79 @@ class ChannelMaterialModel extends ChannelMaterial {
 
   factory ChannelMaterialModel.fromMap(Map<String, dynamic> map) {
     return ChannelMaterialModel(
-      id: map['id'] as int,
-      sellerProfileId: map['sellerProfileId'] as int,
+      id: map['id'],
+      sellerProfileId: map['sellerProfileId'],
       parent: map['parent'],
       type: map['type'],
       genere: map['genere'],
       catagory: map['catagory'],
-      author: map['author'] != null ? map['author'] as String : null,
-      reader: map['reader'] != null ? map['reader'] as String : null,
-      translator:
-          map['translator'] != null ? map['translator'] as String : null,
-      lengthMinute:
-          map['lengthMinute'] != null ? map['lengthMinute'] as double : null,
-      lengthPage:
-          map['lengthPage'] != null ? map['lengthPage'] as double : null,
-      firstPublishedAt: map['firstPublishedAt'] != null
-          ? map['firstPublishedAt'] as String
-          : null,
-      language: map['language'] != null ? map['language'] as String : null,
-      publisher: map['publisher'] != null ? map['publisher'] as String : null,
-      episode: map['episode'] != null ? map['episode'] as int : null,
-      continuesFrom:
-          map['continuesFrom'] != null ? map['continuesFrom'] as int : null,
-      material: map['material'] as String,
-      title: map['title'] as String,
-      description:
-          map['description'] != null ? map['description'] as String : null,
+      author: map['author'],
+      reader: map['reader'],
+      translator: map['translator'],
+      lengthMinute: map['lengthMinute'],
+      lengthPage: map['lengthPage'],
+      firstPublishedAt: map['firstPublishedAt'],
+      language: map['language'],
+      publisher: map['publisher'],
+      episode: map['episode'],
+      continuesFrom: map['continuesFrom'],
+      material: map['material'],
+      title: map['title'],
+      description: map['description'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
-      channelMaterialImages: List<ChannelMaterialImage>.from(
-        (map['channelMaterialImages'] as List<int>).map<ChannelMaterialImage>(
-          (x) => ChannelMaterialImageModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
-      channelMaterialPreviews: List<ChannelPreviewMaterial>.from(
-        (map['channelMaterialPreviews'] as List<int>)
-            .map<ChannelPreviewMaterial>(
-          (x) => ChannelPreviewMaterialModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
-      sellerProfile: SellerProfileModel.fromMap(
-          map['sellerProfile'] as Map<String, dynamic>),
-      favorites: List<FavoriteModel>.from(
-        (map['favorites'] as List<int>).map<FavoriteModel>(
-          (x) => FavoriteModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
-      materialInSubscriptionPlans: List<MaterialInSubscriptionPlanModel>.from(
-        (map['materialInSubscriptionPlans'] as List<int>)
-            .map<MaterialInSubscriptionPlanModel>(
-          (x) => MaterialInSubscriptionPlanModel.fromMap(
-              x as Map<String, dynamic>),
-        ),
-      ),
-      rates: List<RateModel>.from(
-        (map['rates'] as List<int>).map<RateModel>(
-          (x) => RateModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
-      reports: List<ReportModel>.from(
-        (map['reports'] as List<int>).map<ReportModel>(
-          (x) => ReportModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      channelMaterialImages: map['channelMaterialImages'] != null ||
+              map['channelMaterialImages'] != []
+          ? List<ChannelMaterialImage>.from(
+              (map['channelMaterialImages']).map<ChannelMaterialImage>(
+                (x) => ChannelMaterialImageModel.fromMap(x),
+              ),
+            )
+          : [],
+      channelMaterialPreviews: map['channelMaterialPreviews'] != null ||
+              map['channelMaterialPreviews'] != []
+          ? List<ChannelPreviewMaterial>.from(
+              (map['channelMaterialPreviews']).map<ChannelPreviewMaterial>(
+                (x) => ChannelPreviewMaterialModel.fromMap(x),
+              ),
+            )
+          : [],
+      sellerProfile: SellerProfileModel.fromMap(map['sellerProfile']),
+      favorites: map['favorites'] != null || map['favorites'] != []
+          ? List<FavoriteModel>.from(
+              (map['favorites']).map<FavoriteModel>(
+                (x) => FavoriteModel.fromMap(x),
+              ),
+            )
+          : [],
+      materialInSubscriptionPlans: map['materialInSubscriptionPlans'] != null ||
+              map['materialInSubscriptionPlans'] != []
+          ? List<MaterialInSubscriptionPlanModel>.from(
+              (map['materialInSubscriptionPlans'])
+                  .map<MaterialInSubscriptionPlanModel>(
+                (x) => MaterialInSubscriptionPlanModel.fromMap(x),
+              ),
+            )
+          : [],
+      rates: map['rates'] != null || map['rates'] != []
+          ? List<RateModel>.from(
+              (map['rates']).map<RateModel>(
+                (x) => RateModel.fromMap(x),
+              ),
+            )
+          : [],
+      reports: map['reports'] != null || map['reports'] != []
+          ? List<ReportModel>.from(
+              (map['reports']).map<ReportModel>(
+                (x) => ReportModel.fromMap(x),
+              ),
+            )
+          : [],
     );
   }
 
   factory ChannelMaterialModel.fromJson(String source) =>
-      ChannelMaterialModel.fromMap(json.decode(source) as Map<String, dynamic>);
+      ChannelMaterialModel.fromMap(json.decode(source));
 }
 
 class ChannelMaterialImageModel extends ChannelMaterialImage {
@@ -124,19 +129,18 @@ class ChannelMaterialImageModel extends ChannelMaterialImage {
 
   factory ChannelMaterialImageModel.fromMap(Map<String, dynamic> map) {
     return ChannelMaterialImageModel(
-      id: map['id'] as int,
-      image: map['image'] as String,
-      primary: map['primary'] as bool,
-      cover: map['cover'] as bool,
-      channelMaterialId: map['channelMaterialId'] as int,
+      id: map['id'],
+      image: map['image'],
+      primary: map['primary'],
+      cover: map['cover'],
+      channelMaterialId: map['channelMaterialId'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
     );
   }
 
   factory ChannelMaterialImageModel.fromJson(String source) =>
-      ChannelMaterialImageModel.fromMap(
-          json.decode(source) as Map<String, dynamic>);
+      ChannelMaterialImageModel.fromMap(json.decode(source));
 }
 
 class ChannelPreviewMaterialModel extends ChannelPreviewMaterial {
@@ -150,15 +154,14 @@ class ChannelPreviewMaterialModel extends ChannelPreviewMaterial {
 
   factory ChannelPreviewMaterialModel.fromMap(Map<String, dynamic> map) {
     return ChannelPreviewMaterialModel(
-      id: map['id'] as int,
-      preview: map['preview'] as String,
-      channelMaterialId: map['channelMaterialId'] as int,
+      id: map['id'],
+      preview: map['preview'],
+      channelMaterialId: map['channelMaterialId'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
     );
   }
 
-  factory ChannelPreviewMaterialModel.fromJson(String source) =>
-      ChannelPreviewMaterialModel.fromMap(
-          json.decode(source) as Map<String, dynamic>);
+  factory ChannelPreviewMaterialModel.fromJson(source) =>
+      ChannelPreviewMaterialModel.fromMap(source);
 }

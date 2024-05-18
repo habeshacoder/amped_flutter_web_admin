@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:amped_media_admin/features/material/data/models/material_model.dart';
 import 'package:amped_media_admin/features/materialuser/domain/entities/materialuser.dart';
 import 'package:amped_media_admin/features/user/data/models/user_model.dart';
-import '../../../material/domain/entities/material.dart';
-import '../../../user/domain/entities/user.dart';
 
 class MaterialUserModel extends MaterialUser {
   MaterialUserModel({
@@ -20,17 +18,17 @@ class MaterialUserModel extends MaterialUser {
 
   factory MaterialUserModel.fromMap(Map<String, dynamic> map) {
     return MaterialUserModel(
-      id: map['id'] as int,
-      userId: map['userId'] as String,
-      materialId: map['materialId'] as int,
-      isPaid: map['isPaid'] as bool,
+      id: map['id'],
+      userId: map['userId'],
+      materialId: map['materialId'],
+      isPaid: map['isPaid'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
-      material: MaterialModel.fromMap(map['material'] as Map<String, dynamic>),
-      user: UserModel.fromMap(map['user'] as Map<String, dynamic>),
+      material: MaterialModel.fromMap(map['material']),
+      user: UserModel.fromMap(map['user']),
     );
   }
 
-  factory MaterialUserModel.fromJson(String source) =>
-      MaterialUserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory MaterialUserModel.fromJson(Map<String, dynamic> source) =>
+      MaterialUserModel.fromMap(source);
 }

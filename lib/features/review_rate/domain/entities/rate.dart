@@ -5,20 +5,20 @@ import '../../../replays/domain/entities/replays.dart';
 import '../../../user/domain/entities/user.dart';
 
 class Rate {
-  final int id;
-  final String userId;
-  final double rating;
-  final String remark;
+  final int? id;
+  final String? userId;
+  final double? rating;
+  final String? remark;
   final int? materialId;
   final int? channelId;
   final int? channelMaterialId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final Channel? channel;
   final ChannelMaterial? channelMaterial;
   final Material? material;
-  final User user;
-  final List<Replay> replay;
+  final User? user;
+  final List<Replay>? replay;
 
   Rate({
     required this.id,

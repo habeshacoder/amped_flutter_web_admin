@@ -5,20 +5,20 @@ import '../../../sellerprofile/domain/entities/sellerprofile.dart';
 import '../../../subscriptionplan/domain/entities/subscriptionplan.dart';
 
 class Channel {
-  final int id;
-  final String name;
+  final int? id;
+  final String? name;
   final String? description;
-  final bool draft;
-  final int sellerProfileId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final List<ChannelImage> channelImage;
-  final List<PreviewChannel> channelPreview;
-  final SellerProfile sellerProfile;
-  final List<Favorite> favorite;
-  final List<Rate> rate;
-  final List<Report> report;
-  final List<SubscriptionPlan> subscriptionPlan;
+  final bool? draft;
+  final int? sellerProfileId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final List<ChannelImage>? channelImage;
+  final List<PreviewChannel>? channelPreview;
+  final SellerProfile? sellerProfile;
+  final List<Favorite>? favorite;
+  final List<Rate>? rate;
+  final List<Report>? report;
+  final List<SubscriptionPlan>? subscriptionPlan;
 
   Channel({
     required this.id,
@@ -39,13 +39,13 @@ class Channel {
 }
 
 class ChannelImage {
-  final int id;
-  final String image;
-  final bool primary;
-  final bool cover;
-  final int channelId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final int? id;
+  final String? image;
+  final bool? primary;
+  final bool? cover;
+  final int? channelId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   ChannelImage({
     required this.id,
@@ -59,11 +59,11 @@ class ChannelImage {
 }
 
 class PreviewChannel {
-  final int id;
-  final String preview;
-  final int channelId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final int? id;
+  final String? preview;
+  final int? channelId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   PreviewChannel({
     required this.id,

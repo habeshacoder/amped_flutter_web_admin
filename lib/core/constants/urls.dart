@@ -1,7 +1,7 @@
 class Urls {
   static final String BackEndUrl = 'http://127.0.0.1:3007';
 
-  static final String getAllChannelsUrl = '$BackEndUrl/channels';
+  static final String getAllChannelsUrl = '$BackEndUrl/channel';
   static final String deleteChannelsUrl = '$BackEndUrl/channels';
 
   static final String getProfilesUrl = '$BackEndUrl/profiles';

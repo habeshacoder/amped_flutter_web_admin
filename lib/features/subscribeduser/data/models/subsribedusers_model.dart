@@ -17,20 +17,18 @@ class SubscribedUserModel extends SubscribedUser {
 
   factory SubscribedUserModel.fromMap(Map<String, dynamic> map) {
     return SubscribedUserModel(
-      id: map['id'] as int,
-      userId: map['userId'] as String,
-      subscriptionId:
-          map['subscriptionId'] != null ? map['subscriptionId'] as int : null,
+      id: map['id'],
+      userId: map['userId'],
+      subscriptionId: map['subscriptionId'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
       subscriptionPlan: map['subscriptionPlan'] != null
-          ? SubscriptionPlanModel.fromMap(
-              map['subscriptionPlan'] as Map<String, dynamic>)
+          ? SubscriptionPlanModel.fromMap(map['subscriptionPlan'])
           : null,
-      user: UserModel.fromMap(map['user'] as Map<String, dynamic>),
+      user: map['user'] != null ? UserModel.fromMap(map['user']) : null,
     );
   }
 
-  factory SubscribedUserModel.fromJson(String source) =>
-      SubscribedUserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory SubscribedUserModel.fromJson(Map<String, dynamic> source) =>
+      SubscribedUserModel.fromMap(source);
 }

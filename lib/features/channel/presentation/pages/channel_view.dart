@@ -1,6 +1,10 @@
-import 'package:amped_media_admin/core/constants/backendurl.dart';
+import 'package:amped_media_admin/core/common/loader.dart';
+import 'package:amped_media_admin/core/constants/urls.dart';
+import 'package:amped_media_admin/core/utils/showsnakbar.dart';
+import 'package:amped_media_admin/features/channel/presentation/bloc/allchannels_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/common/display_error.dart';
 
 class ChannelView extends StatefulWidget {
   const ChannelView({super.key});
@@ -10,13 +14,11 @@ class ChannelView extends StatefulWidget {
 }
 
 class _ChannelViewState extends State<ChannelView> {
-  late Future<List<dynamic>> channelList;
+  // late Future<List<Channel>> channelList;
   String? token;
   @override
   void didChangeDependencies() {
-    print('get top books info display didchangedepcey ...........');
-    // channelList = Provider.of<ChannelCreationProvider>(context, listen: false)
-    //     .seeAllChannel();
+    context.read<ChannelBloc>().add(GetAllChannelsEvent());
     super.didChangeDependencies();
   }
 
@@ -31,11 +33,8 @@ class _ChannelViewState extends State<ChannelView> {
           margin: EdgeInsets.symmetric(vertical: 2),
           decoration: BoxDecoration(
               color: Colors.grey[300], borderRadius: BorderRadius.circular(5)),
-          // margin: EdgeInsets.symmetric(horizontal: 5),
           height: 50,
-          // width: MediaQuery.of(context).size.width * 0.5,
           child: Row(
-            // crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -61,72 +60,65 @@ class _ChannelViewState extends State<ChannelView> {
           height: 10,
         ),
         Expanded(
-          child: Consumer(
-              builder: (context, channel, child) => FutureBuilder(
-                    future: channelList,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (context, index) => Container(
-                            margin: EdgeInsets.symmetric(vertical: 2),
-                            decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(5)),
-                            // margin: EdgeInsets.symmetric(horizontal: 5),
-                            height: 50,
-                            width: MediaQuery.of(context).size.width * 0.5,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  height: 40,
-                                  child: Image(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                          headers: {},
-                                          '${Urls.BackEndUrl}/channel/channel_profile/${snapshot.data![index]["id"]}')),
-                                ),
-                                Text(
-                                  '${snapshot.data![index]["name"]}',
-                                  softWrap: true,
-                                ),
-                                Text(
-                                  '${snapshot.data![index]["SellerProfile"]["name"]}',
-                                  softWrap: true,
-                                ),
-                                // IconButton(
-                                //   icon: Icon(
-                                //     Icons.delete,
-                                //   ),
-                                //   color: Colors.red,
-                                //   onPressed: () {
-                                //     // Add your delete logic here
-                                //     print('Delete button pressed');
-                                //   },
-                                // ),
-                                Text(
-                                  '',
-                                  softWrap: true,
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        // return CircularProgressIndicator();
-                        return Center(
-                            widthFactor: 10,
-                            heightFactor: 10,
-                            child: CircularProgressIndicator());
-                      }
-                      return Center(child: Text('Please try later'));
-                    },
-                  )),
-        ),
+          child: BlocConsumer<ChannelBloc, ChannelState>(
+              listener: (context, state) {
+            if (state is ChannelFailureState) {
+              print(state.error);
+              showSnackBar(context, state.error);
+            }
+          }, builder: (context, state) {
+            if (state is ChannelLoading) {
+              return Loader();
+            }
+
+            if (state is ChannelsDisplaySuccessState)
+              return ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: state.channels.length,
+                itemBuilder: (context, index) => Container(
+                  margin: EdgeInsets.symmetric(vertical: 2),
+                  decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(5)),
+                  // margin: EdgeInsets.symmetric(horizontal: 5),
+                  height: 50,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 40,
+                        child: Image(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                                headers: {},
+                                '${Urls.BackEndUrl}/channel/channel_profile/${state.channels![index].id}')),
+                      ),
+                      Text(
+                        '${state.channels![index].name}',
+                        softWrap: true,
+                      ),
+                      Text(
+                        '${state.channels![index].sellerProfile!.name}',
+                        softWrap: true,
+                      ),
+                      Text(
+                        '',
+                        softWrap: true,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+
+            return DisplayError(
+              error: 'please try later',
+            );
+          }),
+          // listener: ,
+          // builder: (context, channel, child) => ,),)
+        )
       ],
     );
   }

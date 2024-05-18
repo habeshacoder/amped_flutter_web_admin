@@ -44,80 +44,73 @@ class MaterialModel extends Material {
 
   factory MaterialModel.fromMap(Map<String, dynamic> map) {
     return MaterialModel(
-      id: map['id'] as int,
-      sellerProfileId: map['sellerProfileId'] as int,
+      id: map['id'],
+      sellerProfileId: map['sellerProfileId'],
       parent: map['parent'],
       type: map['type'],
       genere: map['genere'],
       catagory: map['catagory'],
-      author: map['author'] != null ? map['author'] as String : null,
-      reader: map['reader'] != null ? map['reader'] as String : null,
-      translator:
-          map['translator'] != null ? map['translator'] as String : null,
-      lengthMinute:
-          map['lengthMinute'] != null ? map['lengthMinute'] as double : null,
-      lengthPage:
-          map['lengthPage'] != null ? map['lengthPage'] as double : null,
-      firstPublishedAt: map['firstPublishedAt'] != null
-          ? map['firstPublishedAt'] as String
-          : null,
-      language: map['language'] != null ? map['language'] as String : null,
-      publisher: map['publisher'] != null ? map['publisher'] as String : null,
-      episode: map['episode'] != null ? map['episode'] as int : null,
-      continuesFrom:
-          map['continuesFrom'] != null ? map['continuesFrom'] as int : null,
-      material: map['material'] as String,
-      title: map['title'] as String,
-      description:
-          map['description'] != null ? map['description'] as String : null,
-      price: map['price'] != null ? map['price'] as double : null,
-      createdAt:
-          map['createdAt'] != null ? DateTime.parse(map['createdAt']) : null,
+      author: map['author'],
+      reader: map['reader'],
+      translator: map['translator'],
+      lengthMinute: map['lengthMinute'],
+      lengthPage: map['lengthPage'],
+      firstPublishedAt: map['firstPublishedAt'],
+      language: map['language'],
+      publisher: map['publisher'],
+      episode: map['episode'],
+      continuesFrom: map['continuesFrom'],
+      material: map['material'],
+      title: map['title'],
+      description: map['description'],
+      price: map['price'],
+      createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
-      materialImages: map['materialImages'] != null
-          ? List<MaterialImage>.from(
-              (map['materialImages'] as List<int>).map<MaterialImage?>(
-                (x) => MaterialImageModel.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-      materialPreviews: map['materialPreviews'] != null
-          ? List<PreviewMaterial>.from(
-              (map['materialPreviews'] as List<int>).map<PreviewMaterial?>(
-                (x) => PreviewMaterialModel.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-      materialUsers: map['materialUsers'] != null
+      materialImages:
+          map['materialImages'] != null || map['materialImages'] != []
+              ? List<MaterialImage>.from(
+                  (map['materialImages']).map<MaterialImage?>(
+                    (x) => MaterialImageModel.fromMap(x),
+                  ),
+                )
+              : [],
+      materialPreviews:
+          map['materialPreviews'] != null || map['materialPreviews'] != []
+              ? List<PreviewMaterial>.from(
+                  (map['materialPreviews']).map<PreviewMaterial?>(
+                    (x) => PreviewMaterialModel.fromMap(x),
+                  ),
+                )
+              : [],
+      materialUsers: map['materialUsers'] != null || map['materialUsers'] != []
           ? List<MaterialUser>.from(
-              (map['materialUsers'] as List<int>).map<MaterialUser?>(
-                (x) => MaterialUserModel.fromMap(x as Map<String, dynamic>),
+              (map['materialUsers']).map<MaterialUser?>(
+                (x) => MaterialUserModel.fromMap(x),
               ),
             )
+          : [],
+      sellerProfile: map['sellerProfile'] != null || map['sellerProfile'] != {}
+          ? SellerProfileModel.fromMap(map['sellerProfile'])
           : null,
-      sellerProfile: map['sellerProfile'] != null
-          ? SellerProfileModel.fromMap(
-              map['sellerProfile'] as Map<String, dynamic>)
-          : null,
-      rates: map['rates'] != null
+      rates: map['rates'] != null || map['rates'] != []
           ? List<Rate>.from(
-              (map['rates'] as List<int>).map<Rate?>(
-                (x) => RateModel.fromMap(x as Map<String, dynamic>),
+              (map['rates']).map<Rate?>(
+                (x) => RateModel.fromMap(x),
               ),
             )
-          : null,
-      reports: map['reports'] != null
+          : [],
+      reports: map['reports'] != null || map['reports'] != []
           ? List<Report>.from(
-              (map['reports'] as List<int>).map<Report?>(
-                (x) => ReportModel.fromMap(x as Map<String, dynamic>),
+              (map['reports']).map<Report?>(
+                (x) => ReportModel.fromMap(x),
               ),
             )
-          : null,
+          : [],
     );
   }
 
-  factory MaterialModel.fromJson(String source) =>
-      MaterialModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory MaterialModel.fromJson(Map<String, dynamic> source) =>
+      MaterialModel.fromMap(source);
 }
 
 class MaterialImageModel extends MaterialImage {
@@ -133,18 +126,18 @@ class MaterialImageModel extends MaterialImage {
 
   factory MaterialImageModel.fromMap(Map<String, dynamic> map) {
     return MaterialImageModel(
-      id: map['id'] as int,
-      image: map['image'] as String,
-      isPrimary: map['isPrimary'] as bool,
-      isCover: map['isCover'] as bool,
-      materialId: map['materialId'] as int,
+      id: map['id'],
+      image: map['image'],
+      isPrimary: map['isPrimary'],
+      isCover: map['isCover'],
+      materialId: map['materialId'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
     );
   }
 
-  factory MaterialImageModel.fromJson(String source) =>
-      MaterialImageModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory MaterialImageModel.fromJson(Map<String, dynamic> source) =>
+      MaterialImageModel.fromMap(source);
 }
 
 class PreviewMaterialModel extends PreviewMaterial {
@@ -158,14 +151,14 @@ class PreviewMaterialModel extends PreviewMaterial {
 
   factory PreviewMaterialModel.fromMap(Map<String, dynamic> map) {
     return PreviewMaterialModel(
-      id: map['id'] as int,
-      preview: map['preview'] as String,
-      materialId: map['materialId'] as int,
+      id: map['id'],
+      preview: map['preview'],
+      materialId: map['materialId'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
     );
   }
 
-  factory PreviewMaterialModel.fromJson(String source) =>
-      PreviewMaterialModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory PreviewMaterialModel.fromJson(Map<String, dynamic> source) =>
+      PreviewMaterialModel.fromMap(source);
 }

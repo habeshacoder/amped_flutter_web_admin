@@ -28,36 +28,38 @@ class RateModel extends Rate {
 
   factory RateModel.fromMap(Map<String, dynamic> map) {
     return RateModel(
-      id: map['id'] as int,
-      userId: map['userId'] as String,
-      rating: map['rating'] as double,
-      remark: map['remark'] as String,
-      materialId: map['materialId'] != null ? map['materialId'] as int : null,
-      channelId: map['channelId'] != null ? map['channelId'] as int : null,
-      channelMaterialId: map['channelMaterialId'] != null
-          ? map['channelMaterialId'] as int
-          : null,
+      id: map['id'],
+      userId: map['userId'],
+      rating: map['rating'],
+      remark: map['remark'],
+      materialId: map['materialId'],
+      channelId: map['channelId'],
+      channelMaterialId: map['channelMaterialId'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
-      channel: map['channel'] != null
-          ? ChannelModel.fromMap(map['channel'] as Map<String, dynamic>)
+      channel: map['channel'] != null || map['channel'] != []
+          ? ChannelModel.fromMap(map['channel'])
           : null,
-      channelMaterial: map['channelMaterial'] != null
-          ? ChannelMaterialModel.fromMap(
-              map['channelMaterial'] as Map<String, dynamic>)
+      channelMaterial:
+          map['channelMaterial'] != null || map['channelMaterial'] != []
+              ? ChannelMaterialModel.fromMap(map['channelMaterial'])
+              : null,
+      material: map['material'] != null || map['material'] != []
+          ? MaterialModel.fromMap(map['material'])
           : null,
-      material: map['material'] != null
-          ? MaterialModel.fromMap(map['material'] as Map<String, dynamic>)
+      user: map['user'] != null || map['user'] != []
+          ? UserModel.fromMap(map['user'])
           : null,
-      user: UserModel.fromMap(map['user'] as Map<String, dynamic>),
-      replay: List<Replay>.from(
-        (map['replay'] as List<int>).map<Replay>(
-          (x) => ReplayModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      replay: map['replay'] != null || map['replay'] != []
+          ? List<Replay>.from(
+              (map['replay']).map<Replay>(
+                (x) => ReplayModel.fromMap(x),
+              ),
+            )
+          : [],
     );
   }
 
-  factory RateModel.fromJson(String source) =>
-      RateModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory RateModel.fromJson(Map<String, dynamic> source) =>
+      RateModel.fromMap(source);
 }

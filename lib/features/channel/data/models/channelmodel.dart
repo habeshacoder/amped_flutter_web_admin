@@ -31,48 +31,57 @@ class ChannelModel extends Channel {
 
   factory ChannelModel.fromMap(Map<String, dynamic> map) {
     return ChannelModel(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      description:
-          map['description'] != null ? map['description'] as String : null,
-      draft: map['draft'] as bool,
-      sellerProfileId: map['sellerProfileId'] as int,
+      id: map['id'],
+      name: map['name'],
+      description: map['description'],
+      draft: map['draft'],
+      sellerProfileId: map['sellerProfileId'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
       channelImage: map['channelImage'] != null
           ? List<ChannelImageModel>.from(
-              (map['channelImage'] as List<dynamic>).map<ChannelImageModel>(
-                (x) => ChannelImageModel.fromMap(x as Map<String, dynamic>),
+              (map['channelImage']).map<ChannelImageModel>(
+                (x) => ChannelImageModel.fromMap(x),
               ),
             )
           : [],
-      channelPreview: List<PreviewChannelModel>.from(
-        (map['channelPreview'] as List<int>).map<PreviewChannelModel>(
-          (x) => PreviewChannelModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
-      sellerProfile: SellerProfileModel.fromMap(
-          map['sellerProfile'] as Map<String, dynamic>),
-      favorite: List<Favorite>.from(
-        (map['favorite'] as List<int>).map<Favorite>(
-          (x) => FavoriteModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
-      rate: List<Rate>.from(
-        (map['rate'] as List<int>).map<Rate>(
-          (x) => RateModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
-      report: List<Report>.from(
-        (map['report'] as List<int>).map<Report>(
-          (x) => ReportModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
-      subscriptionPlan: List<SubscriptionPlan>.from(
-        (map['subscriptionPlan'] as List<int>).map<SubscriptionPlan>(
-          (x) => SubscriptionPlanModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      channelPreview: map['channelPreview'] != null
+          ? List<PreviewChannelModel>.from(
+              (map['channelPreview']).map<PreviewChannelModel>(
+                (x) => PreviewChannelModel.fromMap(x),
+              ),
+            )
+          : [],
+      sellerProfile: SellerProfileModel.fromMap(map['sellerProfile']),
+      favorite: map['favorite'] != [] || map['favorite'] != null
+          ? List<Favorite>.from(
+              (map['favorite']).map<Favorite>(
+                (x) => FavoriteModel.fromMap(x),
+              ),
+            )
+          : [],
+      rate: map['rate'] != null || map['rate'] != []
+          ? List<Rate>.from(
+              (map['rate']).map<Rate>(
+                (x) => RateModel.fromMap(x),
+              ),
+            )
+          : [],
+      report: map['report'] != null || map['report'] != []
+          ? List<Report>.from(
+              (map['report']).map<Report>(
+                (x) => ReportModel.fromMap(x),
+              ),
+            )
+          : [],
+      subscriptionPlan:
+          map['subscriptionPlan'] != null || map['subscriptionPlan'] != []
+              ? List<SubscriptionPlan>.from(
+                  (map['subscriptionPlan']).map<SubscriptionPlan>(
+                    (x) => SubscriptionPlanModel.fromMap(x),
+                  ),
+                )
+              : [],
     );
   }
 
@@ -93,11 +102,11 @@ class ChannelImageModel extends ChannelImage {
 
   factory ChannelImageModel.fromMap(Map<String, dynamic> map) {
     return ChannelImageModel(
-      id: map['id'] as int,
-      image: map['image'] as String,
-      primary: map['primary'] as bool,
-      cover: map['cover'] as bool,
-      channelId: map['channelId'] as int,
+      id: map['id'],
+      image: map['image'],
+      primary: map['primary'],
+      cover: map['cover'],
+      channelId: map['channelId'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
     );
@@ -118,9 +127,9 @@ class PreviewChannelModel extends PreviewChannel {
 
   factory PreviewChannelModel.fromMap(Map<String, dynamic> map) {
     return PreviewChannelModel(
-      id: map['id'] as int ?? 0,
-      preview: map['preview'] as String ?? '',
-      channelId: map['channelId'] as int ?? 0,
+      id: map['id'] ?? 0,
+      preview: map['preview'] ?? '',
+      channelId: map['channelId'] ?? 0,
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
     );

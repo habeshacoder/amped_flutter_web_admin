@@ -1,6 +1,4 @@
-import 'package:amped_media_admin/features/channel/domain/entities/channel.dart';
 import 'package:fpdart/fpdart.dart';
-
 import '../../../../core/error/failure.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../repositories/channel_repositor.dart';

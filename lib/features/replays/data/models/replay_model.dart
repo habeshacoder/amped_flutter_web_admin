@@ -15,15 +15,15 @@ class ReplayModel extends Replay {
 
   factory ReplayModel.fromMap(Map<String, dynamic> map) {
     return ReplayModel(
-      id: map['id'] as int,
-      replay: map['replay'] as String,
-      remarkId: map['remarkId'] as int,
+      id: map['id'],
+      replay: map['replay'],
+      remarkId: map['remarkId'],
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
-      rate: RateModel.fromMap(map['rate'] as Map<String, dynamic>),
+      rate: RateModel.fromMap(map['rate']),
     );
   }
 
-  factory ReplayModel.fromJson(String source) =>
-      ReplayModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ReplayModel.fromJson(Map<String, dynamic> source) =>
+      ReplayModel.fromMap(source);
 }

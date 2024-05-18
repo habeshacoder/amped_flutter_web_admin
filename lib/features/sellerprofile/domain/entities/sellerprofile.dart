@@ -6,20 +6,20 @@ import '../../../material/domain/entities/material.dart';
 import '../../../user/domain/entities/user.dart';
 
 class SellerProfile {
-  final int id;
-  final String userId;
-  final String name;
-  final Sex sex;
+  final int? id;
+  final String? userId;
+  final String? name;
+  final Sex? sex;
   final String? dateOfBirth;
   final String? description;
   final String? image;
   final String? coverImage;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final List<ChannelMaterial> channelMaterials;
-  final List<Channel> channels;
-  final List<Material> materials;
-  final User user;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final List<ChannelMaterial>? channelMaterials;
+  final List<Channel>? channels;
+  final List<Material>? materials;
+  final User? user;
   // final List<SocialLinksProfile> socialLinksProfiles;
 
   SellerProfile({

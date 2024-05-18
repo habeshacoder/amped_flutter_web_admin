@@ -6,24 +6,24 @@ import '../../../sellerprofile/domain/entities/sellerprofile.dart';
 import '../../../subscribeduser/domain/entities/subscribeduser.dart';
 
 class User {
-  final String id;
-  final String username;
-  final String email;
+  final String? id;
+  final String? username;
+  final String? email;
   final String? phone;
-  final String password;
-  final String provider;
-  final bool isVerified;
-  final bool isActive;
+  final String? password;
+  final String? provider;
+  final bool? isVerified;
+  final bool? isActive;
   final String? refreshToken;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   // final List<Favorite> favorites;
-  final List<MaterialUser> materialUsers;
+  final List<MaterialUser>? materialUsers;
   final Profile? profiles;
-  final List<Rate> rates;
-  final List<Report> reports;
-  final List<SellerProfile> sellerProfiles;
-  final List<SubscribedUser> subscribedUsers;
+  final List<Rate>? rates;
+  final List<Report>? reports;
+  final List<SellerProfile>? sellerProfiles;
+  final List<SubscribedUser>? subscribedUsers;
 
   User({
     required this.id,

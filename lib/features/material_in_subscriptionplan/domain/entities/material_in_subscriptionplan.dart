@@ -2,13 +2,13 @@ import '../../../channelmaterial/domain/entities/channelmaterial.dart';
 import '../../../subscriptionplan/domain/entities/subscriptionplan.dart';
 
 class MaterialInSubscriptionPlan {
-  final int id;
-  final int subscriptionPlanId;
-  final int channelMaterialId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final ChannelMaterial channelMaterial;
-  final SubscriptionPlan subscriptionPlan;
+  final int? id;
+  final int? subscriptionPlanId;
+  final int? channelMaterialId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final ChannelMaterial? channelMaterial;
+  final SubscriptionPlan? subscriptionPlan;
 
   MaterialInSubscriptionPlan({
     required this.id,

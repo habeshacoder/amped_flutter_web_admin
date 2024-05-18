@@ -2,14 +2,14 @@ import '../../../material/domain/entities/material.dart';
 import '../../../user/domain/entities/user.dart';
 
 class MaterialUser {
-  final int id;
-  final String userId;
-  final int materialId;
-  final bool isPaid;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final Material material;
-  final User user;
+  final int? id;
+  final String? userId;
+  final int? materialId;
+  final bool? isPaid;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final Material? material;
+  final User? user;
 
   MaterialUser({
     required this.id,
