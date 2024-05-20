@@ -9,17 +9,17 @@ class SellerProfile {
   final int? id;
   final String? userId;
   final String? name;
-  final Sex? sex;
+  final String? sex;
   final String? dateOfBirth;
   final String? description;
   final String? image;
   final String? coverImage;
   final DateTime? createdAt;
   final DateTime? updatedAt;
-  final List<ChannelMaterial>? channelMaterials;
-  final List<Channel>? channels;
-  final List<Material>? materials;
-  final User? user;
+  // final List<ChannelMaterial>? channelMaterials;
+  // final List<Channel>? channels;
+  // final List<Material>? materials;
+  // final User? user;
   // final List<SocialLinksProfile> socialLinksProfiles;
 
   SellerProfile({
@@ -33,10 +33,10 @@ class SellerProfile {
     this.coverImage,
     required this.createdAt,
     required this.updatedAt,
-    required this.channelMaterials,
-    required this.channels,
-    required this.materials,
-    required this.user,
+    // required this.channelMaterials,
+    // required this.channels,
+    // required this.materials,
+    // required this.user,
     // required this.socialLinksProfiles,
   });
 }

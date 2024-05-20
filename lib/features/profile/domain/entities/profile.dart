@@ -6,7 +6,7 @@ class Profile {
   final String? userId;
   final String? firstName;
   final String? lastName;
-  final Sex? sex;
+  final String? sex;
   final String? dateOfBirth;
   final String? profileImage;
   final String? coverImage;

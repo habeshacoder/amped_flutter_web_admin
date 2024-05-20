@@ -1,6 +1,9 @@
+import 'package:amped_media_admin/config/router.dart';
 import 'package:amped_media_admin/features/channel/data/datasources/channel_remote_datasource.dart';
 import 'package:amped_media_admin/features/channel/data/repositories/channel_repository_impl.dart';
+import 'package:amped_media_admin/features/channel/domain/usecases/delete_channel.dart';
 import 'package:amped_media_admin/features/channel/domain/usecases/get_all_channels.dart';
+import 'package:amped_media_admin/features/channel/domain/usecases/search_channel.dart';
 import 'package:amped_media_admin/features/channel/presentation/bloc/allchannels_bloc.dart';
 import 'package:amped_media_admin/init_dependencies.dart';
 import 'package:amped_media_admin/features/layout_template/layout_template.dart';
@@ -15,12 +18,21 @@ void main() {
       providers: [
         BlocProvider(
           create: (context) => ChannelBloc(
-            getAllChannels: GetAllChannels(
-              channelRepository: ChannelRepositoryImpl(
-                channelRemoteDataSource: ChannelRemoteDataSourceImpl(),
+              getAllChannels: GetAllChannels(
+                channelRepository: ChannelRepositoryImpl(
+                  channelRemoteDataSource: ChannelRemoteDataSourceImpl(),
+                ),
               ),
-            ),
-          ),
+              deleteChannel: DeleteChannel(
+                channelRepository: ChannelRepositoryImpl(
+                  channelRemoteDataSource: ChannelRemoteDataSourceImpl(),
+                ),
+              ),
+              searchChannel: SearchChannel(
+                channelRepository: ChannelRepositoryImpl(
+                  channelRemoteDataSource: ChannelRemoteDataSourceImpl(),
+                ),
+              )),
         )
       ],
       child: MyApp(),
@@ -38,7 +50,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Open Sans'),
       ),
-      home: LayoutTemplate(),
+      builder: (context, child) => LayoutTemplate(
+        child: child,
+      ),
+      navigatorKey: serviceLocator<NavigationService>().navigatorKey,
+      onGenerateRoute: generateRoute,
+      initialRoute: RouteNames.home,
     );
   }
 }

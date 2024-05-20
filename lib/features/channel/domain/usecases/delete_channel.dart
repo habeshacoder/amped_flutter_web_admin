@@ -5,7 +5,8 @@ import '../repositories/channel_repositor.dart';
 
 class DeleteChannel implements UseCase<String, DeleteChannelParams> {
   final ChannelRepository channelRepository;
-  DeleteChannel(this.channelRepository);
+
+  DeleteChannel({required this.channelRepository});
 
   @override
   Future<Either<Failure, String>> call(DeleteChannelParams params) async {

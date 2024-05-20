@@ -5,7 +5,7 @@ void showSnackBar(BuildContext context, String content) {
     ..hideCurrentSnackBar()
     ..showSnackBar(
       SnackBar(
-        content: Text(content),
+        content: Center(child: Text(content)),
       ),
     );
 }

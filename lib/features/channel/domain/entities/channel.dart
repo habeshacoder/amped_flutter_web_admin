@@ -1,4 +1,3 @@
-import '../../../favorite/domain/entities/favorite.dart';
 import '../../../report/domain/entities/reports.dart';
 import '../../../review_rate/domain/entities/rate.dart';
 import '../../../sellerprofile/domain/entities/sellerprofile.dart';
@@ -15,7 +14,6 @@ class Channel {
   final List<ChannelImage>? channelImage;
   final List<PreviewChannel>? channelPreview;
   final SellerProfile? sellerProfile;
-  final List<Favorite>? favorite;
   final List<Rate>? rate;
   final List<Report>? report;
   final List<SubscriptionPlan>? subscriptionPlan;
@@ -31,7 +29,6 @@ class Channel {
     required this.channelImage,
     required this.channelPreview,
     required this.sellerProfile,
-    required this.favorite,
     required this.rate,
     required this.report,
     required this.subscriptionPlan,

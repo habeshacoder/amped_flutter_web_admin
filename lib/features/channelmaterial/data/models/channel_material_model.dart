@@ -1,11 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'package:amped_media_admin/features/channelmaterial/domain/entities/channelmaterial.dart';
-import 'package:amped_media_admin/features/favorite/data/models/favorite_model.dart';
-import 'package:amped_media_admin/features/material_in_subscriptionplan/data/models/material_in_subscriptionplan_model.dart';
-import 'package:amped_media_admin/features/report/data/modles/report_model.dart';
-import 'package:amped_media_admin/features/review_rate/data/models/rate_model.dart';
-import 'package:amped_media_admin/features/sellerprofile/data/models/sellerprofile_model.dart';
 
 class ChannelMaterialModel extends ChannelMaterial {
   ChannelMaterialModel({
@@ -31,12 +26,12 @@ class ChannelMaterialModel extends ChannelMaterial {
     required super.createdAt,
     required super.updatedAt,
     required super.channelMaterialImages,
-    required super.channelMaterialPreviews,
-    required super.sellerProfile,
-    required super.favorites,
-    required super.materialInSubscriptionPlans,
-    required super.rates,
-    required super.reports,
+    // required super.channelMaterialPreviews,
+    // required super.sellerProfile,
+    // required super.favorites,
+    // required super.materialInSubscriptionPlans,
+    // required super.rates,
+    // required super.reports,
   });
 
   factory ChannelMaterialModel.fromMap(Map<String, dynamic> map) {
@@ -60,8 +55,8 @@ class ChannelMaterialModel extends ChannelMaterial {
       material: map['material'],
       title: map['title'],
       description: map['description'],
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
       channelMaterialImages: map['channelMaterialImages'] != null ||
               map['channelMaterialImages'] != []
           ? List<ChannelMaterialImage>.from(
@@ -70,45 +65,45 @@ class ChannelMaterialModel extends ChannelMaterial {
               ),
             )
           : [],
-      channelMaterialPreviews: map['channelMaterialPreviews'] != null ||
-              map['channelMaterialPreviews'] != []
-          ? List<ChannelPreviewMaterial>.from(
-              (map['channelMaterialPreviews']).map<ChannelPreviewMaterial>(
-                (x) => ChannelPreviewMaterialModel.fromMap(x),
-              ),
-            )
-          : [],
-      sellerProfile: SellerProfileModel.fromMap(map['sellerProfile']),
-      favorites: map['favorites'] != null || map['favorites'] != []
-          ? List<FavoriteModel>.from(
-              (map['favorites']).map<FavoriteModel>(
-                (x) => FavoriteModel.fromMap(x),
-              ),
-            )
-          : [],
-      materialInSubscriptionPlans: map['materialInSubscriptionPlans'] != null ||
-              map['materialInSubscriptionPlans'] != []
-          ? List<MaterialInSubscriptionPlanModel>.from(
-              (map['materialInSubscriptionPlans'])
-                  .map<MaterialInSubscriptionPlanModel>(
-                (x) => MaterialInSubscriptionPlanModel.fromMap(x),
-              ),
-            )
-          : [],
-      rates: map['rates'] != null || map['rates'] != []
-          ? List<RateModel>.from(
-              (map['rates']).map<RateModel>(
-                (x) => RateModel.fromMap(x),
-              ),
-            )
-          : [],
-      reports: map['reports'] != null || map['reports'] != []
-          ? List<ReportModel>.from(
-              (map['reports']).map<ReportModel>(
-                (x) => ReportModel.fromMap(x),
-              ),
-            )
-          : [],
+      // channelMaterialPreviews: map['channelMaterialPreviews'] != null ||
+      //         map['channelMaterialPreviews'] != []
+      //     ? List<ChannelPreviewMaterial>.from(
+      //         (map['channelMaterialPreviews']).map<ChannelPreviewMaterial>(
+      //           (x) => ChannelPreviewMaterialModel.fromMap(x),
+      //         ),
+      //       )
+      //     : [],
+      // sellerProfile: SellerProfileModel.fromMap(map['sellerProfile']),
+      // favorites: map['favorites'] != null || map['favorites'] != []
+      //     ? List<FavoriteModel>.from(
+      //         (map['favorites']).map<FavoriteModel>(
+      //           (x) => FavoriteModel.fromMap(x),
+      //         ),
+      //       )
+      //     : [],
+      // materialInSubscriptionPlans: map['materialInSubscriptionPlans'] != null ||
+      //         map['materialInSubscriptionPlans'] != []
+      //     ? List<MaterialInSubscriptionPlanModel>.from(
+      //         (map['materialInSubscriptionPlans'])
+      //             .map<MaterialInSubscriptionPlanModel>(
+      //           (x) => MaterialInSubscriptionPlanModel.fromMap(x),
+      //         ),
+      //       )
+      //     : [],
+      // rates: map['rates'] != null || map['rates'] != []
+      //     ? List<RateModel>.from(
+      //         (map['rates']).map<RateModel>(
+      //           (x) => RateModel.fromMap(x),
+      //         ),
+      //       )
+      //     : [],
+      // reports: map['reports'] != null || map['reports'] != []
+      //     ? List<ReportModel>.from(
+      //         (map['reports']).map<ReportModel>(
+      //           (x) => ReportModel.fromMap(x),
+      //         ),
+      //       )
+      //     : [],
     );
   }
 

@@ -11,10 +11,20 @@ final class ChannelFailureState extends ChannelState {
   ChannelFailureState(this.error);
 }
 
-final class ChannelDeleteSuccessState extends ChannelState {}
+final class ChannelDeleteSuccessState extends ChannelState {
+  final String message;
+
+  ChannelDeleteSuccessState({required this.message});
+}
 
 final class ChannelsDisplaySuccessState extends ChannelState {
   final List<Channel> channels;
 
   ChannelsDisplaySuccessState(this.channels);
+}
+
+final class SearchChannelSuccessState extends ChannelState {
+  final List<Channel> channels;
+
+  SearchChannelSuccessState({required this.channels});
 }

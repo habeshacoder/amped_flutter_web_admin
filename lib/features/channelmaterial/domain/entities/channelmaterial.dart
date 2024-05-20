@@ -1,10 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import '../../../../core/utils/enums.dart';
-import '../../../favorite/domain/entities/favorite.dart';
-import '../../../material_in_subscriptionplan/domain/entities/material_in_subscriptionplan.dart';
-import '../../../report/domain/entities/reports.dart';
-import '../../../review_rate/domain/entities/rate.dart';
-import '../../../sellerprofile/domain/entities/sellerprofile.dart';
 
 class ChannelMaterial {
   final int? id;
@@ -29,12 +24,12 @@ class ChannelMaterial {
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final List<ChannelMaterialImage>? channelMaterialImages;
-  final List<ChannelPreviewMaterial>? channelMaterialPreviews;
-  final SellerProfile? sellerProfile;
-  final List<Favorite>? favorites;
-  final List<MaterialInSubscriptionPlan>? materialInSubscriptionPlans;
-  final List<Rate>? rates;
-  final List<Report>? reports;
+  // final List<ChannelPreviewMaterial>? channelMaterialPreviews;
+  // final SellerProfile? sellerProfile;
+  // final List<Favorite>? favorites;
+  // final List<MaterialInSubscriptionPlan>? materialInSubscriptionPlans;
+  // final List<Rate>? rates;
+  // final List<Report>? reports;
 
   ChannelMaterial({
     required this.id,
@@ -59,12 +54,12 @@ class ChannelMaterial {
     required this.createdAt,
     required this.updatedAt,
     required this.channelMaterialImages,
-    required this.channelMaterialPreviews,
-    required this.sellerProfile,
-    required this.favorites,
-    required this.materialInSubscriptionPlans,
-    required this.rates,
-    required this.reports,
+    // required this.channelMaterialPreviews,
+    // required this.sellerProfile,
+    // required this.favorites,
+    // required this.materialInSubscriptionPlans,
+    // required this.rates,
+    // required this.reports,
   });
 }
 

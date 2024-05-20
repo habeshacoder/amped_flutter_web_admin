@@ -10,24 +10,21 @@ import '../../config/router.dart';
 import '../../core/common/centered_view.dart';
 
 class LayoutTemplate extends StatelessWidget {
-  const LayoutTemplate() : super();
+  final Widget? child;
 
+  const LayoutTemplate({super.key, required this.child});
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Scaffold(
         drawer: customDrawer.NavigationDrawer(),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[100],
         body: CenteredView(
           child: Column(
             children: <Widget>[
               customNavbar.NavigationBar(),
               Expanded(
-                child: Navigator(
-                  key: serviceLocator<NavigationService>().navigatorKey,
-                  onGenerateRoute: generateRoute,
-                  initialRoute: RouteNames.home,
-                ),
+                child: child!,
               )
             ],
           ),

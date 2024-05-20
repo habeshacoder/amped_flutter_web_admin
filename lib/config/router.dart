@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 import '../features/channel/presentation/pages/channel_view.dart';
 
 class RouteNames {
-  static const home = 'home';
-  static const user = 'user';
-  static const channel = 'channel';
-  static const material = 'material';
-  static const profile = 'profile';
-  static const sellerProfile = 'sellerProfile';
-  static const subscribedUser = 'subscribedUser';
-  static const channelMaterial = 'channelMaterial';
-  static const favorite = 'favorite';
-  static const materialInSubscriptionPlan = 'materialInSubscriptionPlan';
-  static const replay = 'replay';
-  static const report = 'report';
-  static const rate = 'rate';
-  static const templayeLayout = 'templateLayout';
+  static const home = '/home';
+  static const user = '/user';
+  static const channel = '/channel';
+  static const material = '/material';
+  static const profile = '/profile';
+  static const sellerProfile = '/sellerProfile';
+  static const subscribedUser = '/subscribedUser';
+  static const channelMaterial = '/channelMaterial';
+  static const favorite = '/favorite';
+  static const materialInSubscriptionPlan = '/materialInSubscriptionPlan';
+  static const replay = '/replay';
+  static const report = '/report';
+  static const rate = '/rate';
+  static const templayeLayout = '/templateLayout';
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {

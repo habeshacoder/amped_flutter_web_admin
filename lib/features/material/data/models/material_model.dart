@@ -45,7 +45,7 @@ class MaterialModel extends Material {
   factory MaterialModel.fromMap(Map<String, dynamic> map) {
     return MaterialModel(
       id: map['id'],
-      sellerProfileId: map['sellerProfileId'],
+      sellerProfileId: map['sellecrProfile_id'],
       parent: map['parent'],
       type: map['type'],
       genere: map['genere'],
@@ -53,9 +53,9 @@ class MaterialModel extends Material {
       author: map['author'],
       reader: map['reader'],
       translator: map['translator'],
-      lengthMinute: map['lengthMinute'],
-      lengthPage: map['lengthPage'],
-      firstPublishedAt: map['firstPublishedAt'],
+      lengthMinute: map['length_minute'],
+      lengthPage: map['length_page'],
+      firstPublishedAt: map['first_published_at'],
       language: map['language'],
       publisher: map['publisher'],
       episode: map['episode'],
