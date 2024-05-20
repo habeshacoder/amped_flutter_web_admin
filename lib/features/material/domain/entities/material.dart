@@ -1,7 +1,5 @@
 import 'package:amped_media_admin/core/utils/enums.dart';
-import '../../../materialuser/domain/entities/materialuser.dart';
-import '../../../report/domain/entities/reports.dart';
-import '../../../review_rate/domain/entities/rate.dart';
+
 import '../../../sellerprofile/domain/entities/sellerprofile.dart';
 
 class Material {
@@ -29,11 +27,11 @@ class Material {
   final DateTime? updatedAt;
   // final List<Favorite>? favorites;
   final List<MaterialImage>? materialImages;
-  final List<PreviewMaterial>? materialPreviews;
-  final List<MaterialUser>? materialUsers;
+  // final List<PreviewMaterial>? materialPreviews;
+  // final List<MaterialUser>? materialUsers;
   final SellerProfile? sellerProfile;
-  final List<Rate>? rates;
-  final List<Report>? reports;
+  // final List<Rate>? rates;
+  // final List<Report>? reports;
 
   Material({
     required this.id,
@@ -60,11 +58,11 @@ class Material {
     required this.updatedAt,
     // this.favorites,
     this.materialImages,
-    this.materialPreviews,
-    this.materialUsers,
+    // this.materialPreviews,
+    // this.materialUsers,
     required this.sellerProfile,
-    this.rates,
-    this.reports,
+    // this.rates,
+    // this.reports,
   });
 }
 

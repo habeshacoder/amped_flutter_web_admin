@@ -1,5 +1,9 @@
+import 'package:amped_media_admin/core/common/loader.dart';
+import 'package:amped_media_admin/core/constants/urls.dart';
+import 'package:amped_media_admin/core/utils/showsnakbar.dart';
+import 'package:amped_media_admin/features/material/presentation/bloc/material_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MaterialView extends StatefulWidget {
   const MaterialView({super.key});
@@ -9,64 +13,90 @@ class MaterialView extends StatefulWidget {
 }
 
 class _MaterialViewState extends State<MaterialView> {
-  late Future<List<dynamic>> channelList;
+  // late Future<List<dynamic>> materialList;
+  TextEditingController searchController = TextEditingController();
+  bool isSearching = false;
   String? token;
   @override
   void didChangeDependencies() {
-    // channelList = Provider.of<materialCreationProvider(context, listen: false)
-    //     .getMaterials();
+    context.read<MaterialBloc>().add(GetAllMaterialsEvent());
     super.didChangeDependencies();
+  }
+
+  void onSearch(String searchText) {
+    setState(() {
+      isSearching = true;
+      context.read<MaterialBloc>().add(SearchMaterialEvent(
+            key: searchText,
+            time_from: null,
+            time_to: null,
+          ));
+    });
+  }
+
+  void clearSearch() {
+    setState(() {
+      isSearching = false;
+      searchController.clear();
+      context.read<MaterialBloc>().add(GetAllMaterialsEvent());
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    // return Container(
-    //   // height: 287,
-    //   // color: Colors.red,
-    //   width: double.infinity,
-    //   child: SingleChildScrollView(
-    //     child: Column(
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       mainAxisAlignment: MainAxisAlignment.start,
-    //       children: [
-    //         Text(
-    //           'All Channels',
-    //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-    //         ),
-    //         Container(
-    //           height: 500,
-    //           child:
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
     return Column(
-      // children: [
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text('Materials'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Materials'),
+            SizedBox(
+              width: 10,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 2,
+              child: TextField(
+                controller: searchController,
+                onSubmitted: onSearch,
+                decoration: InputDecoration(
+                  hintText: 'Search by title',
+                  suffixIcon: isSearching
+                      ? IconButton(
+                          onPressed: clearSearch,
+                          icon: Icon(Icons.clear),
+                        )
+                      : Icon(Icons.search),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 5,
+        ),
         Container(
-          padding: EdgeInsets.only(left: 5),
           margin: EdgeInsets.symmetric(vertical: 2),
           decoration: BoxDecoration(
-              color: Colors.grey[100], borderRadius: BorderRadius.circular(5)),
-          // margin: EdgeInsets.symmetric(horizontal: 5),
+              color: Colors.grey[300], borderRadius: BorderRadius.circular(5)),
           height: 50,
-          // width: MediaQuery.of(context).size.width * 0.5,
           child: Row(
             // crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Container(
-              //   height: 40,
-              //   child: Image(
-              //       fit: BoxFit.cover,
-              //       image: NetworkImage(
-              //           headers: {},
-              //           '${BackEndUrl.url}/channel/channel_profile/${snapshot.data![index]['id']}')),
-              // ),
               Text(
                 'Title',
                 softWrap: true,
@@ -98,96 +128,317 @@ class _MaterialViewState extends State<MaterialView> {
             ],
           ),
         ),
-        SizedBox(
-          height: 10,
-        ),
+        // SizedBox(
+        //   height: 10,
+        // ),
         Expanded(
-          child: Consumer(
-              builder: (context, channel, child) => FutureBuilder(
-                    future: channelList,
-                    builder: (context, snapshot) {
-                      print(
-                          'snapshot data------------------------${snapshot.data}');
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (context, index) => Container(
-                            padding: EdgeInsets.only(left: 5),
-                            margin: EdgeInsets.symmetric(vertical: 2),
-                            decoration: BoxDecoration(
-                                color: Colors.grey[100],
-                                borderRadius: BorderRadius.circular(5)),
-                            // margin: EdgeInsets.symmetric(horizontal: 5),
-                            height: 50,
-                            width: MediaQuery.of(context).size.width * 0.5,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // Container(
-                                //   height: 40,
-                                //   child: Image(
-                                //       fit: BoxFit.cover,
-                                //       image: NetworkImage(
-                                //           headers: {},
-                                //           '${BackEndUrl.url}/channel/channel_profile/${snapshot.data![index]['id']}')),
-                                // ),
-                                Text(
-                                  '${snapshot.data![index]["title"]}',
-                                  softWrap: true,
-                                ),
-                                Text(
-                                  '${snapshot.data![index]["type"]}',
-                                  softWrap: true,
-                                ),
-                                Text(
-                                  '${snapshot.data![index]["author"]}',
-                                  softWrap: true,
-                                ),
-                                Text(
-                                  '${snapshot.data![index]["language"]}',
-                                  softWrap: true,
-                                ),
-                                Text(
-                                  '${snapshot.data![index]["price"]}',
-                                  softWrap: true,
-                                ),
-                                Text(
-                                  '${snapshot.data![index]["SellerProfile"]["name"]}',
-                                  softWrap: true,
-                                ),
+          child: BlocConsumer<MaterialBloc, MaterialsState>(
+            listener: (context, state) {
+              print('state////////////////$state');
+              if (state is MaterialFailureState) {
+                print(state.error);
+                showSnackBar(context, state.error);
+              }
+              if (state is MaterialDeleteSuccessState) {
+                showSnackBar(context, state.message);
+                context.read<MaterialBloc>().add(GetAllMaterialsEvent());
+              }
+            },
+            builder: (context, state) {
+              if (state is MaterialLoading) {
+                return Loader();
+              }
 
-                                // IconButton(
-                                //   icon: Icon(
-                                //     Icons.delete,
-                                //   ),
-                                //   color: Colors.red,
-                                //   onPressed: () {
-                                //     // Add your delete logic here
-                                //     print('Delete button pressed');
-                                //   },
-                                // ),
-                                Text(
-                                  '',
-                                  softWrap: true,
-                                ),
-                              ],
+              if (state is MaterialInitial) {
+                return Loader();
+              }
+              if (state is MaterialsDisplaySuccessState) {
+                if (state.Materials.length == 0) {
+                  return Center(
+                      child: Text(
+                    'There is No Available Channel Data',
+                    // style: TextStyle(
+                    //     , fontFamily: ),
+                  ));
+                }
+              }
+
+              if (state is MaterialFailureState) {
+                return Center(
+                    child: Text(
+                  'There is No Available Channel Data',
+                  // style: TextStyle(
+                  //     , fontFamily: ),
+                ));
+              }
+
+              if (state is SearchMaterialSuccessState) {
+                return ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: state.Materials.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.symmetric(vertical: 2),
+                      decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(5)),
+                      // margin: EdgeInsets.symmetric(horizontal: 5),
+                      height: 50,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 50,
+                            child: Text(
+                              '',
+                              softWrap: true,
                             ),
                           ),
-                        );
-                      }
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        // return CircularProgressIndicator();
-                        return Center(
-                            widthFactor: 10,
-                            heightFactor: 10,
-                            child: CircularProgressIndicator());
-                      }
-                      return Center(child: Text('Please try later'));
-                    },
-                  )),
-        ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 10,
+                            child: Text(
+                              '${state.Materials[index].id ?? 'N/A'}',
+                              softWrap: true,
+                            ),
+                          ),
+                          if (state.Materials![index].id != null)
+                            Container(
+                              width: MediaQuery.of(context).size.width / 9,
+                              height: 40,
+                              child: Image(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                  headers: {},
+                                  '${Urls.BackEndUrl}/material/material_profile/${state.Materials![index].id}',
+                                ),
+                              ),
+                            ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 9,
+                            child: Text(
+                              '${state.Materials[index].title ?? 'N/A'}',
+                              softWrap: true,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 9,
+                            child: Text(
+                              '${state.Materials[index].type! ?? 'N/A'}',
+                              softWrap: true,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 9,
+                            child: Text(
+                              '${state.Materials[index].author ?? 'N/A'}',
+                              softWrap: true,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 9,
+                            child: Text(
+                              '${state.Materials[index].language ?? 'N/A'}',
+                              softWrap: true,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 9,
+                            child: Text(
+                              '${state.Materials[index].price ?? 'N/A'}',
+                              softWrap: true,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 9,
+                            child: Text(
+                              '${state.Materials[index].sellerProfile!.name ?? 'N/A'}',
+                              softWrap: true,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 9,
+                            child: InkWell(
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        'Confirm Deletion',
+                                      ),
+                                      content: Text(
+                                        'Are you sure you want to delete this Order?',
+                                        style: TextStyle(),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          child: Text(
+                                            'Cancel',
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        TextButton(
+                                          child: Text(
+                                            'Delete',
+                                            style: TextStyle(
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                            context.read<MaterialBloc>().add(
+                                                (DeleteMaterialsEvent(
+                                                    MaterialId: state
+                                                        .Materials[index]
+                                                        .id!)));
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              }
+
+              return ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount:
+                    (state as MaterialsDisplaySuccessState).Materials.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 2),
+                    decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(5)),
+                    // margin: EdgeInsets.symmetric(horizontal: 5),
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width / 50,
+                          child: Text(
+                            '',
+                            softWrap: true,
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 10,
+                          child: Text(
+                            '${state.Materials[index].id ?? 'N/A'}',
+                            softWrap: true,
+                          ),
+                        ),
+                        if (state.Materials![index].id != null)
+                          Container(
+                            width: MediaQuery.of(context).size.width / 9,
+                            height: 40,
+                            child: Image(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                headers: {},
+                                '${Urls.BackEndUrl}/material/material_profile/${state.Materials![index].id}',
+                              ),
+                            ),
+                          ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 9,
+                          child: Text(
+                            '${state.Materials[index].title ?? 'N/A'}',
+                            softWrap: true,
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 9,
+                          child: Text(
+                            '${state.Materials[index].sellerProfile!.name ?? 'N/A'}',
+                            softWrap: true,
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 9,
+                          child: Text(
+                            '${state.Materials[index].sellerProfile!.id ?? 'N/A'}',
+                            softWrap: true,
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 9,
+                          child: InkWell(
+                            child: Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      'Confirm Deletion',
+                                    ),
+                                    content: Text(
+                                      'Are you sure you want to delete this Order?',
+                                      style: TextStyle(),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        child: Text(
+                                          'Cancel',
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      TextButton(
+                                        child: Text(
+                                          'Delete',
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          context.read<MaterialBloc>().add(
+                                              (DeleteMaterialsEvent(
+                                                  MaterialId: state
+                                                      .Materials[index].id!)));
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+          // listener: ,
+          // builder: (context, channel, child) => ,),)
+        )
       ],
     );
   }

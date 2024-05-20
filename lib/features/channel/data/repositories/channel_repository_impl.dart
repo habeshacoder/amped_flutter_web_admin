@@ -40,7 +40,11 @@ class ChannelRepositoryImpl implements ChannelRepository {
   Future<Either<Failure, List<Channel>>> searchChannel(
       {String? key, String? time_from, String? time_to}) async {
     try {
-      final channels = await channelRemoteDataSource.searchChannel();
+      final channels = await channelRemoteDataSource.searchChannel(
+        key: key,
+        time_from: time_from,
+        time_to: time_to,
+      );
       return right(channels);
     } on ServerException catch (e) {
       return left(Failure(e.message));

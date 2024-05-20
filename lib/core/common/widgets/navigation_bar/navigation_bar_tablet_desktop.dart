@@ -20,12 +20,19 @@ class _NavigationBarTabletDesktopState
     NavBarLogo(),
     NavBarItem('Home', RouteNames.home),
     // NavBarItem('Review', reviewRoute),
-    NavBarItem('Material', RouteNames.material),
-    NavBarItem('Channel', RouteNames.channel),
-    NavBarItem('Report', RouteNames.report),
+    NavBarItem('Materials', RouteNames.material),
+    NavBarItem('Channels', RouteNames.channel),
+    NavBarItem('Reports', RouteNames.report),
     NavBarItem('Users', RouteNames.user),
-    NavBarItem('Profile', RouteNames.profile),
-    NavBarItem('SellerProfile', RouteNames.sellerProfile),
+    NavBarItem('Profiles', RouteNames.profile),
+    NavBarItem('SellerProfiles', RouteNames.sellerProfile),
+    NavBarItem('SubscribedUsers', RouteNames.subscribedUser),
+    NavBarItem('ChannelMaterials', RouteNames.channelMaterial),
+    NavBarItem(
+        'MaterialInSubscriptionPlans', RouteNames.materialInSubscriptionPlan),
+    NavBarItem('Replays', RouteNames.replay),
+    NavBarItem('Reports', RouteNames.report),
+    NavBarItem('Rates', RouteNames.rate),
   ];
 
   @override

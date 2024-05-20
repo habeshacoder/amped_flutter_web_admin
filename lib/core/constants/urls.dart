@@ -3,6 +3,7 @@ class Urls {
 
   static final String getAllChannelsUrl = '$BackEndUrl/channel';
   static final String deleteChannelsUrl = '$BackEndUrl/channel';
+  static final String searchChannelsUrl = '$BackEndUrl/search/channel';
 
   static final String getProfilesUrl = '$BackEndUrl/profiles';
   static final String deleteProfilesUrl = '$BackEndUrl/channels';
@@ -12,6 +13,7 @@ class Urls {
 
   static final String getAllMaterialUrl = '$BackEndUrl/material';
   static final String deleteMaterialUrl = '$BackEndUrl/channels';
+  static final String searchMaterialUrl = '$BackEndUrl/search';
 
   static final String getAllChannelMaterilaUrl = '$BackEndUrl/channels';
   static final String deleteChannelMaterilaUrl = '$BackEndUrl/channels';

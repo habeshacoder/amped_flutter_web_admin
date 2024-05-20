@@ -1,4 +1,5 @@
 import 'package:amped_media_admin/features/home/home/home_view.dart';
+import 'package:amped_media_admin/features/material/presentation/pages/material_view.dart';
 import 'package:flutter/material.dart';
 
 import '../features/channel/presentation/pages/channel_view.dart';
@@ -25,7 +26,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case RouteNames.channel:
       return _getPageRoute(ChannelView(), settings);
     case RouteNames.material:
-      return _getPageRoute(HomeView(), settings);
+      return _getPageRoute(MaterialView(), settings);
     case RouteNames.report:
       return _getPageRoute(HomeView(), settings);
     case RouteNames.rate:

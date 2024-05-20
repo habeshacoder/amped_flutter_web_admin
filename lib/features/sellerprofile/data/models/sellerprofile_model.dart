@@ -30,13 +30,13 @@ class SellerProfileModel extends SellerProfile {
   factory SellerProfileModel.fromMap(Map<String, dynamic> map) {
     return SellerProfileModel(
       id: map['id'],
-      userId: map['userId'],
+      userId: map['user_id'],
       name: map['name'],
       sex: map['sex'],
-      dateOfBirth: map['dateOfBirth'],
+      dateOfBirth: map['date_of_birth'],
       description: map['description'],
       image: map['image'],
-      coverImage: map['coverImage'],
+      coverImage: map['cover_Image'],
       createdAt: DateTime.parse(map['created_at']),
       updatedAt: DateTime.parse(map['updated_at']),
       // channelMaterials:
