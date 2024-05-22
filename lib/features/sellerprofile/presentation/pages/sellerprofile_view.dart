@@ -1,6 +1,10 @@
+import 'package:amped_media_admin/core/common/loader.dart';
+import 'package:amped_media_admin/core/utils/showsnakbar.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/constants/urls.dart';
+import '../../../../core/utils/formate_date.dart';
+import '../bloc/sellerprofile_bloc.dart';
 
 class SellerProfileView extends StatefulWidget {
   const SellerProfileView({super.key});
@@ -10,129 +14,439 @@ class SellerProfileView extends StatefulWidget {
 }
 
 class _SellerProfileViewState extends State<SellerProfileView> {
-  late Future<List<dynamic>> channelList;
+  // late Future<List<dynamic>> materialList;
+  TextEditingController searchController = TextEditingController();
+  bool isSearching = false;
   String? token;
   @override
   void didChangeDependencies() {
-    // channelList = Provider.of<SellerProfileProvider>(context, listen: false)
-    //     .getSellerProfiles();
+    context.read<SellerProfileBloc>().add(GetAllSellerProfilesEvent());
     super.didChangeDependencies();
+  }
+
+  void onSearch(String searchText) {
+    setState(() {
+      isSearching = true;
+      context.read<SellerProfileBloc>().add(SearchSellerProfileEvent(
+            key: searchText,
+            time_from: null,
+            time_to: null,
+          ));
+    });
+  }
+
+  void clearSearch() {
+    setState(() {
+      isSearching = false;
+      searchController.clear();
+      context.read<SellerProfileBloc>().add(GetAllSellerProfilesEvent());
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text('Seller Profile'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Seller Profiles'),
+            SizedBox(
+              width: 10,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 2,
+              child: TextField(
+                controller: searchController,
+                onSubmitted: onSearch,
+                decoration: InputDecoration(
+                  hintText: 'Search by Name',
+                  suffixIcon: isSearching
+                      ? IconButton(
+                          onPressed: clearSearch,
+                          icon: Icon(Icons.clear),
+                        )
+                      : Icon(Icons.search),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 5,
+        ),
         Container(
-          padding: EdgeInsets.only(left: 5),
           margin: EdgeInsets.symmetric(vertical: 2),
           decoration: BoxDecoration(
-              color: Colors.grey[100], borderRadius: BorderRadius.circular(5)),
-          // margin: EdgeInsets.symmetric(horizontal: 5),
+              color: Colors.grey[300], borderRadius: BorderRadius.circular(5)),
           height: 50,
-          // width: MediaQuery.of(context).size.width * 0.5,
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'name',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 50,
+                child: Text(
+                  '',
+                  softWrap: true,
+                ),
               ),
-              Text(
-                'sex',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 10,
+                child: Text(
+                  'Id',
+                  softWrap: true,
+                ),
               ),
-              Text(
-                'username',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'Profile Image',
+                  softWrap: true,
+                ),
               ),
-              Text(
-                'created_at',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'Name',
+                  softWrap: true,
+                ),
               ),
-              Text(
-                '',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'Sex',
+                  softWrap: true,
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'Registered At',
+                  softWrap: true,
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'Delete',
+                  softWrap: true,
+                ),
               ),
             ],
           ),
         ),
-        SizedBox(
-          height: 10,
-        ),
+        // SizedBox(
+        //   height: 10,
+        // ),
         Expanded(
-          child: Consumer(
-              builder: (context, channel, child) => FutureBuilder(
-                    future: channelList,
-                    builder: (context, snapshot) {
-                      print(
-                          'snapshot data------------------------${snapshot.data}');
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (context, index) => Container(
-                            padding: EdgeInsets.only(left: 5),
-                            margin: EdgeInsets.symmetric(vertical: 2),
-                            decoration: BoxDecoration(
-                                color: Colors.grey[100],
-                                borderRadius: BorderRadius.circular(5)),
-                            // margin: EdgeInsets.symmetric(horizontal: 5),
-                            height: 50,
-                            width: MediaQuery.of(context).size.width * 0.5,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  '${snapshot.data![index]["name"]}',
-                                  softWrap: true,
-                                ),
-                                Text(
-                                  '${snapshot.data![index]["sex"]}',
-                                  softWrap: true,
-                                ),
-                                Text(
-                                  '${snapshot.data![index]["User"]["username"]}',
-                                  softWrap: true,
-                                ),
-                                Text(
-                                  '${DateFormat('dd-MM-yyyy').format(DateTime.parse(snapshot.data![index]["created_at"]))}',
-                                  softWrap: true,
-                                ),
-                                // IconButton(
-                                //   icon: Icon(
-                                //     Icons.delete,
-                                //   ),
-                                //   color: Colors.red,
-                                //   onPressed: () {
-                                //     // Add your delete logic here
-                                //     print('Delete button pressed');
-                                //   },
-                                // ),
-                                Text(
-                                  '',
-                                  softWrap: true,
-                                ),
-                              ],
+          child: BlocConsumer<SellerProfileBloc, SellerProfileState>(
+            listener: (context, state) {
+              print('state////////////////$state');
+              if (state is SellerProfileFailureState) {
+                print(state.error);
+                showSnackBar(context, state.error);
+              }
+              if (state is SellerProfileDeleteSuccessState) {
+                showSnackBar(context, state.message);
+                context
+                    .read<SellerProfileBloc>()
+                    .add(GetAllSellerProfilesEvent());
+              }
+            },
+            builder: (context, state) {
+              if (state is SellerProfileLoading) {
+                return Loader();
+              }
+
+              if (state is SellerProfileInitial) {
+                return Loader();
+              }
+              if (state is SellerProfilesDisplaySuccessState) {
+                if (state.Sellerprofiles.length == 0) {
+                  return Center(
+                      child: Text(
+                    'There is No Available seller seller profile Data',
+                    // style: TextStyle(
+                    //     , fontFamily: ),
+                  ));
+                }
+              }
+
+              if (state is SellerProfileFailureState) {
+                return Center(
+                    child: Text(
+                  'There is No Available Seller seller profile Data',
+                  // style: TextStyle(
+                  //     , fontFamily: ),
+                ));
+              }
+
+              if (state is SearchSellerProfileSuccessState) {
+                return ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: state.Sellerprofiles.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.symmetric(vertical: 2),
+                      decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(5)),
+                      // margin: EdgeInsets.symmetric(horizontal: 5),
+                      height: 50,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 50,
+                            child: Text(
+                              '',
+                              softWrap: true,
                             ),
                           ),
-                        );
-                      }
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        // return CircularProgressIndicator();
-                        return Center(
-                            widthFactor: 10,
-                            heightFactor: 10,
-                            child: CircularProgressIndicator());
-                      }
-                      return Center(child: Text('Please try later'));
-                    },
-                  )),
-        ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 10,
+                            child: Text(
+                              '${state.Sellerprofiles[index].id ?? 'N/A'}',
+                              softWrap: true,
+                            ),
+                          ),
+                          if (state.Sellerprofiles![index].id != null)
+                            Container(
+                              width: MediaQuery.of(context).size.width / 9,
+                              height: 40,
+                              child: Image(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                  headers: {},
+                                  '${Urls.BackEndUrl}/seller-profiles/cover-image/${state.Sellerprofiles![index].image}',
+                                ),
+                              ),
+                            ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 12,
+                            child: Text(
+                              '${state.Sellerprofiles[index].name ?? 'N/A'}',
+                              softWrap: true,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 12,
+                            child: Text(
+                              '${state.Sellerprofiles[index].sex ?? 'N/A'}',
+                              softWrap: true,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 12,
+                            child: Text(
+                              formatDateBydMMMYYYY(
+                                  state.Sellerprofiles[index].createdAt),
+                              softWrap: true,
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 12,
+                            child: InkWell(
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        'Confirm Deletion',
+                                      ),
+                                      content: Text(
+                                        'Are you sure you want to delete this seller profile?',
+                                        style: TextStyle(),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          child: Text(
+                                            'Cancel',
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        TextButton(
+                                          child: Text(
+                                            'Delete',
+                                            style: TextStyle(
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                            context
+                                                .read<SellerProfileBloc>()
+                                                .add((DeleteSellerProfilesEvent(
+                                                    SellerProfileId: state
+                                                        .Sellerprofiles[index]
+                                                        .id!)));
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              }
+
+              return ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: (state as SellerProfilesDisplaySuccessState)
+                    .Sellerprofiles
+                    .length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 2),
+                    decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(5)),
+                    // margin: EdgeInsets.symmetric(horizontal: 5),
+                    height: 50,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width / 50,
+                          child: Text(
+                            '',
+                            softWrap: true,
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 10,
+                          child: Text(
+                            '${state.Sellerprofiles[index].id ?? 'N/A'}',
+                            softWrap: true,
+                          ),
+                        ),
+                        if (state.Sellerprofiles![index].id != null)
+                          Container(
+                            width: MediaQuery.of(context).size.width / 9,
+                            height: 40,
+                            child: Image(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                headers: {},
+                                '${Urls.BackEndUrl}/seller-profiles/cover-image/${state.Sellerprofiles![index].image}',
+                              ),
+                            ),
+                          ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 12,
+                          child: Text(
+                            '${state.Sellerprofiles[index].name ?? 'N/A'}',
+                            softWrap: true,
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 12,
+                          child: Text(
+                            '${state.Sellerprofiles[index].sex ?? 'N/A'}',
+                            softWrap: true,
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 12,
+                          child: Text(
+                            formatDateBydMMMYYYY(
+                                state.Sellerprofiles[index].createdAt),
+                            softWrap: true,
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 12,
+                          child: InkWell(
+                            child: Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      'Confirm Deletion',
+                                    ),
+                                    content: Text(
+                                      'Are you sure you want to delete this seller profile?',
+                                      style: TextStyle(),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        child: Text(
+                                          'Cancel',
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      TextButton(
+                                        child: Text(
+                                          'Delete',
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          context.read<SellerProfileBloc>().add(
+                                              (DeleteSellerProfilesEvent(
+                                                  SellerProfileId: state
+                                                      .Sellerprofiles[index]
+                                                      .id!)));
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+          // listener: ,
+          // builder: (context, channel, child) => ,),)
+        )
       ],
     );
   }

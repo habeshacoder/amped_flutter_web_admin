@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../features/channel/presentation/pages/channel_view.dart';
 import '../features/profile/presentation/pages/profile_view.dart';
+import '../features/sellerprofile/presentation/pages/sellerprofile_view.dart';
 import '../features/user/presentation/pages/user_view.dart';
 
 class RouteNames {
@@ -38,7 +39,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case RouteNames.profile:
       return _getPageRoute(ProfileView(), settings);
     case RouteNames.sellerProfile:
-      return _getPageRoute(HomeView(), settings);
+      return _getPageRoute(SellerProfileView(), settings);
     default:
       return _getPageRoute(HomeView(), settings);
   }

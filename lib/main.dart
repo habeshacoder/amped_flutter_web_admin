@@ -16,6 +16,13 @@ import 'package:amped_media_admin/features/profile/domain/usecases/delete_profil
 import 'package:amped_media_admin/features/profile/domain/usecases/get_all_profile.dart';
 import 'package:amped_media_admin/features/profile/domain/usecases/search_profile.dart';
 import 'package:amped_media_admin/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:amped_media_admin/features/sellerprofile/data/datasources/sellerprofile_remote_data_source.dart';
+import 'package:amped_media_admin/features/sellerprofile/data/repositories/sellerprofile_repository_impl.dart';
+import 'package:amped_media_admin/features/sellerprofile/domain/repositories/sellerprofile_repositories.dart';
+import 'package:amped_media_admin/features/sellerprofile/domain/usecases/delete_sellerprofile.dart';
+import 'package:amped_media_admin/features/sellerprofile/domain/usecases/get_all_sellerprofile.dart';
+import 'package:amped_media_admin/features/sellerprofile/domain/usecases/search_sellerprofile.dart';
+import 'package:amped_media_admin/features/sellerprofile/presentation/bloc/sellerprofile_bloc.dart';
 import 'package:amped_media_admin/features/user/data/datasources/user_remote_data_source.dart';
 import 'package:amped_media_admin/features/user/data/repositories/user_repository_impl.dart';
 import 'package:amped_media_admin/features/user/domain/usecases/delete_user.dart';
@@ -103,6 +110,21 @@ void main() {
               searchProfile: SearchProfile(
                   profileRepository: ProfileRepositoryImpl(
                       profileRemoteDataSource: ProfileRemoteDataSourceImpl()))),
+        ),
+        BlocProvider(
+          create: (context) => SellerProfileBloc(
+              getAllSellerProfiles: GetAllSellerProfiles(
+                  sellerprofileRepository: SellerProfileRepositoryImpl(
+                      sellerprofileRemoteDataSource:
+                          SellerProfileRemoteDataSourceImpl())),
+              deleteSellerProfile: DeleteSellerProfile(
+                  sellerprofileRepository: SellerProfileRepositoryImpl(
+                      sellerprofileRemoteDataSource:
+                          SellerProfileRemoteDataSourceImpl())),
+              searchSellerProfile: SearchSellerProfile(
+                  sellerprofileRepository: SellerProfileRepositoryImpl(
+                      sellerprofileRemoteDataSource:
+                          SellerProfileRemoteDataSourceImpl()))),
         )
       ],
       child: MyApp(),

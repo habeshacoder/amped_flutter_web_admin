@@ -1,10 +1,5 @@
 import 'package:amped_media_admin/core/utils/enums.dart';
 
-import '../../../channel/domain/entities/channel.dart';
-import '../../../channelmaterial/domain/entities/channelmaterial.dart';
-import '../../../material/domain/entities/material.dart';
-import '../../../user/domain/entities/user.dart';
-
 class SellerProfile {
   final int? id;
   final String? userId;

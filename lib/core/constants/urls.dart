@@ -10,7 +10,9 @@ class Urls {
   static final String searchProfilesUrl = '$BackEndUrl/search/profile';
 
   static final String getAllSelleProfilesUrl = '$BackEndUrl/seller-profiles';
-  static final String deleteSelleProfilesUrl = '$BackEndUrl/channels/profile';
+  static final String deleteSelleProfilesUrl = '$BackEndUrl/seller-profiles';
+  static final String searchSelleProfilesUrl =
+      '$BackEndUrl/search/sellerProfile';
 
   static final String getAllMaterialUrl = '$BackEndUrl/material';
   static final String deleteMaterialUrl = '$BackEndUrl/material';
