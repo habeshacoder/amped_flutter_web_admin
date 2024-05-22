@@ -22,7 +22,6 @@ class _NavigationBarTabletDesktopState
     // NavBarItem('Review', reviewRoute),
     NavBarItem('Materials', RouteNames.material),
     NavBarItem('Channels', RouteNames.channel),
-    NavBarItem('Reports', RouteNames.report),
     NavBarItem('Users', RouteNames.user),
     NavBarItem('Profiles', RouteNames.profile),
     NavBarItem('SellerProfiles', RouteNames.sellerProfile),

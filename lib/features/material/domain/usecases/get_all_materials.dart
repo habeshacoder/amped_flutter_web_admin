@@ -5,12 +5,12 @@ import '../../../../core/usecases/usecase.dart';
 import '../entities/material.dart';
 
 class GetAllMaterials implements UseCase<List<Material>, NoParams> {
-  final MaterialRepository _materialRepository;
+  final MaterialRepository materialRepository;
 
-  GetAllMaterials(this._materialRepository);
+  GetAllMaterials({required this.materialRepository});
 
   @override
   Future<Either<Failure, List<Material>>> call(NoParams params) async {
-    return await _materialRepository.getAllMaterial();
+    return await materialRepository.getAllMaterial();
   }
 }

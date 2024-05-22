@@ -94,43 +94,74 @@ class _MaterialViewState extends State<MaterialView> {
               color: Colors.grey[300], borderRadius: BorderRadius.circular(5)),
           height: 50,
           child: Row(
-            // crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Title',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 50,
+                child: Text(
+                  '',
+                  softWrap: true,
+                ),
               ),
-              Text(
-                'Type',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 10,
+                child: Text(
+                  'Id',
+                  softWrap: true,
+                ),
               ),
-              Text(
-                'Author',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'Title',
+                  softWrap: true,
+                ),
               ),
-              Text(
-                'Language',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'image',
+                  softWrap: true,
+                ),
               ),
-              Text(
-                'price',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'Author',
+                  softWrap: true,
+                ),
               ),
-              Text(
-                'Seller Name',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'Language',
+                  softWrap: true,
+                ),
               ),
-              Text(
-                '',
-                softWrap: true,
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'price',
+                  softWrap: true,
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'Seller Name',
+                  softWrap: true,
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width / 12,
+                child: Text(
+                  'Delete',
+                  softWrap: true,
+                ),
               ),
             ],
           ),
         ),
-        // SizedBox(
-        //   height: 10,
-        // ),
         Expanded(
           child: BlocConsumer<MaterialBloc, MaterialsState>(
             listener: (context, state) {
@@ -157,8 +188,6 @@ class _MaterialViewState extends State<MaterialView> {
                   return Center(
                       child: Text(
                     'There is No Available Channel Data',
-                    // style: TextStyle(
-                    //     , fontFamily: ),
                   ));
                 }
               }
@@ -167,8 +196,6 @@ class _MaterialViewState extends State<MaterialView> {
                 return Center(
                     child: Text(
                   'There is No Available Channel Data',
-                  // style: TextStyle(
-                  //     , fontFamily: ),
                 ));
               }
 
@@ -182,7 +209,6 @@ class _MaterialViewState extends State<MaterialView> {
                       decoration: BoxDecoration(
                           color: Colors.grey[200],
                           borderRadius: BorderRadius.circular(5)),
-                      // margin: EdgeInsets.symmetric(horizontal: 5),
                       height: 50,
                       width: MediaQuery.of(context).size.width * 0.5,
                       child: Row(
@@ -190,22 +216,22 @@ class _MaterialViewState extends State<MaterialView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width / 50,
-                            child: Text(
-                              '',
-                              softWrap: true,
-                            ),
-                          ),
-                          Container(
                             width: MediaQuery.of(context).size.width / 10,
                             child: Text(
                               '${state.Materials[index].id ?? 'N/A'}',
                               softWrap: true,
                             ),
                           ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 10,
+                            child: Text(
+                              '${state.Materials[index].title ?? 'N/A'}',
+                              softWrap: true,
+                            ),
+                          ),
                           if (state.Materials![index].id != null)
                             Container(
-                              width: MediaQuery.of(context).size.width / 9,
+                              width: MediaQuery.of(context).size.width / 12,
                               height: 40,
                               child: Image(
                                 fit: BoxFit.cover,
@@ -216,49 +242,35 @@ class _MaterialViewState extends State<MaterialView> {
                               ),
                             ),
                           Container(
-                            width: MediaQuery.of(context).size.width / 9,
-                            child: Text(
-                              '${state.Materials[index].title ?? 'N/A'}',
-                              softWrap: true,
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 9,
-                            child: Text(
-                              '${state.Materials[index].type! ?? 'N/A'}',
-                              softWrap: true,
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 9,
+                            width: MediaQuery.of(context).size.width / 12,
                             child: Text(
                               '${state.Materials[index].author ?? 'N/A'}',
                               softWrap: true,
                             ),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width / 9,
+                            width: MediaQuery.of(context).size.width / 12,
                             child: Text(
-                              '${state.Materials[index].language ?? 'N/A'}',
+                              '${state.Materials[index].language! ?? 'N/A'}',
                               softWrap: true,
                             ),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width / 9,
+                            width: MediaQuery.of(context).size.width / 12,
                             child: Text(
                               '${state.Materials[index].price ?? 'N/A'}',
                               softWrap: true,
                             ),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width / 9,
+                            width: MediaQuery.of(context).size.width / 12,
                             child: Text(
-                              '${state.Materials[index].sellerProfile!.name ?? 'N/A'}',
+                              '${state.Materials[index].sellerProfile!.id ?? 'N/A'}',
                               softWrap: true,
                             ),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width / 9,
+                            width: MediaQuery.of(context).size.width / 12,
                             child: InkWell(
                               child: Icon(
                                 Icons.delete,
@@ -273,7 +285,7 @@ class _MaterialViewState extends State<MaterialView> {
                                         'Confirm Deletion',
                                       ),
                                       content: Text(
-                                        'Are you sure you want to delete this Order?',
+                                        'Are you sure you want to delete this material?',
                                         style: TextStyle(),
                                       ),
                                       actions: [
@@ -346,9 +358,16 @@ class _MaterialViewState extends State<MaterialView> {
                             softWrap: true,
                           ),
                         ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 12,
+                          child: Text(
+                            '${state.Materials[index].title ?? 'N/A'}',
+                            softWrap: true,
+                          ),
+                        ),
                         if (state.Materials![index].id != null)
                           Container(
-                            width: MediaQuery.of(context).size.width / 9,
+                            width: MediaQuery.of(context).size.width / 12,
                             height: 40,
                             child: Image(
                               fit: BoxFit.cover,
@@ -359,28 +378,35 @@ class _MaterialViewState extends State<MaterialView> {
                             ),
                           ),
                         Container(
-                          width: MediaQuery.of(context).size.width / 9,
+                          width: MediaQuery.of(context).size.width / 12,
                           child: Text(
-                            '${state.Materials[index].title ?? 'N/A'}',
+                            '${state.Materials[index].author ?? 'N/A'}',
                             softWrap: true,
                           ),
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width / 9,
+                          width: MediaQuery.of(context).size.width / 12,
+                          child: Text(
+                            '${state.Materials[index].language ?? 'N/A'}',
+                            softWrap: true,
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 12,
+                          child: Text(
+                            '${state.Materials[index].price ?? 'N/A'}',
+                            softWrap: true,
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 12,
                           child: Text(
                             '${state.Materials[index].sellerProfile!.name ?? 'N/A'}',
                             softWrap: true,
                           ),
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width / 9,
-                          child: Text(
-                            '${state.Materials[index].sellerProfile!.id ?? 'N/A'}',
-                            softWrap: true,
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 9,
+                          width: MediaQuery.of(context).size.width / 12,
                           child: InkWell(
                             child: Icon(
                               Icons.delete,
@@ -395,7 +421,7 @@ class _MaterialViewState extends State<MaterialView> {
                                       'Confirm Deletion',
                                     ),
                                     content: Text(
-                                      'Are you sure you want to delete this Order?',
+                                      'Are you sure you want to delete this material?',
                                       style: TextStyle(),
                                     ),
                                     actions: [

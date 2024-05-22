@@ -2,7 +2,6 @@
 import 'dart:convert';
 
 import 'package:amped_media_admin/features/profile/domain/entities/profile.dart';
-import 'package:amped_media_admin/features/user/data/models/user_model.dart';
 
 class ProfileModel extends Profile {
   ProfileModel({
@@ -16,22 +15,20 @@ class ProfileModel extends Profile {
     super.coverImage,
     required super.createdAt,
     required super.updatedAt,
-    required super.user,
   });
 
   factory ProfileModel.fromMap(Map<String, dynamic> map) {
     return ProfileModel(
       id: map['id'],
-      userId: map['userId'],
-      firstName: map['firstName'],
-      lastName: map['lastName'],
+      userId: map['user_id'],
+      firstName: map['first_name'],
+      lastName: map['last_name'],
       sex: map['sex'],
-      dateOfBirth: map['dateOfBirth'],
-      profileImage: map['profileImage'],
-      coverImage: map['coverImage'],
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
-      user: UserModel.fromMap(map['user']),
+      dateOfBirth: map['date_of_birth'],
+      profileImage: map['profile_image'],
+      coverImage: map['cover_image'],
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
     );
   }
 

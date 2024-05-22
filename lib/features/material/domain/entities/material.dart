@@ -5,10 +5,10 @@ import '../../../sellerprofile/domain/entities/sellerprofile.dart';
 class Material {
   final int? id;
   final int? sellerProfileId;
-  final Parent? parent;
-  final Type? type;
-  final Genere? genere;
-  final Catagory? catagory;
+  final String? parent;
+  final String? type;
+  final String? genere;
+  final String? catagory;
   final String? author;
   final String? reader;
   final String? translator;
@@ -67,13 +67,13 @@ class Material {
 }
 
 class MaterialImage {
-  final int id;
-  final String image;
-  final bool isPrimary;
-  final bool isCover;
-  final int materialId;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final int? id;
+  final String? image;
+  final bool? isPrimary;
+  final bool? isCover;
+  final int? materialId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   MaterialImage({
     required this.id,

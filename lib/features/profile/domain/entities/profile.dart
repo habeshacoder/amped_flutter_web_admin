@@ -1,6 +1,3 @@
-import '../../../../core/utils/enums.dart';
-import '../../../user/domain/entities/user.dart';
-
 class Profile {
   final int? id;
   final String? userId;
@@ -12,7 +9,6 @@ class Profile {
   final String? coverImage;
   final DateTime? createdAt;
   final DateTime? updatedAt;
-  final User? user;
 
   Profile({
     required this.id,
@@ -25,6 +21,5 @@ class Profile {
     this.coverImage,
     required this.createdAt,
     required this.updatedAt,
-    required this.user,
   });
 }

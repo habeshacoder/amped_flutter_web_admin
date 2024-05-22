@@ -20,9 +20,13 @@ class _ChannelViewState extends State<ChannelView> {
   TextEditingController searchController = TextEditingController();
   bool isSearching = false;
   String? token;
+  bool isFirst = true;
   @override
   void didChangeDependencies() {
-    context.read<ChannelBloc>().add(GetAllChannelsEvent());
+    if (isFirst) {
+      context.read<ChannelBloc>().add(GetAllChannelsEvent());
+      isFirst = true;
+    }
     super.didChangeDependencies();
   }
 
@@ -275,7 +279,7 @@ class _ChannelViewState extends State<ChannelView> {
                                         'Confirm Deletion',
                                       ),
                                       content: Text(
-                                        'Are you sure you want to delete this Order?',
+                                        'Are you sure you want to delete this channel?',
                                         style: TextStyle(),
                                       ),
                                       actions: [
@@ -396,7 +400,7 @@ class _ChannelViewState extends State<ChannelView> {
                                       'Confirm Deletion',
                                     ),
                                     content: Text(
-                                      'Are you sure you want to delete this Order?',
+                                      'Are you sure you want to delete this channel?',
                                       style: TextStyle(),
                                     ),
                                     actions: [

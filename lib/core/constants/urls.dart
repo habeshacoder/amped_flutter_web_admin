@@ -5,14 +5,15 @@ class Urls {
   static final String deleteChannelsUrl = '$BackEndUrl/channel';
   static final String searchChannelsUrl = '$BackEndUrl/search/channel';
 
-  static final String getProfilesUrl = '$BackEndUrl/profiles';
-  static final String deleteProfilesUrl = '$BackEndUrl/channels';
+  static final String getAllProfilesUrl = '$BackEndUrl/profiles';
+  static final String deleteProfilesUrl = '$BackEndUrl/profiles';
+  static final String searchProfilesUrl = '$BackEndUrl/search/profile';
 
   static final String getAllSelleProfilesUrl = '$BackEndUrl/seller-profiles';
-  static final String deleteSelleProfilesUrl = '$BackEndUrl/channels';
+  static final String deleteSelleProfilesUrl = '$BackEndUrl/channels/profile';
 
   static final String getAllMaterialUrl = '$BackEndUrl/material';
-  static final String deleteMaterialUrl = '$BackEndUrl/channels';
+  static final String deleteMaterialUrl = '$BackEndUrl/material';
   static final String searchMaterialUrl = '$BackEndUrl/search';
 
   static final String getAllChannelMaterilaUrl = '$BackEndUrl/channels';
@@ -45,7 +46,8 @@ class Urls {
   static final String deleteSubscriptionPlanUrl = '$BackEndUrl/channels';
 
   static final String getAllUserUrl = '$BackEndUrl/users/all';
-  static final String deleteUserUrl = '$BackEndUrl/channels';
+  static final String deleteUserUrl = '$BackEndUrl/users/delete';
+  static final String searchUserUrl = '$BackEndUrl/search/user';
 }
 
 final chanels = [

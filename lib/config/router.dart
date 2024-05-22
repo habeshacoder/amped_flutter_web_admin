@@ -3,6 +3,8 @@ import 'package:amped_media_admin/features/material/presentation/pages/material_
 import 'package:flutter/material.dart';
 
 import '../features/channel/presentation/pages/channel_view.dart';
+import '../features/profile/presentation/pages/profile_view.dart';
+import '../features/user/presentation/pages/user_view.dart';
 
 class RouteNames {
   static const home = '/home';
@@ -32,9 +34,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case RouteNames.rate:
       return _getPageRoute(HomeView(), settings);
     case RouteNames.user:
-      return _getPageRoute(HomeView(), settings);
+      return _getPageRoute(UserView(), settings);
     case RouteNames.profile:
-      return _getPageRoute(HomeView(), settings);
+      return _getPageRoute(ProfileView(), settings);
     case RouteNames.sellerProfile:
       return _getPageRoute(HomeView(), settings);
     default:

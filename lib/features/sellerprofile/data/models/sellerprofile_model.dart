@@ -1,12 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:amped_media_admin/features/channel/data/models/channelmodel.dart';
-import 'package:amped_media_admin/features/channelmaterial/data/models/channel_material_model.dart';
-import 'package:amped_media_admin/features/material/data/models/material_model.dart';
 import 'package:amped_media_admin/features/sellerprofile/domain/entities/sellerprofile.dart';
-import 'package:amped_media_admin/features/user/data/models/user_model.dart';
-import '../../../channel/domain/entities/channel.dart';
-import '../../../channelmaterial/domain/entities/channelmaterial.dart';
-import '../../../material/domain/entities/material.dart';
 
 class SellerProfileModel extends SellerProfile {
   SellerProfileModel({

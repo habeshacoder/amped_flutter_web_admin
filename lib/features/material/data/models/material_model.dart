@@ -125,9 +125,9 @@ class MaterialImageModel extends MaterialImage {
       image: map['image'],
       isPrimary: map['isPrimary'],
       isCover: map['isCover'],
-      materialId: map['materialId'],
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      materialId: map['material_Id'],
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
     );
   }
 

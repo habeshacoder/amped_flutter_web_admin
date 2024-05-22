@@ -4,13 +4,13 @@ import '../../../../core/error/failure.dart';
 import '../../../../core/usecases/usecase.dart';
 
 class DeleteMaterial implements UseCase<String, DeleteMaterialParams> {
-  final MaterialRepository _materialRepository;
+  final MaterialRepository materialRepository;
 
-  DeleteMaterial(this._materialRepository);
+  DeleteMaterial({required this.materialRepository});
 
   @override
   Future<Either<Failure, String>> call(DeleteMaterialParams params) async {
-    return await _materialRepository.deleteMaterial(params.materialId);
+    return await materialRepository.deleteMaterial(params.materialId);
   }
 }
 
