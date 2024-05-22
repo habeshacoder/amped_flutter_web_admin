@@ -28,6 +28,12 @@ import 'package:amped_media_admin/features/sellerprofile/domain/usecases/delete_
 import 'package:amped_media_admin/features/sellerprofile/domain/usecases/get_all_sellerprofile.dart';
 import 'package:amped_media_admin/features/sellerprofile/domain/usecases/search_sellerprofile.dart';
 import 'package:amped_media_admin/features/sellerprofile/presentation/bloc/sellerprofile_bloc.dart';
+import 'package:amped_media_admin/features/subscriptionplan/data/datasources/subscriptionPlan_remote_data_source.dart';
+import 'package:amped_media_admin/features/subscriptionplan/data/repositories/subscriptionplan_repository_impl.dart';
+import 'package:amped_media_admin/features/subscriptionplan/domain/usecases/delete_subscriptionplan.dart';
+import 'package:amped_media_admin/features/subscriptionplan/domain/usecases/get_all_subscriptionplan.dart';
+import 'package:amped_media_admin/features/subscriptionplan/domain/usecases/search_subscriptionplan.dart';
+import 'package:amped_media_admin/features/subscriptionplan/presentation/bloc/subscriptionplan_bloc.dart';
 import 'package:amped_media_admin/features/user/data/datasources/user_remote_data_source.dart';
 import 'package:amped_media_admin/features/user/data/repositories/user_repository_impl.dart';
 import 'package:amped_media_admin/features/user/domain/usecases/delete_user.dart';
@@ -145,6 +151,28 @@ void main() {
                   channelmaterialRepository: ChannelMaterialRepositoryImpl(
                       channelmaterialRemoteDataSource:
                           ChannelMaterialRemoteDataSourceImpl()))),
+        ),
+        BlocProvider(
+          create: (context) => SubscriptionPlanBloc(
+            getAllSubscriptionPlan: GetAllSubscriptionPlan(
+              subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
+                subscriptionPlanRemoteDataSource:
+                    SubscriptionPlanRemoteDataSourceImpl(),
+              ),
+            ),
+            deleteSubscriptionPlan: DeleteSubscriptionPlan(
+              subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
+                subscriptionPlanRemoteDataSource:
+                    SubscriptionPlanRemoteDataSourceImpl(),
+              ),
+            ),
+            searchSubscriptionPlan: SearchSubscriptionPlan(
+              subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
+                subscriptionPlanRemoteDataSource:
+                    SubscriptionPlanRemoteDataSourceImpl(),
+              ),
+            ),
+          ),
         )
       ],
       child: MyApp(),

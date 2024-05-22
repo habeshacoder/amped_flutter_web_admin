@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../features/channel/presentation/pages/channel_view.dart';
 import '../features/profile/presentation/pages/profile_view.dart';
 import '../features/sellerprofile/presentation/pages/sellerprofile_view.dart';
+import '../features/subscriptionplan/presentation/pages/subscriptionplan_view.dart';
 import '../features/user/presentation/pages/user_view.dart';
 
 class RouteNames {
@@ -23,6 +24,7 @@ class RouteNames {
   static const replay = '/replay';
   static const report = '/report';
   static const rate = '/rate';
+  static const subscriptionPlan = '/subscriptionPlan';
   static const templayeLayout = '/templateLayout';
 }
 
@@ -44,6 +46,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(SellerProfileView(), settings);
     case RouteNames.channelMaterial:
       return _getPageRoute(ChannelMaterialView(), settings);
+    case RouteNames.subscriptionPlan:
+      return _getPageRoute(SubscriptionPlanView(), settings);
     default:
       return _getPageRoute(HomeView(), settings);
   }

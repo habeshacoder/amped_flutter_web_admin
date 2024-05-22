@@ -1,14 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
-
-import 'package:amped_media_admin/features/channel/data/models/channelmodel.dart';
-import 'package:amped_media_admin/features/material_in_subscriptionplan/data/models/material_in_subscriptionplan_model.dart';
-import 'package:amped_media_admin/features/subscribeduser/data/models/subsribedusers_model.dart';
 import 'package:amped_media_admin/features/subscriptionplan/domain/entities/subscriptionplan.dart';
-
-import '../../../channel/domain/entities/channel.dart';
-import '../../../material_in_subscriptionplan/domain/entities/material_in_subscriptionplan.dart';
-import '../../../subscribeduser/domain/entities/subscribeduser.dart';
 
 class SubscriptionPlanModel extends SubscriptionPlan {
   SubscriptionPlanModel({
@@ -30,24 +21,12 @@ class SubscriptionPlanModel extends SubscriptionPlan {
       name: map['name'],
       description: map['description'],
       price: map['price'],
-      channelId: map['channelId'],
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
-      materialInSubscriptionPlan: map['materialInSubscriptionPlan'] != []
-          ? List<MaterialInSubscriptionPlan>.from(
-              (map['materialInSubscriptionPlan'])
-                  .map<MaterialInSubscriptionPlan>(
-                (x) => MaterialInSubscriptionPlanModel.fromMap(x),
-              ),
-            )
-          : [],
-      subscribedUsers: List<SubscribedUser>.from(
-        (map['subscribedUsers']).map<SubscribedUser>(
-          (x) => SubscribedUserModel.fromMap(x),
-        ),
-      ),
-      channel:
-          map['channel'] != null ? ChannelModel.fromMap(map['channel']) : null,
+      channelId: map['channel_id'],
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
+      materialInSubscriptionPlan: [],
+      subscribedUsers: [],
+      channel: null,
     );
   }
 

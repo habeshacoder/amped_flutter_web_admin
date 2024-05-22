@@ -42,9 +42,10 @@ class ChannelRemoteDataSourceImpl implements ChannelRemoteDataSource {
 
       List<ChannelModel> channels = [];
       extracted.forEach((mat) {
+        print('channel from remotedatasource:---------------$channels');
+
         channels.add(ChannelModel.fromJson(mat));
       });
-      print('channel from remotedatasource:---------------$channels');
       return channels;
     } catch (error) {
       print('error: $error');

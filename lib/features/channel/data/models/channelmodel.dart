@@ -68,7 +68,7 @@ class ChannelModel extends Channel {
               : [],
       subscriptionPlan: isFromSearch
           ? null
-          : map['subscription_plan'] != null || map['subscription_plan'] != []
+          : map['subscription_plan'] != null && map['subscription_plan'] != []
               ? List<SubscriptionPlan>.from(
                   (map['subscription_plan']).map<SubscriptionPlan>(
                     (x) => SubscriptionPlanModel.fromMap(x),

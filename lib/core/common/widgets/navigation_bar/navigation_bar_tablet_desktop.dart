@@ -27,6 +27,7 @@ class _NavigationBarTabletDesktopState
     NavBarItem('SellerProfiles', RouteNames.sellerProfile),
     NavBarItem('SubscribedUsers', RouteNames.subscribedUser),
     NavBarItem('ChannelMaterials', RouteNames.channelMaterial),
+    NavBarItem('SubscriptionPlan', RouteNames.subscriptionPlan),
     NavBarItem(
         'MaterialInSubscriptionPlans', RouteNames.materialInSubscriptionPlan),
     NavBarItem('Replays', RouteNames.replay),

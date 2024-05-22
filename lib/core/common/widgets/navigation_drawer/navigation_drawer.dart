@@ -85,6 +85,62 @@ class NavigationDrawer extends StatelessWidget {
                   SizedBox(
                     height: 40,
                   ),
+                  NavBarItem(
+                    'Subscribed Users',
+                    RouteNames.subscribedUser,
+                    isFromMobile: true,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  NavBarItem(
+                    'Channel Materials',
+                    RouteNames.channelMaterial,
+                    isFromMobile: true,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  NavBarItem(
+                    'Subscription Plan',
+                    RouteNames.sellerProfile,
+                    isFromMobile: true,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  NavBarItem(
+                    'MaterialInSubscriptionPlan',
+                    RouteNames.materialInSubscriptionPlan,
+                    isFromMobile: true,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  NavBarItem(
+                    'Replays',
+                    RouteNames.replay,
+                    isFromMobile: true,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  NavBarItem(
+                    'Reports',
+                    RouteNames.report,
+                    isFromMobile: true,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  NavBarItem(
+                    'Ratea',
+                    RouteNames.rate,
+                    isFromMobile: true,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
                 ],
               ).showCursorOnHover,
             )
