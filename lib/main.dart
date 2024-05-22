@@ -5,6 +5,12 @@ import 'package:amped_media_admin/features/channel/domain/usecases/delete_channe
 import 'package:amped_media_admin/features/channel/domain/usecases/get_all_channels.dart';
 import 'package:amped_media_admin/features/channel/domain/usecases/search_channel.dart';
 import 'package:amped_media_admin/features/channel/presentation/bloc/allchannels_bloc.dart';
+import 'package:amped_media_admin/features/channelmaterial/data/datasources/channelmaterial_remote_data_source.dart';
+import 'package:amped_media_admin/features/channelmaterial/data/repositories/channelmaterial_repository_impl.dart';
+import 'package:amped_media_admin/features/channelmaterial/domain/usecases/delete_channelmaterial.dart';
+import 'package:amped_media_admin/features/channelmaterial/domain/usecases/get_all_channelmaterials.dart';
+import 'package:amped_media_admin/features/channelmaterial/domain/usecases/search_channelmaterial.dart';
+import 'package:amped_media_admin/features/channelmaterial/presentation/bloc/channelmaterial_bloc.dart';
 import 'package:amped_media_admin/features/material/data/datasources/material_remote_data_source.dart';
 import 'package:amped_media_admin/features/material/data/repositories/material_repository_impl.dart';
 import 'package:amped_media_admin/features/material/domain/usecases/delete_material.dart';
@@ -18,7 +24,6 @@ import 'package:amped_media_admin/features/profile/domain/usecases/search_profil
 import 'package:amped_media_admin/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:amped_media_admin/features/sellerprofile/data/datasources/sellerprofile_remote_data_source.dart';
 import 'package:amped_media_admin/features/sellerprofile/data/repositories/sellerprofile_repository_impl.dart';
-import 'package:amped_media_admin/features/sellerprofile/domain/repositories/sellerprofile_repositories.dart';
 import 'package:amped_media_admin/features/sellerprofile/domain/usecases/delete_sellerprofile.dart';
 import 'package:amped_media_admin/features/sellerprofile/domain/usecases/get_all_sellerprofile.dart';
 import 'package:amped_media_admin/features/sellerprofile/domain/usecases/search_sellerprofile.dart';
@@ -125,9 +130,25 @@ void main() {
                   sellerprofileRepository: SellerProfileRepositoryImpl(
                       sellerprofileRemoteDataSource:
                           SellerProfileRemoteDataSourceImpl()))),
+        ),
+        BlocProvider(
+          create: (context) => ChannelMaterialBloc(
+              getAllChannelMaterials: GetAllChannelMaterials(
+                  channelmaterialRepository: ChannelMaterialRepositoryImpl(
+                      channelmaterialRemoteDataSource:
+                          ChannelMaterialRemoteDataSourceImpl())),
+              deleteChannelMaterial: DeleteChannelMaterial(
+                  channelmaterialRepository: ChannelMaterialRepositoryImpl(
+                      channelmaterialRemoteDataSource:
+                          ChannelMaterialRemoteDataSourceImpl())),
+              searchChannelMaterial: SearchChannelMaterial(
+                  channelmaterialRepository: ChannelMaterialRepositoryImpl(
+                      channelmaterialRemoteDataSource:
+                          ChannelMaterialRemoteDataSourceImpl()))),
         )
       ],
       child: MyApp(),
+      // 0966783851
     ),
   );
 }

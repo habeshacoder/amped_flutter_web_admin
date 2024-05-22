@@ -18,8 +18,10 @@ class Urls {
   static final String deleteMaterialUrl = '$BackEndUrl/material';
   static final String searchMaterialUrl = '$BackEndUrl/search';
 
-  static final String getAllChannelMaterilaUrl = '$BackEndUrl/channels';
-  static final String deleteChannelMaterilaUrl = '$BackEndUrl/channels';
+  static final String getAllChannelMaterilaUrl = '$BackEndUrl/channel-material';
+  static final String deleteChannelMaterilaUrl = '$BackEndUrl/channel-material';
+  static final String searchChannelMaterilaUrl =
+      '$BackEndUrl/search/channel-material';
 
   static final String getAllFavoriteUrl = '$BackEndUrl/channels';
   static final String deleteFavoriteUrl = '$BackEndUrl/channels';

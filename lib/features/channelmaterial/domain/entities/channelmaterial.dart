@@ -1,13 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import '../../../../core/utils/enums.dart';
+import '../../../material_in_subscriptionplan/domain/entities/material_in_subscriptionplan.dart';
 
 class ChannelMaterial {
   final int? id;
   final int? sellerProfileId;
-  final Parent? parent;
-  final Type? type;
-  final Genere? genere;
-  final Catagory? catagory;
+  final String? parent;
+  final String? type;
+  final String? genere;
+  final String? catagory;
   final String? author;
   final String? reader;
   final String? translator;
@@ -27,7 +28,7 @@ class ChannelMaterial {
   // final List<ChannelPreviewMaterial>? channelMaterialPreviews;
   // final SellerProfile? sellerProfile;
   // final List<Favorite>? favorites;
-  // final List<MaterialInSubscriptionPlan>? materialInSubscriptionPlans;
+  final List<MaterialInSubscriptionPlan>? materialInSubscriptionPlans;
   // final List<Rate>? rates;
   // final List<Report>? reports;
 
@@ -57,7 +58,7 @@ class ChannelMaterial {
     // required this.channelMaterialPreviews,
     // required this.sellerProfile,
     // required this.favorites,
-    // required this.materialInSubscriptionPlans,
+    required this.materialInSubscriptionPlans,
     // required this.rates,
     // required this.reports,
   });

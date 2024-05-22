@@ -2,6 +2,8 @@
 import 'dart:convert';
 import 'package:amped_media_admin/features/channelmaterial/domain/entities/channelmaterial.dart';
 
+import '../../../material_in_subscriptionplan/data/models/material_in_subscriptionplan_model.dart';
+
 class ChannelMaterialModel extends ChannelMaterial {
   ChannelMaterialModel({
     required super.id,
@@ -29,7 +31,7 @@ class ChannelMaterialModel extends ChannelMaterial {
     // required super.channelMaterialPreviews,
     // required super.sellerProfile,
     // required super.favorites,
-    // required super.materialInSubscriptionPlans,
+    required super.materialInSubscriptionPlans,
     // required super.rates,
     // required super.reports,
   });
@@ -37,7 +39,7 @@ class ChannelMaterialModel extends ChannelMaterial {
   factory ChannelMaterialModel.fromMap(Map<String, dynamic> map) {
     return ChannelMaterialModel(
       id: map['id'],
-      sellerProfileId: map['sellerProfileId'],
+      sellerProfileId: map['sellerProfile_id'],
       parent: map['parent'],
       type: map['type'],
       genere: map['genere'],
@@ -45,70 +47,41 @@ class ChannelMaterialModel extends ChannelMaterial {
       author: map['author'],
       reader: map['reader'],
       translator: map['translator'],
-      lengthMinute: map['lengthMinute'],
-      lengthPage: map['lengthPage'],
-      firstPublishedAt: map['firstPublishedAt'],
+      lengthMinute: map['length_minute'],
+      lengthPage: map['length_page'],
+      firstPublishedAt: map['first_published_at'],
       language: map['language'],
       publisher: map['publisher'],
       episode: map['episode'],
-      continuesFrom: map['continuesFrom'],
+      continuesFrom: map['continues_from'],
       material: map['material'],
       title: map['title'],
       description: map['description'],
       createdAt: DateTime.parse(map['created_at']),
       updatedAt: DateTime.parse(map['updated_at']),
-      channelMaterialImages: map['channelMaterialImages'] != null ||
-              map['channelMaterialImages'] != []
+      channelMaterialImages: map['channel_material_image'] != null &&
+              map['channel_material_image'] != []
           ? List<ChannelMaterialImage>.from(
-              (map['channelMaterialImages']).map<ChannelMaterialImage>(
+              (map['channel_material_image']).map<ChannelMaterialImage>(
                 (x) => ChannelMaterialImageModel.fromMap(x),
               ),
             )
           : [],
-      // channelMaterialPreviews: map['channelMaterialPreviews'] != null ||
-      //         map['channelMaterialPreviews'] != []
-      //     ? List<ChannelPreviewMaterial>.from(
-      //         (map['channelMaterialPreviews']).map<ChannelPreviewMaterial>(
-      //           (x) => ChannelPreviewMaterialModel.fromMap(x),
-      //         ),
-      //       )
-      //     : [],
-      // sellerProfile: SellerProfileModel.fromMap(map['sellerProfile']),
-      // favorites: map['favorites'] != null || map['favorites'] != []
-      //     ? List<FavoriteModel>.from(
-      //         (map['favorites']).map<FavoriteModel>(
-      //           (x) => FavoriteModel.fromMap(x),
-      //         ),
-      //       )
-      //     : [],
-      // materialInSubscriptionPlans: map['materialInSubscriptionPlans'] != null ||
-      //         map['materialInSubscriptionPlans'] != []
-      //     ? List<MaterialInSubscriptionPlanModel>.from(
-      //         (map['materialInSubscriptionPlans'])
-      //             .map<MaterialInSubscriptionPlanModel>(
-      //           (x) => MaterialInSubscriptionPlanModel.fromMap(x),
-      //         ),
-      //       )
-      //     : [],
-      // rates: map['rates'] != null || map['rates'] != []
-      //     ? List<RateModel>.from(
-      //         (map['rates']).map<RateModel>(
-      //           (x) => RateModel.fromMap(x),
-      //         ),
-      //       )
-      //     : [],
-      // reports: map['reports'] != null || map['reports'] != []
-      //     ? List<ReportModel>.from(
-      //         (map['reports']).map<ReportModel>(
-      //           (x) => ReportModel.fromMap(x),
-      //         ),
-      //       )
-      //     : [],
+      materialInSubscriptionPlans:
+          map['material_in_subscription_plan'] != null &&
+                  map['material_in_subscription_plan'] != []
+              ? List<MaterialInSubscriptionPlanModel>.from(
+                  (map['material_in_subscription_plan'])
+                      .map<MaterialInSubscriptionPlanModel>(
+                    (x) => MaterialInSubscriptionPlanModel.fromMap(x),
+                  ),
+                )
+              : [],
     );
   }
 
-  factory ChannelMaterialModel.fromJson(String source) =>
-      ChannelMaterialModel.fromMap(json.decode(source));
+  factory ChannelMaterialModel.fromJson(Map<String, dynamic> source) =>
+      ChannelMaterialModel.fromMap(source);
 }
 
 class ChannelMaterialImageModel extends ChannelMaterialImage {
@@ -128,14 +101,14 @@ class ChannelMaterialImageModel extends ChannelMaterialImage {
       image: map['image'],
       primary: map['primary'],
       cover: map['cover'],
-      channelMaterialId: map['channelMaterialId'],
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      channelMaterialId: map['channel_material_id'],
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
     );
   }
 
-  factory ChannelMaterialImageModel.fromJson(String source) =>
-      ChannelMaterialImageModel.fromMap(json.decode(source));
+  factory ChannelMaterialImageModel.fromJson(Map<String, dynamic> source) =>
+      ChannelMaterialImageModel.fromMap(source);
 }
 
 class ChannelPreviewMaterialModel extends ChannelPreviewMaterial {
@@ -151,9 +124,9 @@ class ChannelPreviewMaterialModel extends ChannelPreviewMaterial {
     return ChannelPreviewMaterialModel(
       id: map['id'],
       preview: map['preview'],
-      channelMaterialId: map['channelMaterialId'],
-      createdAt: DateTime.parse(map['createdAt']),
-      updatedAt: DateTime.parse(map['updatedAt']),
+      channelMaterialId: map['channel_material_id'],
+      createdAt: DateTime.parse(map['created_at']),
+      updatedAt: DateTime.parse(map['updated_at']),
     );
   }
 

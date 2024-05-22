@@ -1,3 +1,5 @@
+import 'package:amped_media_admin/features/channel/domain/entities/channel.dart';
+import 'package:amped_media_admin/features/channelmaterial/presentation/pages/channelmaterial_view.dart';
 import 'package:amped_media_admin/features/home/home/home_view.dart';
 import 'package:amped_media_admin/features/material/presentation/pages/material_view.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +42,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(ProfileView(), settings);
     case RouteNames.sellerProfile:
       return _getPageRoute(SellerProfileView(), settings);
+    case RouteNames.channelMaterial:
+      return _getPageRoute(ChannelMaterialView(), settings);
     default:
       return _getPageRoute(HomeView(), settings);
   }
