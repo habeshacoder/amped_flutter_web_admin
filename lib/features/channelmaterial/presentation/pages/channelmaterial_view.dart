@@ -1,5 +1,6 @@
 import 'package:amped_media_admin/core/common/loader.dart';
 import 'package:amped_media_admin/core/constants/urls.dart';
+import 'package:amped_media_admin/core/utils/formate_date.dart';
 import 'package:amped_media_admin/core/utils/showsnakbar.dart';
 import 'package:amped_media_admin/features/material/presentation/bloc/material_bloc.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,7 @@ class _ChannelMaterialViewState extends State<ChannelMaterialView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width / 50,
+                width: MediaQuery.of(context).size.width / 100,
                 child: Text(
                   '',
                   softWrap: true,
@@ -120,7 +121,7 @@ class _ChannelMaterialViewState extends State<ChannelMaterialView> {
               Container(
                 width: MediaQuery.of(context).size.width / 12,
                 child: Text(
-                  'image',
+                  'Uploaded Date',
                   softWrap: true,
                 ),
               ),
@@ -211,6 +212,13 @@ class _ChannelMaterialViewState extends State<ChannelMaterialView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
+                            width: MediaQuery.of(context).size.width / 100,
+                            child: Text(
+                              '',
+                              softWrap: true,
+                            ),
+                          ),
+                          Container(
                             width: MediaQuery.of(context).size.width / 10,
                             child: Text(
                               '${state.ChannelMaterials[index].id ?? 'N/A'}',
@@ -224,18 +232,14 @@ class _ChannelMaterialViewState extends State<ChannelMaterialView> {
                               softWrap: true,
                             ),
                           ),
-                          if (state.ChannelMaterials![index].id != null)
-                            Container(
-                              width: MediaQuery.of(context).size.width / 12,
-                              height: 40,
-                              child: Image(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  headers: {},
-                                  '${Urls.BackEndUrl}/channel-material/material_profile/${state.ChannelMaterials![index].id}',
-                                ),
-                              ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 10,
+                            child: Text(
+                              formatDateBydMMMYYYY(
+                                  state.ChannelMaterials[index].createdAt),
+                              softWrap: true,
                             ),
+                          ),
                           Container(
                             width: MediaQuery.of(context).size.width / 12,
                             child: Text(
@@ -337,6 +341,13 @@ class _ChannelMaterialViewState extends State<ChannelMaterialView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
+                          width: MediaQuery.of(context).size.width / 100,
+                          child: Text(
+                            '',
+                            softWrap: true,
+                          ),
+                        ),
+                        Container(
                           width: MediaQuery.of(context).size.width / 10,
                           child: Text(
                             '${state.ChannelMaterials[index].id ?? 'N/A'}',
@@ -350,18 +361,14 @@ class _ChannelMaterialViewState extends State<ChannelMaterialView> {
                             softWrap: true,
                           ),
                         ),
-                        if (state.ChannelMaterials![index].id != null)
-                          Container(
-                            width: MediaQuery.of(context).size.width / 12,
-                            height: 40,
-                            child: Image(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                headers: {},
-                                '${Urls.BackEndUrl}/channel-material/material_profile/${state.ChannelMaterials![index].id}',
-                              ),
-                            ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 10,
+                          child: Text(
+                            formatDateBydMMMYYYY(
+                                state.ChannelMaterials[index].createdAt),
+                            softWrap: true,
                           ),
+                        ),
                         Container(
                           width: MediaQuery.of(context).size.width / 12,
                           child: Text(
