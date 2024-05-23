@@ -40,7 +40,8 @@ class Urls {
   static final String deleteReplaysUrl = '$BackEndUrl/channels';
 
   static final String getAllReportsUrl = '$BackEndUrl/reports';
-  static final String deleteReportsUrl = '$BackEndUrl/channels';
+  static final String deleteReportsUrl = '$BackEndUrl/reports';
+  static final String searchReportsUrl = '$BackEndUrl/search/reports';
 
   static final String getallRatesUrl = '$BackEndUrl/rate';
   static final String deleteRatesUrl = '$BackEndUrl/rate';

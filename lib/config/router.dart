@@ -1,6 +1,7 @@
 import 'package:amped_media_admin/features/channelmaterial/presentation/pages/channelmaterial_view.dart';
 import 'package:amped_media_admin/features/home/home/home_view.dart';
 import 'package:amped_media_admin/features/material/presentation/pages/material_view.dart';
+import 'package:amped_media_admin/features/report/presentation/pages/report_view.dart';
 import 'package:amped_media_admin/features/review_rate/presentation/pages/rate_view.dart';
 import 'package:flutter/material.dart';
 import '../features/channel/presentation/pages/channel_view.dart';
@@ -35,7 +36,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case RouteNames.material:
       return _getPageRoute(MaterialView(), settings);
     case RouteNames.report:
-      return _getPageRoute(HomeView(), settings);
+      return _getPageRoute(ReportView(), settings);
     case RouteNames.user:
       return _getPageRoute(UserView(), settings);
     case RouteNames.profile:
@@ -50,6 +51,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(ReplayView(), settings);
     case RouteNames.rate:
       return _getPageRoute(RateView(), settings);
+
     default:
       return _getPageRoute(HomeView(), settings);
   }

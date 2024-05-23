@@ -34,6 +34,7 @@ import 'package:amped_media_admin/features/replays/domain/usecases/delete_replay
 import 'package:amped_media_admin/features/replays/domain/usecases/get_all_replays.dart';
 import 'package:amped_media_admin/features/replays/domain/usecases/search_replays.dart';
 import 'package:amped_media_admin/features/replays/presentation/bloc/replay_bloc.dart';
+import 'package:amped_media_admin/features/report/domain/usecases/get_all_report.dart';
 import 'package:amped_media_admin/features/review_rate/data/datasources/rate_remote_data_source.dart';
 import 'package:amped_media_admin/features/review_rate/data/repositories/rate_repository_impl.dart';
 import 'package:amped_media_admin/features/review_rate/domain/ussecases/delete_rate.dart';
@@ -63,6 +64,11 @@ import 'package:amped_media_admin/features/layout_template/layout_template.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'features/material/presentation/bloc/material_bloc.dart';
+import 'features/report/data/datasources/report_remote_data_source.dart';
+import 'features/report/data/repositories/report_repository_impl.dart';
+import 'features/report/domain/usecases/delete_report.dart';
+import 'features/report/domain/usecases/search_report.dart';
+import 'features/report/presentation/bloc/report_bloc.dart';
 
 void main() {
   // setupLocator();
@@ -235,7 +241,19 @@ void main() {
               searchRate: SearchRate(
                   rateRepository: RateRepositoryImpl(
                       rateRemoteDataSource: RateRemoteDataSourceImpl()))),
-        )
+        ),
+        BlocProvider(
+          create: (context) => ReportBloc(
+              getAllReports: GetAllReports(
+                  reportsRepository: ReportRepositoryImpl(
+                      reportRemoteDataSource: ReportRemoteDataSourceImpl())),
+              deleteReport: DeleteReport(
+                  reportRepository: ReportRepositoryImpl(
+                      reportRemoteDataSource: ReportRemoteDataSourceImpl())),
+              searchReport: SearchReport(
+                  reportRepository: ReportRepositoryImpl(
+                      reportRemoteDataSource: ReportRemoteDataSourceImpl()))),
+        ),
       ],
       child: MyApp(),
       // 0966783851

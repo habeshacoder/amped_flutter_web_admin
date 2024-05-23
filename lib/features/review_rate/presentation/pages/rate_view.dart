@@ -192,7 +192,7 @@ class _RateViewState extends State<RateView> {
                 return Loader();
               }
 
-              if (state is UserInitial) {
+              if (state is RateInitial) {
                 return Loader();
               }
               if (state is RatesDisplaySuccessState) {

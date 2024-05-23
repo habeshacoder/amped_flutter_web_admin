@@ -1,13 +1,8 @@
-import '../../../channel/domain/entities/channel.dart';
-import '../../../channelmaterial/domain/entities/channelmaterial.dart';
-import '../../../material/domain/entities/material.dart';
-import '../../../user/domain/entities/user.dart';
-
 enum ReportType { Unspecified, Spam, Inappropriate, Other }
 
 class Report {
   final int? id;
-  final ReportType? reportType;
+  final String? reportType;
   final String? reportDesc;
   final String? userId;
   final int? materialId;
@@ -15,10 +10,6 @@ class Report {
   final int? channelMaterialId;
   final DateTime? createdAt;
   final DateTime? updatedAt;
-  final Channel? channel;
-  final ChannelMaterial? channelMaterial;
-  final Material? material;
-  final User? user;
 
   Report({
     required this.id,
@@ -30,9 +21,5 @@ class Report {
     this.channelMaterialId,
     required this.createdAt,
     required this.updatedAt,
-    this.channel,
-    this.channelMaterial,
-    this.material,
-    required this.user,
   });
 }
