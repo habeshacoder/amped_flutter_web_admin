@@ -18,7 +18,6 @@ import 'package:amped_media_admin/features/material/domain/usecases/get_all_mate
 import 'package:amped_media_admin/features/material/domain/usecases/search_material.dart';
 import 'package:amped_media_admin/features/material_in_subscriptionplan/data/datasources/materin_subscriptionplan_remote_data_source.dart';
 import 'package:amped_media_admin/features/material_in_subscriptionplan/data/repositories/materialin_subscriptionplan_repository_impl.dart';
-import 'package:amped_media_admin/features/material_in_subscriptionplan/domain/repositories/materialin_subscriptionplan_repositories.dart';
 import 'package:amped_media_admin/features/material_in_subscriptionplan/domain/usecases/delete_materialin_subscriptionplan.dart';
 import 'package:amped_media_admin/features/material_in_subscriptionplan/domain/usecases/get_all_materialin_subscriptionplan.dart';
 import 'package:amped_media_admin/features/material_in_subscriptionplan/domain/usecases/search_materialin_subscriptionplan.dart';
@@ -35,6 +34,12 @@ import 'package:amped_media_admin/features/replays/domain/usecases/delete_replay
 import 'package:amped_media_admin/features/replays/domain/usecases/get_all_replays.dart';
 import 'package:amped_media_admin/features/replays/domain/usecases/search_replays.dart';
 import 'package:amped_media_admin/features/replays/presentation/bloc/replay_bloc.dart';
+import 'package:amped_media_admin/features/review_rate/data/datasources/rate_remote_data_source.dart';
+import 'package:amped_media_admin/features/review_rate/data/repositories/rate_repository_impl.dart';
+import 'package:amped_media_admin/features/review_rate/domain/ussecases/delete_rate.dart';
+import 'package:amped_media_admin/features/review_rate/domain/ussecases/get_all_rate.dart';
+import 'package:amped_media_admin/features/review_rate/domain/ussecases/search_rate.dart';
+import 'package:amped_media_admin/features/review_rate/presentation/bloc/rate_bloc.dart';
 import 'package:amped_media_admin/features/sellerprofile/data/datasources/sellerprofile_remote_data_source.dart';
 import 'package:amped_media_admin/features/sellerprofile/data/repositories/sellerprofile_repository_impl.dart';
 import 'package:amped_media_admin/features/sellerprofile/domain/usecases/delete_sellerprofile.dart';
@@ -57,7 +62,6 @@ import 'package:amped_media_admin/init_dependencies.dart';
 import 'package:amped_media_admin/features/layout_template/layout_template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'features/material/presentation/bloc/material_bloc.dart';
 
 void main() {
@@ -219,6 +223,18 @@ void main() {
               searchReplay: SearchReplay(
                   replayRepository: ReplayRepositoryImpl(
                       replayRemoteDataSource: ReplayRemoteDataSourceImpl()))),
+        ),
+        BlocProvider(
+          create: (context) => RateBloc(
+              getAllRates: GetAllRate(
+                  ratesRepository: RateRepositoryImpl(
+                      rateRemoteDataSource: RateRemoteDataSourceImpl())),
+              deleteRate: DeleteRate(
+                  rateRepository: RateRepositoryImpl(
+                      rateRemoteDataSource: RateRemoteDataSourceImpl())),
+              searchRate: SearchRate(
+                  rateRepository: RateRepositoryImpl(
+                      rateRemoteDataSource: RateRemoteDataSourceImpl()))),
         )
       ],
       child: MyApp(),
@@ -246,13 +262,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-final data = [
-  {
-    "id": 2,
-    "subscriptionPlan_id": 2,
-    "channelMaterial_id": 6,
-    "created_at": "2024-05-22T12:57:44.552Z",
-    "updated_at": "2024-05-22T12:57:44.552Z"
-  }
-];
