@@ -16,12 +16,25 @@ import 'package:amped_media_admin/features/material/data/repositories/material_r
 import 'package:amped_media_admin/features/material/domain/usecases/delete_material.dart';
 import 'package:amped_media_admin/features/material/domain/usecases/get_all_materials.dart';
 import 'package:amped_media_admin/features/material/domain/usecases/search_material.dart';
+import 'package:amped_media_admin/features/material_in_subscriptionplan/data/datasources/materin_subscriptionplan_remote_data_source.dart';
+import 'package:amped_media_admin/features/material_in_subscriptionplan/data/repositories/materialin_subscriptionplan_repository_impl.dart';
+import 'package:amped_media_admin/features/material_in_subscriptionplan/domain/repositories/materialin_subscriptionplan_repositories.dart';
+import 'package:amped_media_admin/features/material_in_subscriptionplan/domain/usecases/delete_materialin_subscriptionplan.dart';
+import 'package:amped_media_admin/features/material_in_subscriptionplan/domain/usecases/get_all_materialin_subscriptionplan.dart';
+import 'package:amped_media_admin/features/material_in_subscriptionplan/domain/usecases/search_materialin_subscriptionplan.dart';
+import 'package:amped_media_admin/features/material_in_subscriptionplan/presentation/bloc/materialin_subscriptionplan_bloc.dart';
 import 'package:amped_media_admin/features/profile/data/datasource/profile_remote_data_source.dart';
 import 'package:amped_media_admin/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:amped_media_admin/features/profile/domain/usecases/delete_profile.dart';
 import 'package:amped_media_admin/features/profile/domain/usecases/get_all_profile.dart';
 import 'package:amped_media_admin/features/profile/domain/usecases/search_profile.dart';
 import 'package:amped_media_admin/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:amped_media_admin/features/replays/data/datasources/subscriptionPlan_remote_data_source.dart';
+import 'package:amped_media_admin/features/replays/data/repositories/replay_repository_impl.dart';
+import 'package:amped_media_admin/features/replays/domain/usecases/delete_replays.dart';
+import 'package:amped_media_admin/features/replays/domain/usecases/get_all_replays.dart';
+import 'package:amped_media_admin/features/replays/domain/usecases/search_replays.dart';
+import 'package:amped_media_admin/features/replays/presentation/bloc/replay_bloc.dart';
 import 'package:amped_media_admin/features/sellerprofile/data/datasources/sellerprofile_remote_data_source.dart';
 import 'package:amped_media_admin/features/sellerprofile/data/repositories/sellerprofile_repository_impl.dart';
 import 'package:amped_media_admin/features/sellerprofile/domain/usecases/delete_sellerprofile.dart';
@@ -173,6 +186,39 @@ void main() {
               ),
             ),
           ),
+        ),
+        BlocProvider(
+            create: (context) => MaterialInSubscriptionPlanBloc(
+                  getAllMaterialInSubscriptionPlans:
+                      GetAllMaterialInSubscriptionPlan(
+                          materialInSubscriptionPlanRepository:
+                              MaterialInSubscriptionPlanRepositoryImpl(
+                                  materialInSubscriptionPlanRemoteDataSource:
+                                      MaterialInSubscriptionPlanRemoteDataSourceImpl())),
+                  deleteMaterialInSubscriptionPlan:
+                      DeleteMaterialInSubscriptionPlan(
+                          materialInSubscriptionPlanRepository:
+                              MaterialInSubscriptionPlanRepositoryImpl(
+                                  materialInSubscriptionPlanRemoteDataSource:
+                                      MaterialInSubscriptionPlanRemoteDataSourceImpl())),
+                  searchMaterialInSubscriptionPlan:
+                      SearchMaterialInSubscriptionPlan(
+                          materialInSubscriptionPlanRepository:
+                              MaterialInSubscriptionPlanRepositoryImpl(
+                                  materialInSubscriptionPlanRemoteDataSource:
+                                      MaterialInSubscriptionPlanRemoteDataSourceImpl())),
+                )),
+        BlocProvider(
+          create: (context) => ReplayBloc(
+              getAllReplays: GetAllReplays(
+                  replaysRepository: ReplayRepositoryImpl(
+                      replayRemoteDataSource: ReplayRemoteDataSourceImpl())),
+              deleteReplay: DeleteReplay(
+                  replayRepository: ReplayRepositoryImpl(
+                      replayRemoteDataSource: ReplayRemoteDataSourceImpl())),
+              searchReplay: SearchReplay(
+                  replayRepository: ReplayRepositoryImpl(
+                      replayRemoteDataSource: ReplayRemoteDataSourceImpl()))),
         )
       ],
       child: MyApp(),
@@ -200,3 +246,13 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+final data = [
+  {
+    "id": 2,
+    "subscriptionPlan_id": 2,
+    "channelMaterial_id": 6,
+    "created_at": "2024-05-22T12:57:44.552Z",
+    "updated_at": "2024-05-22T12:57:44.552Z"
+  }
+];

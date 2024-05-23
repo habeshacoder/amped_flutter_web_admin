@@ -28,8 +28,8 @@ class _NavigationBarTabletDesktopState
     NavBarItem('SubscribedUsers', RouteNames.subscribedUser),
     NavBarItem('ChannelMaterials', RouteNames.channelMaterial),
     NavBarItem('SubscriptionPlan', RouteNames.subscriptionPlan),
-    NavBarItem(
-        'MaterialInSubscriptionPlans', RouteNames.materialInSubscriptionPlan),
+    // NavBarItem(
+    //     'MaterialInSubscriptionPlans', RouteNames.materialInSubscriptionPlan),
     NavBarItem('Replays', RouteNames.replay),
     NavBarItem('Reports', RouteNames.report),
     NavBarItem('Rates', RouteNames.rate),

@@ -6,7 +6,7 @@ class Replay {
   final int? remarkId;
   final DateTime? createdAt;
   final DateTime? updatedAt;
-  final Rate? rate;
+  // final Rate? rate;
 
   Replay({
     required this.id,
@@ -14,6 +14,6 @@ class Replay {
     required this.remarkId,
     required this.createdAt,
     required this.updatedAt,
-    required this.rate,
+    // required this.rate,
   });
 }

@@ -109,11 +109,11 @@ class NavigationDrawer extends StatelessWidget {
                   SizedBox(
                     height: 40,
                   ),
-                  NavBarItem(
-                    'MaterialInSubscriptionPlan',
-                    RouteNames.materialInSubscriptionPlan,
-                    isFromMobile: true,
-                  ),
+                  // NavBarItem(
+                  //   'MaterialInSubscriptionPlan',
+                  //   RouteNames.materialInSubscriptionPlan,
+                  //   isFromMobile: true,
+                  // ),
                   SizedBox(
                     height: 40,
                   ),

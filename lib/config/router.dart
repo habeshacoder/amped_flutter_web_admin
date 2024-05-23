@@ -1,11 +1,10 @@
-import 'package:amped_media_admin/features/channel/domain/entities/channel.dart';
 import 'package:amped_media_admin/features/channelmaterial/presentation/pages/channelmaterial_view.dart';
 import 'package:amped_media_admin/features/home/home/home_view.dart';
 import 'package:amped_media_admin/features/material/presentation/pages/material_view.dart';
 import 'package:flutter/material.dart';
-
 import '../features/channel/presentation/pages/channel_view.dart';
 import '../features/profile/presentation/pages/profile_view.dart';
+import '../features/replays/presentation/pages/replay_view.dart';
 import '../features/sellerprofile/presentation/pages/sellerprofile_view.dart';
 import '../features/subscriptionplan/presentation/pages/subscriptionplan_view.dart';
 import '../features/user/presentation/pages/user_view.dart';
@@ -36,8 +35,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(MaterialView(), settings);
     case RouteNames.report:
       return _getPageRoute(HomeView(), settings);
-    case RouteNames.rate:
-      return _getPageRoute(HomeView(), settings);
     case RouteNames.user:
       return _getPageRoute(UserView(), settings);
     case RouteNames.profile:
@@ -48,6 +45,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(ChannelMaterialView(), settings);
     case RouteNames.subscriptionPlan:
       return _getPageRoute(SubscriptionPlanView(), settings);
+    case RouteNames.replay:
+      return _getPageRoute(ReplayView(), settings);
     default:
       return _getPageRoute(HomeView(), settings);
   }

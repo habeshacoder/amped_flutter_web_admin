@@ -26,10 +26,12 @@ class Urls {
   static final String getAllFavoriteUrl = '$BackEndUrl/channels';
   static final String deleteFavoriteUrl = '$BackEndUrl/channels';
 
-  static final String getAllMaterialInSubscriptionPlanUrl =
-      '$BackEndUrl/channels';
+  static final String searchMaterialInSubscriptionPlanUrl =
+      '$BackEndUrl/search/materialin_subscription-plan';
   static final String deleteMaterialInSubscriptionPlanUrl =
-      '$BackEndUrl/channels';
+      '$BackEndUrl/subscription-plan';
+  static final String getMaterialInSubscriptionPlanUrl =
+      '$BackEndUrl/subscription-plan/getmaterials';
 
   static final String getAllMaterialUserUrl = '$BackEndUrl/channels';
   static final String deleteMaterialUserUrl = '$BackEndUrl/channels';
@@ -56,4 +58,8 @@ class Urls {
   static final String getAllUserUrl = '$BackEndUrl/users/all';
   static final String deleteUserUrl = '$BackEndUrl/users/delete';
   static final String searchUserUrl = '$BackEndUrl/search/user';
+
+  static final String getAllReplayUrl = '$BackEndUrl/replays';
+  static final String deleteReplayUrl = '$BackEndUrl/replays';
+  static final String searchReplayUrl = '$BackEndUrl/search/replays';
 }
