@@ -20,9 +20,39 @@ void setupRouteLocator() {
   serviceLocator.registerLazySingleton(() => NavigationService());
 }
 
-void _initRate() {}
+void _initRate() {
+  serviceLocator.registerFactory<ReportRemoteDataSource>(
+      () => ReportRemoteDataSourceImpl());
+  serviceLocator.registerFactory<ReportRepository>(
+      () => ReportRepositoryImpl(reportRemoteDataSource: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => GetAllReports(reportsRepository: serviceLocator()));
+  serviceLocator
+      .registerFactory(() => DeleteReport(reportRepository: serviceLocator()));
+  serviceLocator
+      .registerFactory(() => SearchReport(reportRepository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => ReportBloc(
+      deleteReport: serviceLocator(),
+      getAllReports: serviceLocator(),
+      searchReport: serviceLocator()));
+}
 
-void _initReport() {}
+void _initReport() {
+  serviceLocator
+      .registerFactory<RateRemoteDataSource>(() => RateRemoteDataSourceImpl());
+  serviceLocator.registerFactory<RateRepository>(
+      () => RateRepositoryImpl(rateRemoteDataSource: serviceLocator()));
+  serviceLocator
+      .registerFactory(() => GetAllRate(ratesRepository: serviceLocator()));
+  serviceLocator
+      .registerFactory(() => DeleteRate(rateRepository: serviceLocator()));
+  serviceLocator
+      .registerFactory(() => SearchRate(rateRepository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => RateBloc(
+      deleteRate: serviceLocator(),
+      getAllRates: serviceLocator(),
+      searchRate: serviceLocator()));
+}
 
 void _initRePlay() {
   serviceLocator.registerFactory<ReplayRemoteDataSource>(

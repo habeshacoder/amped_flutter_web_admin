@@ -75,28 +75,10 @@ void main() {
           create: (context) => serviceLocator<ReplayBloc>(),
         ),
         BlocProvider(
-          create: (context) => RateBloc(
-              getAllRates: GetAllRate(
-                  ratesRepository: RateRepositoryImpl(
-                      rateRemoteDataSource: RateRemoteDataSourceImpl())),
-              deleteRate: DeleteRate(
-                  rateRepository: RateRepositoryImpl(
-                      rateRemoteDataSource: RateRemoteDataSourceImpl())),
-              searchRate: SearchRate(
-                  rateRepository: RateRepositoryImpl(
-                      rateRemoteDataSource: RateRemoteDataSourceImpl()))),
+          create: (context) => serviceLocator<RateBloc>(),
         ),
         BlocProvider(
-          create: (context) => ReportBloc(
-              getAllReports: GetAllReports(
-                  reportsRepository: ReportRepositoryImpl(
-                      reportRemoteDataSource: ReportRemoteDataSourceImpl())),
-              deleteReport: DeleteReport(
-                  reportRepository: ReportRepositoryImpl(
-                      reportRemoteDataSource: ReportRemoteDataSourceImpl())),
-              searchReport: SearchReport(
-                  reportRepository: ReportRepositoryImpl(
-                      reportRemoteDataSource: ReportRemoteDataSourceImpl()))),
+          create: (context) => serviceLocator<ReportBloc>(),
         ),
       ],
       child: MyApp(),
