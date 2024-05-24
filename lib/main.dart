@@ -1,10 +1,4 @@
 import 'package:amped_media_admin/config/router.dart';
-import 'package:amped_media_admin/features/channel/data/datasources/channel_remote_datasource.dart';
-import 'package:amped_media_admin/features/channel/data/repositories/channel_repository_impl.dart';
-import 'package:amped_media_admin/features/channel/domain/entities/channel.dart';
-import 'package:amped_media_admin/features/channel/domain/usecases/delete_channel.dart';
-import 'package:amped_media_admin/features/channel/domain/usecases/get_all_channels.dart';
-import 'package:amped_media_admin/features/channel/domain/usecases/search_channel.dart';
 import 'package:amped_media_admin/features/channel/presentation/bloc/allchannels_bloc.dart';
 import 'package:amped_media_admin/features/channelmaterial/data/datasources/channelmaterial_remote_data_source.dart';
 import 'package:amped_media_admin/features/channelmaterial/data/repositories/channelmaterial_repository_impl.dart';
@@ -12,22 +6,12 @@ import 'package:amped_media_admin/features/channelmaterial/domain/usecases/delet
 import 'package:amped_media_admin/features/channelmaterial/domain/usecases/get_all_channelmaterials.dart';
 import 'package:amped_media_admin/features/channelmaterial/domain/usecases/search_channelmaterial.dart';
 import 'package:amped_media_admin/features/channelmaterial/presentation/bloc/channelmaterial_bloc.dart';
-import 'package:amped_media_admin/features/material/data/datasources/material_remote_data_source.dart';
-import 'package:amped_media_admin/features/material/data/repositories/material_repository_impl.dart';
-import 'package:amped_media_admin/features/material/domain/usecases/delete_material.dart';
-import 'package:amped_media_admin/features/material/domain/usecases/get_all_materials.dart';
-import 'package:amped_media_admin/features/material/domain/usecases/search_material.dart';
 import 'package:amped_media_admin/features/material_in_subscriptionplan/data/datasources/materin_subscriptionplan_remote_data_source.dart';
 import 'package:amped_media_admin/features/material_in_subscriptionplan/data/repositories/materialin_subscriptionplan_repository_impl.dart';
 import 'package:amped_media_admin/features/material_in_subscriptionplan/domain/usecases/delete_materialin_subscriptionplan.dart';
 import 'package:amped_media_admin/features/material_in_subscriptionplan/domain/usecases/get_all_materialin_subscriptionplan.dart';
 import 'package:amped_media_admin/features/material_in_subscriptionplan/domain/usecases/search_materialin_subscriptionplan.dart';
 import 'package:amped_media_admin/features/material_in_subscriptionplan/presentation/bloc/materialin_subscriptionplan_bloc.dart';
-import 'package:amped_media_admin/features/profile/data/datasource/profile_remote_data_source.dart';
-import 'package:amped_media_admin/features/profile/data/repositories/profile_repository_impl.dart';
-import 'package:amped_media_admin/features/profile/domain/usecases/delete_profile.dart';
-import 'package:amped_media_admin/features/profile/domain/usecases/get_all_profile.dart';
-import 'package:amped_media_admin/features/profile/domain/usecases/search_profile.dart';
 import 'package:amped_media_admin/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:amped_media_admin/features/replays/data/datasources/subscriptionPlan_remote_data_source.dart';
 import 'package:amped_media_admin/features/replays/data/repositories/replay_repository_impl.dart';
@@ -42,11 +26,6 @@ import 'package:amped_media_admin/features/review_rate/domain/ussecases/delete_r
 import 'package:amped_media_admin/features/review_rate/domain/ussecases/get_all_rate.dart';
 import 'package:amped_media_admin/features/review_rate/domain/ussecases/search_rate.dart';
 import 'package:amped_media_admin/features/review_rate/presentation/bloc/rate_bloc.dart';
-import 'package:amped_media_admin/features/sellerprofile/data/datasources/sellerprofile_remote_data_source.dart';
-import 'package:amped_media_admin/features/sellerprofile/data/repositories/sellerprofile_repository_impl.dart';
-import 'package:amped_media_admin/features/sellerprofile/domain/usecases/delete_sellerprofile.dart';
-import 'package:amped_media_admin/features/sellerprofile/domain/usecases/get_all_sellerprofile.dart';
-import 'package:amped_media_admin/features/sellerprofile/domain/usecases/search_sellerprofile.dart';
 import 'package:amped_media_admin/features/sellerprofile/presentation/bloc/sellerprofile_bloc.dart';
 import 'package:amped_media_admin/features/subscriptionplan/data/datasources/subscriptionPlan_remote_data_source.dart';
 import 'package:amped_media_admin/features/subscriptionplan/data/repositories/subscriptionplan_repository_impl.dart';
@@ -54,12 +33,6 @@ import 'package:amped_media_admin/features/subscriptionplan/domain/usecases/dele
 import 'package:amped_media_admin/features/subscriptionplan/domain/usecases/get_all_subscriptionplan.dart';
 import 'package:amped_media_admin/features/subscriptionplan/domain/usecases/search_subscriptionplan.dart';
 import 'package:amped_media_admin/features/subscriptionplan/presentation/bloc/subscriptionplan_bloc.dart';
-import 'package:amped_media_admin/features/user/data/datasources/user_remote_data_source.dart';
-import 'package:amped_media_admin/features/user/data/repositories/user_repository_impl.dart';
-import 'package:amped_media_admin/features/user/domain/entities/user.dart';
-import 'package:amped_media_admin/features/user/domain/usecases/delete_user.dart';
-import 'package:amped_media_admin/features/user/domain/usecases/get_all_user.dart';
-import 'package:amped_media_admin/features/user/domain/usecases/search_user.dart';
 import 'package:amped_media_admin/features/user/presentation/bloc/user_bloc.dart';
 import 'package:amped_media_admin/init_dependencies.dart';
 import 'package:amped_media_admin/features/layout_template/layout_template.dart';
@@ -90,19 +63,7 @@ void main() {
           create: (context) => serviceLocator<ProfileBloc>(),
         ),
         BlocProvider(
-          create: (context) => SellerProfileBloc(
-              getAllSellerProfiles: GetAllSellerProfiles(
-                  sellerprofileRepository: SellerProfileRepositoryImpl(
-                      sellerprofileRemoteDataSource:
-                          SellerProfileRemoteDataSourceImpl())),
-              deleteSellerProfile: DeleteSellerProfile(
-                  sellerprofileRepository: SellerProfileRepositoryImpl(
-                      sellerprofileRemoteDataSource:
-                          SellerProfileRemoteDataSourceImpl())),
-              searchSellerProfile: SearchSellerProfile(
-                  sellerprofileRepository: SellerProfileRepositoryImpl(
-                      sellerprofileRemoteDataSource:
-                          SellerProfileRemoteDataSourceImpl()))),
+          create: (context) => serviceLocator<SellerProfileBloc>(),
         ),
         BlocProvider(
           create: (context) => ChannelMaterialBloc(

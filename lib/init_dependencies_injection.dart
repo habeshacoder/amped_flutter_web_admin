@@ -49,7 +49,23 @@ void _initProfile() {
       searchProfile: serviceLocator()));
 }
 
-void _initSellerProfile() {}
+void _initSellerProfile() {
+  serviceLocator.registerFactory<SellerProfileRemoteDataSource>(
+      () => SellerProfileRemoteDataSourceImpl());
+  serviceLocator.registerFactory<SellerProfileRepository>(() =>
+      SellerProfileRepositoryImpl(
+          sellerprofileRemoteDataSource: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => GetAllSellerProfiles(sellerprofileRepository: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => DeleteSellerProfile(sellerprofileRepository: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => SearchSellerProfile(sellerprofileRepository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SellerProfileBloc(
+      deleteSellerProfile: serviceLocator(),
+      getAllSellerProfiles: serviceLocator(),
+      searchSellerProfile: serviceLocator()));
+}
 
 void _initUser() {
   serviceLocator
