@@ -66,19 +66,7 @@ void main() {
           create: (context) => serviceLocator<SellerProfileBloc>(),
         ),
         BlocProvider(
-          create: (context) => ChannelMaterialBloc(
-              getAllChannelMaterials: GetAllChannelMaterials(
-                  channelmaterialRepository: ChannelMaterialRepositoryImpl(
-                      channelmaterialRemoteDataSource:
-                          ChannelMaterialRemoteDataSourceImpl())),
-              deleteChannelMaterial: DeleteChannelMaterial(
-                  channelmaterialRepository: ChannelMaterialRepositoryImpl(
-                      channelmaterialRemoteDataSource:
-                          ChannelMaterialRemoteDataSourceImpl())),
-              searchChannelMaterial: SearchChannelMaterial(
-                  channelmaterialRepository: ChannelMaterialRepositoryImpl(
-                      channelmaterialRemoteDataSource:
-                          ChannelMaterialRemoteDataSourceImpl()))),
+          create: (context) => serviceLocator<ChannelMaterialBloc>(),
         ),
         BlocProvider(
           create: (context) => SubscriptionPlanBloc(

@@ -28,7 +28,23 @@ void _initRePlay() {}
 
 void _initSubscriptionPlan() {}
 
-void _initChannelMaterial() {}
+void _initChannelMaterial() {
+  serviceLocator.registerFactory<ChannelMaterialRemoteDataSource>(
+      () => ChannelMaterialRemoteDataSourceImpl());
+  serviceLocator.registerFactory<ChannelMaterialRepository>(() =>
+      ChannelMaterialRepositoryImpl(
+          channelmaterialRemoteDataSource: serviceLocator()));
+  serviceLocator.registerFactory(() =>
+      GetAllChannelMaterials(channelmaterialRepository: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => DeleteChannelMaterial(channelmaterialRepository: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => SearchChannelMaterial(channelmaterialRepository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => ChannelMaterialBloc(
+      deleteChannelMaterial: serviceLocator(),
+      getAllChannelMaterials: serviceLocator(),
+      searchChannelMaterial: serviceLocator()));
+}
 
 void _initSubscribedUser() {}
 
