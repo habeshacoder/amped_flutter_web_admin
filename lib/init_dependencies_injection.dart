@@ -2,13 +2,72 @@ part of 'init_dependencies.dart';
 
 final serviceLocator = GetIt.instance;
 Future<void> initDependencies() async {
-  _initChannel();
   setupRouteLocator();
+  _initMaterial();
+  _initChannel();
+  _initUser();
+  _initProfile();
+  _initSellerProfile();
+  _initSubscribedUser();
+  _initChannelMaterial();
+  _initSubscriptionPlan();
+  _initRePlay();
+  _initReport();
+  _initRate();
 }
 
 void setupRouteLocator() {
   serviceLocator.registerLazySingleton(() => NavigationService());
-  // locator.registerLazySingleton(() => Api());
 }
 
-void _initChannel() {}
+void _initRate() {}
+
+void _initReport() {}
+
+void _initRePlay() {}
+
+void _initSubscriptionPlan() {}
+
+void _initChannelMaterial() {}
+
+void _initSubscribedUser() {}
+
+void _initProfile() {}
+
+void _initSellerProfile() {}
+
+void _initUser() {}
+
+void _initMaterial() {
+  serviceLocator.registerFactory<MaterialRemoteDataSource>(
+      () => MaterialRemoteDataSourceImpl());
+  serviceLocator.registerFactory<MaterialRepository>(
+      () => MaterialRepositoryImpl(materialRemoteDataSource: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => GetAllMaterials(materialRepository: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => DeleteMaterial(materialRepository: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => SearchMaterial(materialRepository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => MaterialBloc(
+      deleteMaterial: serviceLocator(),
+      getAllMaterials: serviceLocator(),
+      searchMaterial: serviceLocator()));
+}
+
+void _initChannel() {
+  serviceLocator.registerFactory<ChannelRemoteDataSource>(
+      () => ChannelRemoteDataSourceImpl());
+  serviceLocator.registerFactory<ChannelRepository>(
+      () => ChannelRepositoryImpl(channelRemoteDataSource: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => GetAllChannels(channelRepository: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => DeleteChannel(channelRepository: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => SearchChannel(channelRepository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => ChannelBloc(
+      deleteChannel: serviceLocator(),
+      getAllChannels: serviceLocator(),
+      searchChannel: serviceLocator()));
+}

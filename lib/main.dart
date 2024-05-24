@@ -1,6 +1,7 @@
 import 'package:amped_media_admin/config/router.dart';
 import 'package:amped_media_admin/features/channel/data/datasources/channel_remote_datasource.dart';
 import 'package:amped_media_admin/features/channel/data/repositories/channel_repository_impl.dart';
+import 'package:amped_media_admin/features/channel/domain/entities/channel.dart';
 import 'package:amped_media_admin/features/channel/domain/usecases/delete_channel.dart';
 import 'package:amped_media_admin/features/channel/domain/usecases/get_all_channels.dart';
 import 'package:amped_media_admin/features/channel/domain/usecases/search_channel.dart';
@@ -71,47 +72,15 @@ import 'features/report/domain/usecases/search_report.dart';
 import 'features/report/presentation/bloc/report_bloc.dart';
 
 void main() {
-  // setupLocator();
   initDependencies();
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ChannelBloc(
-              getAllChannels: GetAllChannels(
-                channelRepository: ChannelRepositoryImpl(
-                  channelRemoteDataSource: ChannelRemoteDataSourceImpl(),
-                ),
-              ),
-              deleteChannel: DeleteChannel(
-                channelRepository: ChannelRepositoryImpl(
-                  channelRemoteDataSource: ChannelRemoteDataSourceImpl(),
-                ),
-              ),
-              searchChannel: SearchChannel(
-                channelRepository: ChannelRepositoryImpl(
-                  channelRemoteDataSource: ChannelRemoteDataSourceImpl(),
-                ),
-              )),
+          create: (context) => serviceLocator<ChannelBloc>(),
         ),
         BlocProvider(
-          create: (context) => MaterialBloc(
-            getAllMaterials: GetAllMaterials(
-              materialRepository: MaterialRepositoryImpl(
-                materialRemoteDataSource: MaterialRemoteDataSourceImpl(),
-              ),
-            ),
-            deleteMaterial: DeleteMaterial(
-              materialRepository: MaterialRepositoryImpl(
-                materialRemoteDataSource: MaterialRemoteDataSourceImpl(),
-              ),
-            ),
-            searchMaterial: SearchMaterial(
-              materialRepository: MaterialRepositoryImpl(
-                materialRemoteDataSource: MaterialRemoteDataSourceImpl(),
-              ),
-            ),
-          ),
+          create: (context) => serviceLocator<MaterialBloc>(),
         ),
         BlocProvider(
           create: (context) => UserBloc(

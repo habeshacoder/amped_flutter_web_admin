@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "thebasics-2f123"
-  }
+    "default": "thebasics-2f123",
+    "amped_staging": "amped-media-91377"
+  },
+  "targets": {},
+  "etags": {}
 }
