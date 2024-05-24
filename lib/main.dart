@@ -68,64 +68,11 @@ void main() {
         BlocProvider(
           create: (context) => serviceLocator<ChannelMaterialBloc>(),
         ),
-
         BlocProvider(
           create: (context) => serviceLocator<SubscriptionPlanBloc>(),
         ),
-        // BlocProvider(
-        //   create: (context) => SubscriptionPlanBloc(
-        //     getAllSubscriptionPlan: GetAllSubscriptionPlan(
-        //       subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
-        //         subscriptionPlanRemoteDataSource:
-        //             SubscriptionPlanRemoteDataSourceImpl(),
-        //       ),
-        //     ),
-        //     deleteSubscriptionPlan: DeleteSubscriptionPlan(
-        //       subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
-        //         subscriptionPlanRemoteDataSource:
-        //             SubscriptionPlanRemoteDataSourceImpl(),
-        //       ),
-        //     ),
-        //     searchSubscriptionPlan: SearchSubscriptionPlan(
-        //       subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
-        //         subscriptionPlanRemoteDataSource:
-        //             SubscriptionPlanRemoteDataSourceImpl(),
-        //       ),
-        //     ),
-        //   ),
-        // ),
         BlocProvider(
-            create: (context) => MaterialInSubscriptionPlanBloc(
-                  getAllMaterialInSubscriptionPlans:
-                      GetAllMaterialInSubscriptionPlan(
-                          materialInSubscriptionPlanRepository:
-                              MaterialInSubscriptionPlanRepositoryImpl(
-                                  materialInSubscriptionPlanRemoteDataSource:
-                                      MaterialInSubscriptionPlanRemoteDataSourceImpl())),
-                  deleteMaterialInSubscriptionPlan:
-                      DeleteMaterialInSubscriptionPlan(
-                          materialInSubscriptionPlanRepository:
-                              MaterialInSubscriptionPlanRepositoryImpl(
-                                  materialInSubscriptionPlanRemoteDataSource:
-                                      MaterialInSubscriptionPlanRemoteDataSourceImpl())),
-                  searchMaterialInSubscriptionPlan:
-                      SearchMaterialInSubscriptionPlan(
-                          materialInSubscriptionPlanRepository:
-                              MaterialInSubscriptionPlanRepositoryImpl(
-                                  materialInSubscriptionPlanRemoteDataSource:
-                                      MaterialInSubscriptionPlanRemoteDataSourceImpl())),
-                )),
-        BlocProvider(
-          create: (context) => ReplayBloc(
-              getAllReplays: GetAllReplays(
-                  replaysRepository: ReplayRepositoryImpl(
-                      replayRemoteDataSource: ReplayRemoteDataSourceImpl())),
-              deleteReplay: DeleteReplay(
-                  replayRepository: ReplayRepositoryImpl(
-                      replayRemoteDataSource: ReplayRemoteDataSourceImpl())),
-              searchReplay: SearchReplay(
-                  replayRepository: ReplayRepositoryImpl(
-                      replayRemoteDataSource: ReplayRemoteDataSourceImpl()))),
+          create: (context) => serviceLocator<ReplayBloc>(),
         ),
         BlocProvider(
           create: (context) => RateBloc(

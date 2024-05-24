@@ -24,7 +24,22 @@ void _initRate() {}
 
 void _initReport() {}
 
-void _initRePlay() {}
+void _initRePlay() {
+  serviceLocator.registerFactory<ReplayRemoteDataSource>(
+      () => ReplayRemoteDataSourceImpl());
+  serviceLocator.registerFactory<ReplayRepository>(
+      () => ReplayRepositoryImpl(replayRemoteDataSource: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => GetAllReplays(replaysRepository: serviceLocator()));
+  serviceLocator
+      .registerFactory(() => DeleteReplay(replayRepository: serviceLocator()));
+  serviceLocator
+      .registerFactory(() => SearchReplay(replayRepository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => ReplayBloc(
+      deleteReplay: serviceLocator(),
+      getAllReplays: serviceLocator(),
+      searchReplay: serviceLocator()));
+}
 
 void _initSubscriptionPlan() {
   serviceLocator.registerFactory<SubscriptionPlanRemoteDataSource>(
