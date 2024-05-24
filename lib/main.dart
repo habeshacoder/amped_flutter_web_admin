@@ -68,28 +68,32 @@ void main() {
         BlocProvider(
           create: (context) => serviceLocator<ChannelMaterialBloc>(),
         ),
+
         BlocProvider(
-          create: (context) => SubscriptionPlanBloc(
-            getAllSubscriptionPlan: GetAllSubscriptionPlan(
-              subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
-                subscriptionPlanRemoteDataSource:
-                    SubscriptionPlanRemoteDataSourceImpl(),
-              ),
-            ),
-            deleteSubscriptionPlan: DeleteSubscriptionPlan(
-              subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
-                subscriptionPlanRemoteDataSource:
-                    SubscriptionPlanRemoteDataSourceImpl(),
-              ),
-            ),
-            searchSubscriptionPlan: SearchSubscriptionPlan(
-              subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
-                subscriptionPlanRemoteDataSource:
-                    SubscriptionPlanRemoteDataSourceImpl(),
-              ),
-            ),
-          ),
+          create: (context) => serviceLocator<SubscriptionPlanBloc>(),
         ),
+        // BlocProvider(
+        //   create: (context) => SubscriptionPlanBloc(
+        //     getAllSubscriptionPlan: GetAllSubscriptionPlan(
+        //       subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
+        //         subscriptionPlanRemoteDataSource:
+        //             SubscriptionPlanRemoteDataSourceImpl(),
+        //       ),
+        //     ),
+        //     deleteSubscriptionPlan: DeleteSubscriptionPlan(
+        //       subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
+        //         subscriptionPlanRemoteDataSource:
+        //             SubscriptionPlanRemoteDataSourceImpl(),
+        //       ),
+        //     ),
+        //     searchSubscriptionPlan: SearchSubscriptionPlan(
+        //       subscriptionPlanRepository: SubscriptionPlanRepositoryImpl(
+        //         subscriptionPlanRemoteDataSource:
+        //             SubscriptionPlanRemoteDataSourceImpl(),
+        //       ),
+        //     ),
+        //   ),
+        // ),
         BlocProvider(
             create: (context) => MaterialInSubscriptionPlanBloc(
                   getAllMaterialInSubscriptionPlans:

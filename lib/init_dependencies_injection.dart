@@ -26,7 +26,23 @@ void _initReport() {}
 
 void _initRePlay() {}
 
-void _initSubscriptionPlan() {}
+void _initSubscriptionPlan() {
+  serviceLocator.registerFactory<SubscriptionPlanRemoteDataSource>(
+      () => SubscriptionPlanRemoteDataSourceImpl());
+  serviceLocator.registerFactory<SubscriptionPlanRepository>(() =>
+      SubscriptionPlanRepositoryImpl(
+          subscriptionPlanRemoteDataSource: serviceLocator()));
+  serviceLocator.registerFactory(() =>
+      GetAllSubscriptionPlan(subscriptionPlanRepository: serviceLocator()));
+  serviceLocator.registerFactory(() =>
+      DeleteSubscriptionPlan(subscriptionPlanRepository: serviceLocator()));
+  serviceLocator.registerFactory(() =>
+      SearchSubscriptionPlan(subscriptionPlanRepository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SubscriptionPlanBloc(
+      deleteSubscriptionPlan: serviceLocator(),
+      getAllSubscriptionPlan: serviceLocator(),
+      searchSubscriptionPlan: serviceLocator()));
+}
 
 void _initChannelMaterial() {
   serviceLocator.registerFactory<ChannelMaterialRemoteDataSource>(
