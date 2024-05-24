@@ -56,6 +56,7 @@ import 'package:amped_media_admin/features/subscriptionplan/domain/usecases/sear
 import 'package:amped_media_admin/features/subscriptionplan/presentation/bloc/subscriptionplan_bloc.dart';
 import 'package:amped_media_admin/features/user/data/datasources/user_remote_data_source.dart';
 import 'package:amped_media_admin/features/user/data/repositories/user_repository_impl.dart';
+import 'package:amped_media_admin/features/user/domain/entities/user.dart';
 import 'package:amped_media_admin/features/user/domain/usecases/delete_user.dart';
 import 'package:amped_media_admin/features/user/domain/usecases/get_all_user.dart';
 import 'package:amped_media_admin/features/user/domain/usecases/search_user.dart';
@@ -82,37 +83,11 @@ void main() {
         BlocProvider(
           create: (context) => serviceLocator<MaterialBloc>(),
         ),
-        // BlocProvider(
-        //   create: (context) => UserBloc(
-        //       deleteUser: DeleteUser(
-        //         userRepository: UserRepositoryImpl(
-        //           userRemoteDataSource: UserRemoteDataSourceImpl(),
-        //         ),
-        //       ),
-        //       getAllUsers: GetAllUsers(
-        //         userRepository: UserRepositoryImpl(
-        //           userRemoteDataSource: UserRemoteDataSourceImpl(),
-        //         ),
-        //       ),
-        //       searchUser: SearchUser(
-        //         userRepository: UserRepositoryImpl(
-        //           userRemoteDataSource: UserRemoteDataSourceImpl(),
-        //         ),
-        //       )),
-        // ),
         BlocProvider(
-          create: (context) => ProfileBloc(
-              getAllProfiles: GetAllProfiles(
-                profileRepository: ProfileRepositoryImpl(
-                    profileRemoteDataSource: ProfileRemoteDataSourceImpl()),
-              ),
-              deleteProfile: DeleteProfile(
-                profileRepository: ProfileRepositoryImpl(
-                    profileRemoteDataSource: ProfileRemoteDataSourceImpl()),
-              ),
-              searchProfile: SearchProfile(
-                  profileRepository: ProfileRepositoryImpl(
-                      profileRemoteDataSource: ProfileRemoteDataSourceImpl()))),
+          create: (context) => serviceLocator<UserBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => serviceLocator<ProfileBloc>(),
         ),
         BlocProvider(
           create: (context) => SellerProfileBloc(

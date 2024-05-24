@@ -32,7 +32,22 @@ void _initChannelMaterial() {}
 
 void _initSubscribedUser() {}
 
-void _initProfile() {}
+void _initProfile() {
+  serviceLocator.registerFactory<ProfileRemoteDataSource>(
+      () => ProfileRemoteDataSourceImpl());
+  serviceLocator.registerFactory<ProfileRepository>(
+      () => ProfileRepositoryImpl(profileRemoteDataSource: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => GetAllProfiles(profileRepository: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => DeleteProfile(profileRepository: serviceLocator()));
+  serviceLocator.registerFactory(
+      () => SearchProfile(profileRepository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => ProfileBloc(
+      deleteProfile: serviceLocator(),
+      getAllProfiles: serviceLocator(),
+      searchProfile: serviceLocator()));
+}
 
 void _initSellerProfile() {}
 
