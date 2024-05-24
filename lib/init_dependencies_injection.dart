@@ -36,7 +36,22 @@ void _initProfile() {}
 
 void _initSellerProfile() {}
 
-void _initUser() {}
+void _initUser() {
+  serviceLocator
+      .registerFactory<UserRemoteDataSource>(() => UserRemoteDataSourceImpl());
+  serviceLocator.registerFactory<UserRepository>(
+      () => UserRepositoryImpl(userRemoteDataSource: serviceLocator()));
+  serviceLocator
+      .registerFactory(() => GetAllUsers(userRepository: serviceLocator()));
+  serviceLocator
+      .registerFactory(() => DeleteUser(userRepository: serviceLocator()));
+  serviceLocator
+      .registerFactory(() => SearchUser(userRepository: serviceLocator()));
+  serviceLocator.registerLazySingleton(() => UserBloc(
+      deleteUser: serviceLocator(),
+      getAllUsers: serviceLocator(),
+      searchUser: serviceLocator()));
+}
 
 void _initMaterial() {
   serviceLocator.registerFactory<MaterialRemoteDataSource>(

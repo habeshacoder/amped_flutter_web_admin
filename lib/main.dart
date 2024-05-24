@@ -82,24 +82,24 @@ void main() {
         BlocProvider(
           create: (context) => serviceLocator<MaterialBloc>(),
         ),
-        BlocProvider(
-          create: (context) => UserBloc(
-              deleteUser: DeleteUser(
-                userRepository: UserRepositoryImpl(
-                  userRemoteDataSource: UserRemoteDataSourceImpl(),
-                ),
-              ),
-              getAllUsers: GetAllUsers(
-                userRepository: UserRepositoryImpl(
-                  userRemoteDataSource: UserRemoteDataSourceImpl(),
-                ),
-              ),
-              searchUser: SearchUser(
-                userRepository: UserRepositoryImpl(
-                  userRemoteDataSource: UserRemoteDataSourceImpl(),
-                ),
-              )),
-        ),
+        // BlocProvider(
+        //   create: (context) => UserBloc(
+        //       deleteUser: DeleteUser(
+        //         userRepository: UserRepositoryImpl(
+        //           userRemoteDataSource: UserRemoteDataSourceImpl(),
+        //         ),
+        //       ),
+        //       getAllUsers: GetAllUsers(
+        //         userRepository: UserRepositoryImpl(
+        //           userRemoteDataSource: UserRemoteDataSourceImpl(),
+        //         ),
+        //       ),
+        //       searchUser: SearchUser(
+        //         userRepository: UserRepositoryImpl(
+        //           userRemoteDataSource: UserRemoteDataSourceImpl(),
+        //         ),
+        //       )),
+        // ),
         BlocProvider(
           create: (context) => ProfileBloc(
               getAllProfiles: GetAllProfiles(
